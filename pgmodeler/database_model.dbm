@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" author="Douglas Carlos da Silva Oliveira" last-position="0,0" last-zoom="1" max-obj-count="4"
+	 default-schema="public" default-owner="postgres">
+<database name="clientesgestor" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layer="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<usertype name="estado_civil" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Casado,Divorciado,Solteiro,Viúvo"/>
+</usertype>
+
+<usertype name="tipo_telefone" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Casa,Celular,Recado,Trabalho"/>
+</usertype>
+
+<usertype name="sexo" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Feminino,Masculino"/>
+</usertype>
+
+<sequence name="clientes_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<sequence name="telefone_cliente_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="clientes" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="66" y="53"/>
+	<column name="id" not-null="true" sequence="public.clientes_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="cpf" not-null="true">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="data_de_nascimento" not-null="true" default-value="'1900-01-01'">
+		<type name="date" length="0"/>
+	</column>
+	<column name="sexo_cliente" not-null="true">
+		<type name="public.sexo" length="0"/>
+	</column>
+	<column name="estado_civil_cliente" not-null="true">
+		<type name="public.estado_civil" length="0"/>
+	</column>
+	<constraint name="cliente_pk" type="pk-constr" table="public.clientes">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="cpf_unique" type="uq-constr" table="public.clientes">
+		<columns names="cpf" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="telefone_cliente" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="599" y="37"/>
+	<column name="id" not-null="true" sequence="public.telefone_cliente_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="telefone" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="tipo" not-null="true">
+		<type name="public.tipo_telefone" length="0"/>
+	</column>
+	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.telefone_cliente">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_clientes" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="clientes_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="clientes_has_many_telefone_cliente" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f8d280"
+	 src-table="public.clientes"
+	 dst-table="public.telefone_cliente"
+	 src-required="false" dst-required="false"
+	del-action="CASCADE"/>
+
+<view name="view_telefone_cliente" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="621" y="244"/>
+	<reference>
+		<expression><![CDATA[ SELECT clientes.id,
+    clientes.cpf,
+    telefone_cliente.telefone,
+    telefone_cliente.tipo
+   FROM (telefone_cliente
+     JOIN clientes ON ((telefone_cliente.id_clientes = clientes.id)));]]></expression>
+	<column name="id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cpf">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="telefone">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="tipo">
+		<type name="public.tipo_telefone" length="0"/>
+	</column>
+		<reftable name="public.clientes"/>
+		<reftable name="public.telefone_cliente"/>
+	</reference>
+</view>
+
+<relationship name="rel_view_telefone_cliente_clientes" type="reltv" layer="0"
+	 src-table="public.view_telefone_cliente"
+	 dst-table="public.clientes"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_view_telefone_cliente_telefone_cliente" type="reltv" layer="0"
+	 src-table="public.view_telefone_cliente"
+	 dst-table="public.telefone_cliente"
+	 src-required="false" dst-required="false"/>
+
+<function name="apagar_telefone"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql"/>
+	<return-type>
+	<type name="integer" length="0"/>
+	</return-type>
+	<parameter name="cpf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="tipo_">
+		<type name="public.tipo_telefone" length="0"/>
+	</parameter>
+	<parameter name="telefone_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<definition><![CDATA[DECLARE id_retorno integer;
+BEGIN
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+DELETE FROM telefone_cliente 	WHERE id_clientes=id_retorno AND tipo=tipo_ AND telefone=telefone_;
+
+RETURN id_retorno;
+
+END;]]></definition>
+</function>
+
+<function name="inserir_telefone"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql"/>
+	<return-type>
+	<type name="integer" length="0"/>
+	</return-type>
+	<parameter name="cpf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="telefone_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="tipo_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<definition><![CDATA[DECLARE id_retorno integer;
+BEGIN
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+INSERT INTO telefone_cliente(id_clientes, telefone, tipo) VALUES (id_retorno, telefone_, tipo_::tipo_telefone);
+
+RETURN id_retorno;
+
+END;]]></definition>
+</function>
+
+</dbmodel>
