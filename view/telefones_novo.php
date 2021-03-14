@@ -1,5 +1,5 @@
 <?php
-define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql');
+//define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql');
 ?><!doctype html>
 <html lang="pt-br">
   <head>

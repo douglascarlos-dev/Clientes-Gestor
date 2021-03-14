@@ -1,4 +1,5 @@
 <?php
+define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql');
 $url = (isset($_GET['url'])) ? $_GET['url']:'';
 $url = array_filter(explode('/',$url));
 @$classe = ucfirst($url[0]);

@@ -41,6 +41,9 @@ port=5432
 dbname=
 user=
 password=
+
+# Informe o nome da pasta em que o projeto está executando no arquivo index.php
+# Exemplo: define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql'); ou define('ENDERECO', ''); se executar no dirtorio root.
 ```
 
 ### Modelagem do banco
