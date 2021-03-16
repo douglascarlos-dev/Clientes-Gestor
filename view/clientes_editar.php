@@ -64,21 +64,19 @@ $resultado = $cliente->get_cliente($cpf);
   <?php
 
 $telefone = $cliente->get_cliente_telefone($cpf);
-//print_r($telefone);
-foreach($telefone as &$value):
-  //$result2 = pg_query($dbconn, "SELECT public.telefone_cliente.tipo, public.telefone_cliente.telefone FROM public.telefone_cliente INNER JOIN public.clientes ON public.telefone_cliente.id_cliente = public.clientes.id WHERE cpf = '".$cpf."'");
 
-  //while ($row2 = pg_fetch_assoc($result2)) {
+foreach($telefone as &$value):
+
     echo "<div class=\"form-row\">";
     echo "<div class=\"form-group col-md-6\">";
     echo "<label for=\"inputNome\">Telefone</label>";
-   // echo "<p>" . $row2["descricao"] . "</p>";
+
     echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"descricao\" value=\"" . $value["tipo"] . "\" readonly>";
     
     echo "</div>";
     echo "<div class=\"form-group col-md-5\">";
     echo "<label for=\"inputNome\">Número</label>";
-    //echo $row2["telefone"];
+
     echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"telefone\" value=\"" . $value["telefone"] . "\" readonly>";
     
     echo "</div>";
@@ -95,9 +93,7 @@ foreach($telefone as &$value):
     </div>";
 
     echo "</div>";
-  //}
-  
-  //pg_close($dbconn);
+
 endforeach;
   ?>
   

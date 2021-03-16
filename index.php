@@ -21,16 +21,6 @@ if (!empty($classe) and class_exists($classe)) {
                 $$classe->$metodo($parametros);
             }
 
-            /*array_shift($url);
-            @$parametro = $url[0];
-            if(!empty($parametro)){
-                $parametros = array();
-                $parametros = $url;
-                $$classe->$metodo($parametros);
-            } else {
-                $$classe->$metodo();
-            }*/
-
         } elseif (method_exists($$classe,'visualizar')) {
             $$classe->visualizar();
         } else {

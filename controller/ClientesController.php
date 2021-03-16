@@ -6,17 +6,10 @@ class ClientesController{
 
     public function visualizar() {
         $cliente = new Cliente();
-        //$cliente2 = new Cliente();
-        //$clientes = $cliente->viewAll();
-        //$clientes2 = $cliente2->todas_as_cores();
-        //$_REQUEST['clientes'] = $clientes;
         require_once 'view/clientes_view.php';
     }
 
     public static function editar( $cpf ) {
-    //public static function editar( $array ) {
-        //$cpf = $array[0];
-    //public function editar( $cpf ) {
         $cliente = new Cliente();
         require_once 'view/clientes_editar.php';
     }
