@@ -18,9 +18,12 @@
 
 <div class="px-3 pt-md-3 pb-md-4 mx-auto text-center">
 
+<?php
+$resultado = $cliente->get_all_clientes();
+if(count($resultado) >= 1){
+?>
 
-
- <div id="list" class="row">
+ <div id="lista_de_clientes" class="row">
     <div class="table-responsive col-md-12">
         <table class="table table-striped" cellspacing="0" cellpadding="0">
             <thead>
@@ -33,7 +36,7 @@
             </thead>
             <tbody>
 <?php
-$resultado = $cliente->get_all_clientes();
+
 
 foreach($resultado as &$value):
     echo "<tr>";
@@ -51,7 +54,16 @@ endforeach;
  
      </div>
  </div> <!-- /#list -->
-
+<?php
+} else {
+?>
+<div id="lista_de_clientes">
+    <img src="../../img/resultado.png" alt="some text" width=304 height=182>
+    <p>Ops! Nenhum resultado encontrado! :(</p>
+</div>
+<?php
+}
+?>
  
 
 </div><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
