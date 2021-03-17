@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <title>Sistema 1.0</title>
+    <style>
+      .container {  
+      display: grid;  
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));  
+  }
+      </style>
   </head>
   <body>
   <?php require_once 'menu.php'; ?>
@@ -25,32 +32,29 @@ if(count($resultado) >= 1){
 
  <div id="lista_de_clientes" class="row">
     <div class="table-responsive col-md-12">
-        <table class="table table-striped" cellspacing="0" cellpadding="0">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th class="actions">Ações</th>
-                 </tr>
-            </thead>
-            <tbody>
-<?php
+        
+    
+    <div class="container">  
+        <div><b>ID</b></div>  
+        <div><b>Nome</b></div>  
+        <div><b>CPF</b></div>  
+        <div><b>Ações</b></div>
+      </div>
 
-
+      <?php
 foreach($resultado as &$value):
-    echo "<tr>";
-    echo "<td>" . $value["id"] . "</td>";
-    echo "<td>" . $value["nome"] . "</td>";
-    echo "<td>" . $value["cpf"] . "</td>";
-    echo "<td class=\"actions\">
-    <a class=\"btn btn-primary btn-xs\" href=\"" . ENDERECO . "/clientes/editar/" . $value["cpf"] . "\">Visualizar</a>
-    </td>";
-    echo "</tr>";
+    ?>
+      <div class="container"> 
+        <div><?php echo $value["id"]; ?></div>  
+        <div><?php echo $value["nome"]; ?></div>  
+        <div><?php echo $value["cpf"]; ?></div>  
+        <div><a class="btn btn-primary btn-xs" href="<?php echo ENDERECO; ?>/clientes/editar/<?php echo $value["cpf"]; ?>">Visualizar</a></div>   
+      </div>
+      <?php
 endforeach;
-?>
-</tbody>
-         </table>
+    ?>
+
+
  
      </div>
  </div> <!-- /#list -->
