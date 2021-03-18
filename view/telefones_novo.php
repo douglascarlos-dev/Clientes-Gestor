@@ -34,7 +34,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Telefone</label>
-      <input type="text" class="form-control" id="inputPassword4" name="telefone">
+      <input type="text" class="form-control" id="inputPassword4" name="telefone" maxlength="11">>
     </div>
   </div>
  

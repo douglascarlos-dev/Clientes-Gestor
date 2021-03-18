@@ -23,17 +23,17 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNome">Nome</label>
-                        <input type="text" class="form-control" id="inputNome" name="nome">
+                        <input type="text" class="form-control" id="inputNome" name="nome" maxlength="100">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">E-mail</label>
-                        <input type="text" class="form-control" id="inputPassword4" name="email">
+                        <input type="text" class="form-control" id="inputPassword4" name="email" maxlength="100">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNome">CPF</label>
-                        <input type="text" class="form-control" id="inputNome" name="cpf">
+                        <input type="text" class="form-control" id="inputNome" name="cpf" maxlength="11">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Data de Nascimento</label>

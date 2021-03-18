@@ -93,7 +93,7 @@ ALTER TABLE public.clientes OWNER TO postgres;
 CREATE TABLE public.telefone_cliente (
 	id integer NOT NULL DEFAULT nextval('public.telefone_cliente_id_seq'::regclass),
 	id_clientes integer,
-	telefone character varying NOT NULL,
+	telefone character varying(11) NOT NULL,
 	tipo public.tipo_telefone NOT NULL,
 	CONSTRAINT telefone_cliente_pk PRIMARY KEY (id)
 

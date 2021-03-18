@@ -25,11 +25,11 @@ $resultado = $cliente->get_cliente($cpf);
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Nome</label>
-      <input type="text" class="form-control" id="inputNome" name="nome" value="<?php echo $resultado["nome"]; ?>">
+      <input type="text" class="form-control" id="inputNome" name="nome" value="<?php echo $resultado["nome"]; ?>" maxlength="100">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">E-mail</label>
-      <input type="text" class="form-control" id="inputPassword4" name="email" value="<?php echo $resultado["email"]; ?>">
+      <input type="text" class="form-control" id="inputPassword4" name="email" value="<?php echo $resultado["email"]; ?>" maxlength="100">
     </div>
   </div>
   <div class="form-row">

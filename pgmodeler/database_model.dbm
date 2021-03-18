@@ -80,7 +80,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="telefone" not-null="true">
-		<type name="character varying" length="0"/>
+		<type name="character varying" length="11"/>
 	</column>
 	<column name="tipo" not-null="true">
 		<type name="public.tipo_telefone" length="0"/>
