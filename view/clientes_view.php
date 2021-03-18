@@ -10,11 +10,9 @@
 
     <title>Sistema 1.0</title>
     <style>
-      .container {  
-      display: grid;  
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));  
-  }
+[class*="col"] {
+    margin-bottom: 5px;
+}
       </style>
   </head>
   <body>
@@ -33,36 +31,36 @@ if(count($resultado) >= 1){
  <div id="lista_de_clientes" class="row">
     <div class="table-responsive col-md-12">
         
-    
-    <div class="container">  
-        <div><b>ID</b></div>  
-        <div><b>Nome</b></div>  
-        <div><b>CPF</b></div>  
-        <div><b>Ações</b></div>
-      </div>
+    <div class="container">
+    <div class="row">
+      <div class="col p-2"><b>Nome</b></div>
+      <div class="col p-2"><b>CPF</b></div>
+      <div class="col p-2"><b>Ações</b></div>
+ 
 
       <?php
+      $i = 0;
 foreach($resultado as &$value):
     ?>
-      <div class="container"> 
-        <div><?php echo $value["id"]; ?></div>  
-        <div><?php echo $value["nome"]; ?></div>  
-        <div><?php echo $value["cpf"]; ?></div>  
-        <div><a class="btn btn-primary btn-xs" href="<?php echo ENDERECO; ?>/clientes/editar/<?php echo $value["cpf"]; ?>">Visualizar</a></div>   
-      </div>
+      <div class="w-100"></div>
+      <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><?php echo $value["nome"]; ?></div>  
+      <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><?php echo $value["cpf"]; ?></div>  
+      <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><a class="btn btn-primary btn-xs" href="<?php echo ENDERECO; ?>/clientes/editar/<?php echo $value["cpf"]; ?>">Visualizar</a></div>   
+      
       <?php
+      $i++;
 endforeach;
     ?>
 
 
- 
+</div>
      </div>
  </div> <!-- /#list -->
 <?php
 } else {
 ?>
 <div id="lista_de_clientes">
-    <img src="../../img/resultado.png" alt="some text" width=304 height=182>
+    <img src="./img/resultado.png" alt="some text" width=304 height=182>
     <p>Ops! Nenhum resultado encontrado! :(</p>
 </div>
 <?php
