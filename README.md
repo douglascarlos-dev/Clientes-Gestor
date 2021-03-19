@@ -1,4 +1,4 @@
-# Clientes Getor
+# Clientes Gestor
 
 Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a Objetos com banco de dados Postgresql com PDO
 
@@ -33,7 +33,7 @@ $ git clone https://github.com/douglascarlos-dev/Clientes-Getor
 
 ### Configuração:
 
-```shell
+```php
 # Entre na pasta model do projeto e crie um arquivo database.ini
 # com os dados de conexão do banco de dados PostgreSQL
 host=
@@ -43,7 +43,9 @@ user=
 password=
 
 # Informe o nome da pasta em que o projeto está executando no arquivo index.php
-# Exemplo: define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql'); ou define('ENDERECO', ''); se executar no dirtorio root.
+# Exemplo:
+define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql'); //ou
+define('ENDERECO', ''); //se executar no dirtorio root.
 ```
 
 ### Modelagem do banco
