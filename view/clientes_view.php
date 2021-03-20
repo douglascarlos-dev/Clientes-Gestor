@@ -60,7 +60,7 @@ endforeach;
 } else {
 ?>
 <div id="lista_de_clientes">
-    <img src="./img/resultado.png" alt="some text" width=304 height=182>
+    <img src="<?php echo ENDERECO; ?>/img/resultado.png" alt="some text" width=304 height=182>
     <p>Ops! Nenhum resultado encontrado! :(</p>
 </div>
 <?php

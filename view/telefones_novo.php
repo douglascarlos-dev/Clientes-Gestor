@@ -29,15 +29,17 @@
       <select name=tipo class="form-control">
           <option value='Casa' selected>Casa</option>
           <option value='Celular'>Celular</option>
+          <option value='Recado'>Recado</option>
           <option value='Trabalho'>Trabalho</option>
       </select>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Telefone</label>
-      <input type="text" class="form-control" id="inputPassword4" name="telefone" maxlength="11">>
+      <input type="text" class="form-control" id="inputPassword4" name="telefone" maxlength="11">
     </div>
   </div>
- 
+
+  <a class="btn btn-outline-primary" href="<?php echo ENDERECO; ?>/clientes/editar/<?php echo $cpf; ?>" role="button">Cancelar</a> 
   <button type="submit" class="btn btn-primary">Cadastrar</button> 
 
 </form>
