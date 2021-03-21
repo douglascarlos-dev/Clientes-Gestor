@@ -38,35 +38,35 @@
                         <input type="text" class="form-control" id="inputNome" name="nome" maxlength="100">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4">E-mail</label>
-                        <input type="text" class="form-control" id="inputPassword4" name="email" maxlength="100">
+                        <label for="inputEmail">E-mail</label>
+                        <input type="text" class="form-control" id="inputEmail" name="email" maxlength="100">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputNome">CPF</label>
-                        <input type="text" class="form-control" id="inputNome" name="cpf" maxlength="11">
+                        <label for="inputCpf">CPF</label>
+                        <input type="text" class="form-control" id="inputCpf" name="cpf" maxlength="11">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4">Data de Nascimento</label>
-                        <input type="date" class="form-control" id="inputPassword4" name="data_de_nascimento">
+                        <label for="inputDataDeNascimento">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="inputDataDeNascimento" name="data_de_nascimento">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputNome">Sexo</label>
-                        <select name=sexo class="form-control">
-                            <option value='Masculino' selected>Masculino</option>
-                            <option value='Feminino'>Feminino</option>
+                        <label for="inputSexo">Sexo</label>
+                        <select id="inputSexo" name='sexo' class="form-control">
+                            <option value='Masculino' name='Masculino' selected>Masculino</option>
+                            <option value='Feminino' name='Feminino'>Feminino</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputNome">Estado Civil</label>
-                        <select name=estado_civil class="form-control">
-                            <option value=Solteiro selected>Solteiro</option>
-                            <option value=Casado>Casado</option>
-                            <option value=Divorciado>Divorciado</option>
-                            <option value=Viúvo>Viúvo</option>
+                        <label for="inputEstadoCivil">Estado Civil</label>
+                        <select id="inputEstadoCivil" name='estado_civil' class="form-control">
+                            <option value='Solteiro' name='Solteiro' selected>Solteiro</option>
+                            <option value='Casado' name='Casado'>Casado</option>
+                            <option value='Divorciado' name='Divorciado'>Divorciado</option>
+                            <option value='Viúvo' name='Viúvo'>Viúvo</option>
                         </select>
                     </div>
                 </div>
