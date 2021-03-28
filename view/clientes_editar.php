@@ -51,8 +51,8 @@ $resultado = $cliente->get_cliente($cpf);
         </select>
     </div>
     <div class="form-group col-md-6">
-        <label for="inputEstadoCivil">Estado Civil</label>
-            <select id="inputEstadoCivil" name='estado_civil' class="form-control">
+        <label for="selectEstadoCivil">Estado Civil</label>
+            <select id="selectEstadoCivil" name='estado_civil' class="form-control">
             <option value="Solteiro" name='Solteiro' <?php if($resultado["estado_civil_cliente"] == 'Solteiro') { echo 'selected'; } ?>>Solteiro</option>
                 <option value="Casado" name='Casado' <?php if($resultado["estado_civil_cliente"] == 'Casado') { echo 'selected'; } ?>>Casado</option>
                 <option value="Divorciado" name='Divorciado' <?php if($resultado["estado_civil_cliente"] == 'Divorciado') { echo 'selected'; } ?>>Divorciado</option>
@@ -69,15 +69,15 @@ foreach($telefone as &$value):
 
     echo "<div class=\"form-row\">";
     echo "<div class=\"form-group col-md-6\">";
-    echo "<label for=\"inputNome\">Telefone</label>";
+    echo "<label for=\"inputTipoTelefone\">Telefone</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"descricao\" value=\"" . $value["tipo"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputTipoTelefone\" name=\"tipo_telefone\" value=\"" . $value["tipo"] . "\" readonly>";
     
     echo "</div>";
     echo "<div class=\"form-group col-md-5\">";
-    echo "<label for=\"inputNome\">Número</label>";
+    echo "<label for=\"inputTelefone\">Número</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"telefone\" value=\"" . $value["telefone"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputTelefone\" name=\"telefone\" value=\"" . $value["telefone"] . "\" readonly>";
     
     echo "</div>";
 
@@ -100,7 +100,7 @@ endforeach;
   
 
   <button type="submit" class="btn btn-primary">Atualizar</button>
-  <a class="btn btn-outline-primary" href="<?php echo ENDERECO; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
+  <a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo ENDERECO; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
   <a class="btn btn-danger" href="<?php echo ENDERECO; ?>/clientes/deletar/<?php echo $cpf; ?>" role="button">Deletar</a>
 
   

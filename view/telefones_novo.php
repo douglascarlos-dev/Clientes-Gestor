@@ -26,16 +26,16 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Descrição</label>
-      <select name=tipo class="form-control">
-          <option value='Casa' selected>Casa</option>
-          <option value='Celular'>Celular</option>
-          <option value='Recado'>Recado</option>
-          <option value='Trabalho'>Trabalho</option>
+      <select id="selectTipo" name="tipo" class="form-control">
+          <option value='Casa' name='Casa' selected>Casa</option>
+          <option value='Celular' name='Celular'>Celular</option>
+          <option value='Recado' name='Recado'>Recado</option>
+          <option value='Trabalho' name='Trabalho'>Trabalho</option>
       </select>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Telefone</label>
-      <input type="text" class="form-control" id="inputPassword4" name="telefone" maxlength="11">
+      <label for="inputTelefone">Telefone</label>
+      <input type="text" class="form-control" id="inputTelefone" name="telefone" maxlength="11">
     </div>
   </div>
 
