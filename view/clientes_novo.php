@@ -24,14 +24,11 @@
 
 <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
 
-<div id="formAlert" class="alert alert-warning hide">  
-    <a class="close">×</a>  
-    <strong>Alerta!</strong> Certifique-se de que todos os campos estão preenchidos e tente novamente.
-</div>
+<div class="alert alert-danger d-none" role="alert" id="myDIV">Certifique-se de que todos os campos estão preenchidos e tente novamente.</div>
 
     <div class="card">
         <div class="card-body">
-            <form name="register" action="../../clientes/cadastrar" method="post">
+            <form name="register" action="<?php echo ENDERECO; ?>/clientes/cadastrar" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNome">Nome</label>
@@ -55,7 +52,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputSexo">Sexo</label>
-                        <select id="inputSexo" name='sexo' class="form-control">
+                        <select id="selectSexo" name='sexo' class="form-control">
                             <option value='Masculino' name='Masculino' selected>Masculino</option>
                             <option value='Feminino' name='Feminino'>Feminino</option>
                         </select>
@@ -84,65 +81,25 @@
 <script src="<?php echo ENDERECO; ?>/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
+    $(document).ready(function () {
 
-    
-$(document).ready(function () {
-    // Run this code only when the DOM (all elements) are ready
+        $('form[name="register"]').on("submit", function (e) {
 
-    $("#formAlert").slideUp(400, function (){});
-    $('form[name="register"]').on("submit", function (e) {
-        // Find all <form>s with the name "register", and bind a "submit" event handler
-        
-        // Find the <input /> element with the name "username"
-        var username = $(this).find('input[name="nome"]');
-        if ($.trim(username.val()) === "") {
-            // If its value is empty
-            e.preventDefault();    // Stop the form from submitting
-            $("#formAlert").slideDown(400);    // Show the Alert
-        } else {
-            $("#formAlert").slideUp(400, function () {    // Hide the Alert (if visible)
-            });
-        }
+            var username = $(this).find('input[name="nome"]');
+            var useremail = $(this).find('input[name="email"]');
+            var usercpf = $(this).find('input[name="cpf"]');
+            var userdata_de_nascimento = $(this).find('input[name="data_de_nascimento"]');
 
-        var useremail = $(this).find('input[name="email"]');
-        if ($.trim(useremail.val()) === "") {
-            // If its value is empty
-            e.preventDefault();    // Stop the form from submitting
-            $("#formAlert").slideDown(400);    // Show the Alert
-        } else {
-            $("#formAlert").slideUp(400, function () {    // Hide the Alert (if visible)
-            });
-        }
+            if ($.trim(username.val()) === "" || $.trim(useremail.val()) === "" || $.trim(usercpf.val()) === "" || $.trim(userdata_de_nascimento.val()) === "") {
+                $("#myDIV").removeClass('d-none');
+                e.preventDefault();
+            } else {
+                $("#myDIV").addClass('d-none');
+            }
+        });
 
-        var usercpf = $(this).find('input[name="cpf"]');
-        if ($.trim(usercpf.val()) === "") {
-            // If its value is empty
-            e.preventDefault();    // Stop the form from submitting
-            $("#formAlert").slideDown(400);    // Show the Alert
-        } else {
-            $("#formAlert").slideUp(400, function () {    // Hide the Alert (if visible)
-            });
-        }
-
-        var userdata_de_nascimento = $(this).find('input[name="data_de_nascimento"]');
-        if ($.trim(userdata_de_nascimento.val()) === "") {
-            // If its value is empty
-            e.preventDefault();    // Stop the form from submitting
-            $("#formAlert").slideDown(400);    // Show the Alert
-        } else {
-            $("#formAlert").slideUp(400, function () {    // Hide the Alert (if visible)
-            });
-        }
     });
-    
-    $(".alert").find(".close").on("click", function (e) {
-        // Find all elements with the "alert" class, get all descendant elements with the class "close", and bind a "click" event handler
-        e.stopPropagation();    // Don't allow the click to bubble up the DOM
-        e.preventDefault();    // Don't let any default functionality occur (in case it's a link)
-        $(this).closest(".alert").slideUp(400);    // Hide this specific Alert
-    });
-});
-</script>
+    </script>
 </body>
 </html>
