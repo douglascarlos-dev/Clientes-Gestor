@@ -32,7 +32,7 @@ class ClientesController{
 
     public function atualizar( $cpf ){
         $cliente = new Cliente();
-        $cliente->atualizar_cliente($_REQUEST['nome'], $cpf);
+        $cliente->atualizar_cliente($_REQUEST['nome'], $_REQUEST['email'], $_REQUEST['data_de_nascimento'], $_REQUEST['sexo'], $_REQUEST['estado_civil'], $cpf);
         $this->editar($cpf);
     }
    

@@ -37,9 +37,9 @@ class Cliente extends Connection {
         return true;
     }
 
-    function cliente_update($nome, $cpf){
+    function cliente_update($nome, $email, $data_de_nascimento, $sexo_cliente, $estado_civil_cliente, $cpf){
         $pdo = $this->o_db;
-        $stmt = $pdo->prepare("UPDATE clientes SET nome = '$nome' WHERE cpf = '$cpf'"); 
+        $stmt = $pdo->prepare("UPDATE clientes SET nome = '$nome', email = '$email', data_de_nascimento = '$data_de_nascimento', sexo_cliente = '$sexo_cliente', estado_civil_cliente = '$estado_civil_cliente' WHERE cpf = '$cpf'"); 
         $stmt->execute(); 
         return true;
     }
@@ -80,8 +80,8 @@ class Cliente extends Connection {
         return $consulta;
     }
 
-    function atualizar_cliente($valor1, $valor2){
-        $consulta = $this->cliente_update($valor1, $valor2);
+    function atualizar_cliente($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+        $consulta = $this->cliente_update($valor1, $valor2, $valor3, $valor4, $valor5, $valor6);
         return $consulta;
     }
 
