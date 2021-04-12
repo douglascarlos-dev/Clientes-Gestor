@@ -174,4 +174,32 @@ $$;
 ALTER FUNCTION public.inserir_telefone(character varying,character varying,character varying) OWNER TO postgres;
 -- ddl-end --
 
+-- object: public.users_id_seq | type: SEQUENCE --
+-- DROP SEQUENCE IF EXISTS public.users_id_seq CASCADE;
+CREATE SEQUENCE public.users_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+
+-- ddl-end --
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.users | type: TABLE --
+-- DROP TABLE IF EXISTS public.users CASCADE;
+CREATE TABLE public.users (
+	id integer NOT NULL DEFAULT nextval('public.users_id_seq'::regclass),
+	username character varying(1000),
+	password character varying(1000),
+	CONSTRAINT users_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.users OWNER TO postgres;
+-- ddl-end --
+
 
