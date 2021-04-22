@@ -3,8 +3,8 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" author="Douglas Carlos da Silva Oliveira" last-position="0,0" last-zoom="1" max-obj-count="4"
-	 default-schema="public" default-owner="postgres">
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="4"
+	 default-owner="postgres">
 <database name="clientesgestor" is-template="false" allow-conns="true">
 </database>
 
@@ -215,5 +215,32 @@ RETURN id_retorno;
 
 END;]]></definition>
 </function>
+
+<sequence name="users_id_seq" cycle="false" start="2" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="users" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="146" y="290"/>
+	<column name="id" not-null="true" sequence="public.users_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="username">
+		<type name="character varying" length="1000"/>
+	</column>
+	<column name="password">
+		<type name="character varying" length="1000"/>
+	</column>
+	<constraint name="users_pk" type="pk-constr" table="public.users">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•username•password⸣
+1•admin•$2y$10$fwpKXPecTh6ThLcekkY2HuMeY5JkPiDDAbddzku0HAVDStpkd5TM6]]>
+	</initial-data>
+</table>
 
 </dbmodel>

@@ -2,7 +2,7 @@
 -- pgModeler  version: 0.9.3
 -- PostgreSQL version: 12.0
 -- Project Site: pgmodeler.io
--- Model Author: Douglas Carlos da Silva Oliveira
+-- Model Author: ---
 
 -- Database creation must be performed outside a multi lined SQL file. 
 -- These commands were put in this file only as a convenience.
@@ -180,7 +180,7 @@ CREATE SEQUENCE public.users_id_seq
 	INCREMENT BY 1
 	MINVALUE 1
 	MAXVALUE 2147483647
-	START WITH 1
+	START WITH 2
 	CACHE 1
 	NO CYCLE
 	OWNED BY NONE;
@@ -200,6 +200,9 @@ CREATE TABLE public.users (
 );
 -- ddl-end --
 ALTER TABLE public.users OWNER TO postgres;
+-- ddl-end --
+
+INSERT INTO public.users (id, username, password) VALUES (E'1', E'admin', E'$2y$10$fwpKXPecTh6ThLcekkY2HuMeY5JkPiDDAbddzku0HAVDStpkd5TM6');
 -- ddl-end --
 
 
