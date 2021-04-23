@@ -4,12 +4,13 @@ Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a O
 
 ## Recursos usados no desenvolvimento:
 
-- PHP;
-- PostgreSQL;
-- pgModeler;
+- PHP 7;
+- PostgreSQL 12;
+- pgModeler 0.9.3;
 - HTML;
-- Bootstrap;
+- Bootstrap v4.5.3;
 - Apache HTTP Server;
+- DBeaver Community Edition;
 
 
 ## Instalação:
@@ -35,7 +36,7 @@ $ git clone https://github.com/douglascarlos-dev/Clientes-Getor
 
 ```php
 # Entre na pasta model do projeto e crie um arquivo database.ini
-# com os dados de conexão do banco de dados PostgreSQL
+# com os dados de conexão do banco de dados PostgreSQL.
 host=
 port=5432
 dbname=
@@ -46,10 +47,13 @@ password=
 # Exemplo:
 define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql'); //ou
 define('ENDERECO', ''); //se executar no dirtorio root.
+
+# Usuário e senha: admin
 ```
 
 ### Modelagem do banco
 
 A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.3, bem como uma imagem da modelagem e o arquivo sql de criação do banco.
+É necessario estar instalado o módulo pgsql para php para uma correta comunicação
 
 ![Logo API](./pgmodeler/database_model.png)
