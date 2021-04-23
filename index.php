@@ -1,8 +1,20 @@
 <?php
+session_start();
+
 define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql');
+define('URLROOT', '/php-pdo-oop-clean-urls-postgresql');
+
+include_once 'controller/UserController.php';
+$usuario = new UserController();
+
 $url = (isset($_GET['url'])) ? $_GET['url']:'';
 $url = array_filter(explode('/',$url));
 @$classe = ucfirst($url[0]);
+
+if($classe != 'User'){
+    $usuario->isLoggedIn();
+}
+
 @$classe .= 'Controller';
 @include_once 'controller/'.$classe.'.php';
 if (!empty($classe) and class_exists($classe)) {
