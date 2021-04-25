@@ -1,6 +1,8 @@
 # Clientes Gestor
 
-Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a Objetos com banco de dados Postgresql com PDO
+Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a Objetos com banco de dados Postgresql com PDO.
+
+![Logo API](./img/tela_cliente.png)
 
 ## Recursos usados no desenvolvimento:
 
@@ -54,6 +56,6 @@ define('ENDERECO', ''); //se executar no dirtorio root.
 ### Modelagem do banco
 
 A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.3, bem como uma imagem da modelagem e o arquivo sql de criação do banco.
-É necessario estar instalado o módulo pgsql para php para uma correta comunicação
+É necessario estar instalado o módulo pgsql para php para uma correta comunicação.
 
 ![Logo API](./pgmodeler/database_model.png)
