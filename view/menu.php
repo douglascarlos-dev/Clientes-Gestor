@@ -4,5 +4,6 @@
     <a class="p-2 text-dark" href="<?php echo ENDERECO; ?>/">Inicio</a>
     <a class="p-2 text-dark" href="<?php echo ENDERECO; ?>/clientes">Clientes</a>
     <a class="p-2 text-dark" href="<?php echo ENDERECO; ?>/">Sobre</a>
+    <a class="p-2 text-dark" href="<?php echo ENDERECO; ?>/user/logout">Sair</a>
   </nav>
 </div>

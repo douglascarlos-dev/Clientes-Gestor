@@ -75,5 +75,10 @@ class UserController{
         $_SESSION['username'] = $user["username"];
         require_once 'view/user_view.php';
     }
+
+    public function logout() {
+        unset($_SESSION['username']);
+        header("Location: http://localhost:8080/php-pdo-oop-clean-urls-postgresql/user");
+    }
 }
 ?>
