@@ -3,6 +3,7 @@ deployment:
       tasks:
         - export DEPLOYPATH=/home/douglasc/public_html/clientesgestordemo
         - /bin/cp index.php $DEPLOYPATH
+        - /bin/cp .htaccess $DEPLOYPATH
         - /bin/cp -R controller $DEPLOYPATH
         - /bin/cp -R css $DEPLOYPATH
         - /bin/cp -R img $DEPLOYPATH
