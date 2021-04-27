@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql');
-define('URLROOT', '/php-pdo-oop-clean-urls-postgresql');
+define('ENDERECO', '/clientesgestordemo');
+define('URLROOT', '/clientesgestordemo');
 
 include_once 'controller/UserController.php';
 $usuario = new UserController();
