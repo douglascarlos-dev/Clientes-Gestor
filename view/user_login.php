@@ -20,12 +20,12 @@
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="inputUsuario">Usuário</label>
-      <input type="text" class="form-control" id="inputUsuario" name="username" maxlength="100">
+      <input type="text" class="form-control" id="inputUsuario" name="username" autocomplete="username" maxlength="100">
   </div>
 
   <div class="form-group col-md-6">
       <label for="inputSenha">Senha</label>
-      <input type="password" class="form-control" id="inputSenha" name="password" maxlength="100">
+      <input type="password" class="form-control" id="inputSenha" name="password" autocomplete="off" maxlength="100">
   </div>
   </div>
 
@@ -36,7 +36,7 @@
   </div>
   </div>
 
-<script type="text/javascript" src="<?php echo ENDERECO; ?>/js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="<?php echo ENDERECO; ?>/js/jquery-3.5.1.slim.min.js"></script>
 <script src="<?php echo ENDERECO; ?>/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>

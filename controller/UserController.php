@@ -8,7 +8,7 @@ class UserController{
         if (isset($_SESSION['username'])) {
             return true;
         } else {
-            header("Location: http://localhost:8080/php-pdo-oop-clean-urls-postgresql/user");
+            header("Location: ./user");
         }
     }
 
@@ -66,6 +66,8 @@ class UserController{
 
                     require_once 'view/user_login.php';
                 }
+            } else {
+                require_once 'view/user_login.php';
             }
 
         }
@@ -78,7 +80,7 @@ class UserController{
 
     public function logout() {
         unset($_SESSION['username']);
-        header("Location: http://localhost:8080/php-pdo-oop-clean-urls-postgresql/user");
+        header("Location: ./user");
     }
 }
 ?>

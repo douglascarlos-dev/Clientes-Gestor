@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo ENDERECO; ?>/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo ENDERECO; ?>/css/bootstrap.min.css" crossorigin="anonymous">
 
     <title>Sistema 1.0</title>
+    
   </head>
   <body>
   <?php require_once 'menu.php'; ?>
@@ -18,6 +19,15 @@
 <div class="card">
 <div class="card-body">
 <?php
+
+function Mask($mask,$str){
+  $str = str_replace(" ","",$str);
+  for($i=0;$i<strlen($str);$i++){
+      $mask[strpos($mask,"#")] = $str[$i];
+  }
+  return $mask;
+}
+
 $resultado = $cliente->get_cliente($cpf);
 ?>
 <form action="<?php echo ENDERECO; ?>/clientes/atualizar/<?php echo $resultado["cpf"]; ?>" method="post">
@@ -35,7 +45,7 @@ $resultado = $cliente->get_cliente($cpf);
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCPF">CPF</label>
-      <input type="text" class="form-control" id="inputCPF" name="cpf" value="<?php echo $resultado["cpf"]; ?>" readonly>
+      <input type="text" class="form-control" id="inputCPF" name="cpf" value="<?php echo Mask("###.###.###-##",$resultado["cpf"]); ?>" readonly>
     </div>
     <div class="form-group col-md-6">
       <label for="inputDataDeNascimento">Data de Nascimento</label>
@@ -77,7 +87,7 @@ foreach($telefone as &$value):
     echo "<div class=\"form-group col-md-5\">";
     echo "<label for=\"inputTelefone\">Número</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputTelefone\" name=\"telefone\" value=\"" . $value["telefone"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputTelefone\" name=\"telefone\" value=\"" . Mask("(##) # ####-####",$value["telefone"]) . "\" readonly>";
     
     echo "</div>";
 
@@ -111,7 +121,7 @@ endforeach;
 </div>
 </div>
 
-<script type="text/javascript" src="<?php echo ENDERECO; ?>/js/jquery-1.10.1.js"></script>
-<script src="<?php echo ENDERECO; ?>/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo ENDERECO; ?>/js/jquery-3.5.1.slim.min.js"></script>
+<script src="<?php echo ENDERECO; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
