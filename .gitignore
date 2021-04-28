@@ -1,2 +1,5 @@
 ##### Arquivo de configuração do banco de dados
 /model/database.ini
+/model/database.php
+##### Arquivo temporario do pgmodeler
+/pgmodeler/database_model_fixed.dbm

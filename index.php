@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-define('ENDERECO', '/clientesgestordemo');
-define('URLROOT', '/clientesgestordemo');
+define('ENDERECO', '/' . basename(__DIR__));
+define('URLROOT', '/' . basename(__DIR__));
 
 include_once 'controller/UserController.php';
 $usuario = new UserController();

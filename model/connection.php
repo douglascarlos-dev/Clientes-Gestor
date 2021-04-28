@@ -2,7 +2,8 @@
 class Connection {
     protected $o_db;
     public function __construct(){
-        $params = parse_ini_file('database.ini');
+        //$params = parse_ini_file('database.ini');
+        $params = require "database.php";
         $conStr = sprintf("pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s",
                 $params['host'],
                 $params['port'],

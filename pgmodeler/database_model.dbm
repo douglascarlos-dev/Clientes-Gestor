@@ -224,7 +224,7 @@ END;]]></definition>
 <table name="users" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="146" y="290"/>
+	<position x="126" y="257"/>
 	<column name="id" not-null="true" sequence="public.users_id_seq">
 		<type name="integer" length="0"/>
 	</column>
