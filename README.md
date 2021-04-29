@@ -16,18 +16,19 @@ Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a O
 - Apache HTTP Server;
 - DBeaver Community Edition;
 - Git;
+- Visual Studio Code;
 
 ## Instalação:
 
-Para começar, você deve simplesmente clonar o repositório do projeto na sua máquina, instalar os pre-requisitos, criar o banco de dados e configurar o arquivos database.ini.
+Para começar, você deve simplesmente clonar o repositório do projeto na sua máquina, instalar os pre-requisitos, criar o banco de dados e configurar o arquivos database.php.
 
 ## Pre-requisitos:
 
 Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 
-- Apache:
-- PHP:
-- PostgreSQL:
+- Apache;
+- PHP;
+- PostgreSQL;
 
 ## Obtendo uma cópia:
 
