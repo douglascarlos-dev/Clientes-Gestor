@@ -1,5 +1,7 @@
 # Clientes Gestor
 
+## Esse projeto faz parte dos meus estudos sobre programação e teste de software.
+
 Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a Objetos com banco de dados Postgresql com PDO.
 
 ![Logo API](./img/tela_cliente.png)
@@ -13,13 +15,13 @@ Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a O
 - Bootstrap v4.5.3;
 - Apache HTTP Server;
 - DBeaver Community Edition;
-
+- Git;
 
 ## Instalação:
 
 Para começar, você deve simplesmente clonar o repositório do projeto na sua máquina, instalar os pre-requisitos, criar o banco de dados e configurar o arquivos database.ini.
 
-### Pre-requisitos:
+## Pre-requisitos:
 
 Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 
@@ -27,33 +29,32 @@ Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 - PHP:
 - PostgreSQL:
 
-### Obtendo uma cópia:
+## Obtendo uma cópia:
 
 ```shell
 # Antes de tudo, clone o projeto
 $ git clone https://github.com/douglascarlos-dev/Clientes-Getor
 ```
 
-### Configuração:
+## Configuração:
 
 ```php
-# Entre na pasta model do projeto e crie um arquivo database.ini
+# Entre na pasta model do projeto e crie um arquivo database.php
 # com os dados de conexão do banco de dados PostgreSQL.
-host=
-port=5432
-dbname=
-user=
-password=
-
-# Informe o nome da pasta em que o projeto está executando no arquivo index.php
-# Exemplo:
-define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql'); //ou
-define('ENDERECO', ''); //se executar no dirtorio root.
+<?php
+return [
+    "host" => "localhost",
+    "port" => "5432",
+    "dbname" => "",
+    "user" => "",
+    "password" => ""
+];
+?>
 
 # Usuário e senha: admin
 ```
 
-### Modelagem do banco
+## Modelagem do banco
 
 A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.3, bem como uma imagem da modelagem e o arquivo sql de criação do banco.
 É necessario estar instalado o módulo pgsql para php para uma correta comunicação.
