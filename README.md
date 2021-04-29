@@ -1,6 +1,6 @@
 # Clientes Gestor
 
-## Esse projeto faz parte dos meus estudos sobre programação e teste de software.
+### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
 Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a Objetos com banco de dados Postgresql com PDO.
 
