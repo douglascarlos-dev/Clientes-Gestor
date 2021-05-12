@@ -20,7 +20,7 @@ Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a O
 
 ## Instalação:
 
-Para começar, você deve simplesmente clonar o repositório do projeto na sua máquina, instalar os pre-requisitos, criar o banco de dados e configurar o arquivos database.php.
+Para começar, você deve simplesmente clonar o repositório do projeto na sua máquina, instalar os pre-requisitos, criar o banco de dados e configurar o arquivo database.php.
 
 ## Pre-requisitos:
 
@@ -40,7 +40,7 @@ $ git clone https://github.com/douglascarlos-dev/Clientes-Getor
 ## Configuração:
 
 ```php
-# Entre na pasta model do projeto e crie um arquivo database.php
+# Entre na pasta 'model' do projeto e crie um arquivo database.php
 # com os dados de conexão do banco de dados PostgreSQL.
 <?php
 return [

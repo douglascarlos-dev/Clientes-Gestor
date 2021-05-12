@@ -229,7 +229,7 @@ END;]]></definition>
 		<type name="integer" length="0"/>
 	</column>
 	<column name="username">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="100"/>
 	</column>
 	<column name="password">
 		<type name="character varying" length="1000"/>

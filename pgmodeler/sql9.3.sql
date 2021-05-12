@@ -193,7 +193,7 @@ ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
 -- DROP TABLE IF EXISTS public.users CASCADE;
 CREATE TABLE public.users (
 	id integer NOT NULL DEFAULT nextval('public.users_id_seq'::regclass),
-	username character varying(1000),
+	username character varying(100),
 	password character varying(1000),
 	CONSTRAINT users_pk PRIMARY KEY (id)
 
