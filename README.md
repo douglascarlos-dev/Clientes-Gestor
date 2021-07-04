@@ -27,7 +27,9 @@ Para começar, você deve simplesmente clonar o repositório do projeto na sua m
 Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 
 - Apache;
+- Ativar o módulo mod_rewrite do Apache;
 - PHP;
+- Ativar o módulo pgsql do PHP;
 - PostgreSQL;
 
 ## Obtendo uma cópia:
@@ -52,7 +54,7 @@ return [
 ];
 ?>
 
-# Usuário e senha: admin
+# Usuário e senha padrão do software: admin
 ```
 
 ## Modelagem do banco
