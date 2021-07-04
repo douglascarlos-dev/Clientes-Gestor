@@ -24,6 +24,15 @@
 <div class="px-3 pt-md-3 pb-md-4 mx-auto text-center">
 
 <?php
+
+function Mask($mask,$str){
+  $str = str_replace(" ","",$str);
+  for($i=0;$i<strlen($str);$i++){
+      $mask[strpos($mask,"#")] = $str[$i];
+  }
+  return $mask;
+}
+
 $resultado = $cliente->get_all_clientes();
 if(count($resultado) >= 1){
 ?>
@@ -44,7 +53,7 @@ foreach($resultado as &$value):
     ?>
       <div class="w-100"></div>
       <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><?php echo $value["nome"]; ?></div>  
-      <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><?php echo $value["cpf"]; ?></div>  
+      <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><?php echo Mask("###.###.###-##",$value["cpf"]); ?></div>  
       <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><a class="btn btn-primary btn-xs" href="<?php echo ENDERECO; ?>/clientes/editar/<?php echo $value["cpf"]; ?>">Visualizar</a></div>   
       
       <?php
