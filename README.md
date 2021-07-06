@@ -54,6 +54,13 @@ return [
 ];
 ?>
 
+# Informe o nome da pasta em que o projeto está executando no arquivo index.php
+# Exemplo:
+define('ENDERECO', '/php-pdo-oop-clean-urls-postgresql'); // ou
+define('ENDERECO', '/' . basename(__DIR__)); // ou
+define('ENDERECO', '/douglas/' . basename(__DIR__)); // ou
+define('ENDERECO', ''); //se executar no dirtorio root.
+
 # Usuário e senha padrão do software: admin
 ```
 
