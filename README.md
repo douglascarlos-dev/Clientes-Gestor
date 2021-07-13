@@ -36,7 +36,7 @@ Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 
 ```shell
 # Antes de tudo, clone o projeto
-$ git clone https://github.com/douglascarlos-dev/Clientes-Getor
+$ git clone https://github.com/douglascarlos-dev/Clientes-Gestor
 ```
 
 ## Configuração:
