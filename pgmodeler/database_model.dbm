@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="4"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="6"
 	 default-owner="postgres">
 <database name="clientesgestor" is-template="false" allow-conns="true">
 </database>
@@ -39,12 +39,47 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="clientes" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+<usertype name="saudacao" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="66" y="53"/>
+	<enumeration values="Sr.,Sra.,Srta.,Dr."/>
+</usertype>
+
+<table name="telefone_cliente" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="601" y="24"/>
+	<column name="id" not-null="true" sequence="public.telefone_cliente_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="telefone" not-null="true">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="tipo" not-null="true">
+		<type name="public.tipo_telefone" length="0"/>
+	</column>
+	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.telefone_cliente">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_clientes" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="clientes_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="clientes" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="67" y="42"/>
 	<column name="id" not-null="true" sequence="public.clientes_id_seq">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="saudacao">
+		<type name="public.saudacao" length="0"/>
 	</column>
 	<column name="nome" not-null="true">
 		<type name="character varying" length="100"/>
@@ -72,46 +107,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="telefone_cliente" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="599" y="37"/>
-	<column name="id" not-null="true" sequence="public.telefone_cliente_id_seq">
-		<type name="integer" length="0"/>
-	</column>
-	<column name="telefone" not-null="true">
-		<type name="character varying" length="11"/>
-	</column>
-	<column name="tipo" not-null="true">
-		<type name="public.tipo_telefone" length="0"/>
-	</column>
-	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.telefone_cliente">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-
-	<customidxs object-type="column">
-		<object name="id_clientes" index="1"/>
-	</customidxs>
-
-	<customidxs object-type="constraint">
-		<object name="clientes_fk" index="1"/>
-	</customidxs>
-</table>
-
-<relationship name="clientes_has_many_telefone_cliente" type="rel1n" layer="0"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 custom-color="#f8d280"
-	 src-table="public.clientes"
-	 dst-table="public.telefone_cliente"
-	 src-required="false" dst-required="false"
-	del-action="CASCADE"/>
-
 <view name="view_telefone_cliente" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="621" y="244"/>
+	<position x="630" y="225"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
@@ -139,12 +138,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_view_telefone_cliente_clientes" type="reltv" layer="0"
 	 src-table="public.view_telefone_cliente"
 	 dst-table="public.clientes"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-7.53238" y="1.0256"/>
+	</label>
+</relationship>
 
 <relationship name="rel_view_telefone_cliente_telefone_cliente" type="reltv" layer="0"
 	 src-table="public.view_telefone_cliente"
 	 dst-table="public.telefone_cliente"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-0.942855" y="0.123324"/>
+	</label>
+</relationship>
 
 <function name="apagar_telefone"
 		window-func="false"
@@ -224,7 +231,7 @@ END;]]></definition>
 <table name="users" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="126" y="257"/>
+	<position x="596" y="574"/>
 	<column name="id" not-null="true" sequence="public.users_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -242,5 +249,164 @@ END;]]></definition>
 1•admin•$2y$10$fwpKXPecTh6ThLcekkY2HuMeY5JkPiDDAbddzku0HAVDStpkd5TM6]]>
 	</initial-data>
 </table>
+
+<usertype name="categoria_endereco" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Residencial,Comercial,Caixa postal"/>
+</usertype>
+
+<sequence name="endereco_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="endereco" layer="0" collapse-mode="2" max-obj-count="13" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="67" y="332"/>
+	<column name="id" not-null="true" sequence="public.endereco_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="categoria_endereco" not-null="true">
+		<type name="public.categoria_endereco" length="0"/>
+	</column>
+	<column name="tipo" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="numero" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="bairro" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="cidade" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="uf" not-null="true">
+		<type name="character varying" length="2"/>
+	</column>
+	<column name="cep" not-null="true">
+		<type name="character varying" length="8"/>
+	</column>
+	<column name="complemento">
+		<type name="character varying" length="60"/>
+	</column>
+	<constraint name="endereco_pk" type="pk-constr" table="public.endereco">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_clientes" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="clientes_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="clientes_has_many_endereco" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#36004e"
+	 src-table="public.clientes"
+	 dst-table="public.endereco"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-90.1675" y="-23.6073"/>
+	</label>
+</relationship>
+
+<relationship name="clientes_has_many_telefone_cliente" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f8d280"
+	 src-table="public.clientes"
+	 dst-table="public.telefone_cliente"
+	 src-required="false" dst-required="false"
+	del-action="CASCADE">
+	<label ref-type="name-label">
+		<position x="-1.61738" y="15.5837"/>
+	</label>
+</relationship>
+
+<view name="view_endereco" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="561" y="349"/>
+	<reference>
+		<expression><![CDATA[ SELECT clientes.id,
+    clientes.cpf,
+    endereco.categoria_endereco,
+    endereco.tipo,
+    endereco.nome,
+    endereco.numero,
+    endereco.bairro,
+    endereco.cidade,
+    endereco.uf,
+    endereco.cep,
+    endereco.complemento
+   FROM (endereco
+     JOIN clientes ON ((endereco.id_clientes = clientes.id)));]]></expression>
+	<column name="id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cpf">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="categoria_endereco">
+		<type name="public.categoria_endereco" length="0"/>
+	</column>
+	<column name="tipo">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="nome">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="numero">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="bairro">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="cidade">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="uf">
+		<type name="character varying" length="2"/>
+	</column>
+	<column name="cep">
+		<type name="character varying" length="8"/>
+	</column>
+	<column name="complemento">
+		<type name="character varying" length="60"/>
+	</column>
+		<reftable name="public.clientes"/>
+		<reftable name="public.endereco"/>
+	</reference>
+</view>
+
+<relationship name="rel_view_telefone_cliente_cp_clientes" type="reltv" layer="0"
+	 src-table="public.view_endereco"
+	 dst-table="public.clientes"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="62.0246" y="11.4233"/>
+	</label>
+</relationship>
+
+<relationship name="rel_view_endereco_endereco" type="reltv" layer="0"
+	 src-table="public.view_endereco"
+	 dst-table="public.endereco"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="2.74262" y="13.2978"/>
+	</label>
+</relationship>
 
 </dbmodel>

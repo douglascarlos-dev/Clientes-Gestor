@@ -70,22 +70,12 @@ CREATE SEQUENCE public.telefone_cliente_id_seq
 ALTER SEQUENCE public.telefone_cliente_id_seq OWNER TO postgres;
 -- ddl-end --
 
--- object: public.clientes | type: TABLE --
--- DROP TABLE IF EXISTS public.clientes CASCADE;
-CREATE TABLE public.clientes (
-	id integer NOT NULL DEFAULT nextval('public.clientes_id_seq'::regclass),
-	nome character varying(100) NOT NULL,
-	email character varying(100) NOT NULL,
-	cpf character varying(11) NOT NULL,
-	data_de_nascimento date NOT NULL DEFAULT '1900-01-01',
-	sexo_cliente public.sexo NOT NULL,
-	estado_civil_cliente public.estado_civil NOT NULL,
-	CONSTRAINT cliente_pk PRIMARY KEY (id),
-	CONSTRAINT cpf_unique UNIQUE (cpf)
-
-);
+-- object: public.saudacao | type: TYPE --
+-- DROP TYPE IF EXISTS public.saudacao CASCADE;
+CREATE TYPE public.saudacao AS
+ ENUM ('Sr.','Sra.','Srta.','Dr.');
 -- ddl-end --
-ALTER TABLE public.clientes OWNER TO postgres;
+ALTER TYPE public.saudacao OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.telefone_cliente | type: TABLE --
@@ -102,11 +92,23 @@ CREATE TABLE public.telefone_cliente (
 ALTER TABLE public.telefone_cliente OWNER TO postgres;
 -- ddl-end --
 
--- object: clientes_fk | type: CONSTRAINT --
--- ALTER TABLE public.telefone_cliente DROP CONSTRAINT IF EXISTS clientes_fk CASCADE;
-ALTER TABLE public.telefone_cliente ADD CONSTRAINT clientes_fk FOREIGN KEY (id_clientes)
-REFERENCES public.clientes (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
+-- object: public.clientes | type: TABLE --
+-- DROP TABLE IF EXISTS public.clientes CASCADE;
+CREATE TABLE public.clientes (
+	id integer NOT NULL DEFAULT nextval('public.clientes_id_seq'::regclass),
+	saudacao public.saudacao,
+	nome character varying(100) NOT NULL,
+	email character varying(100) NOT NULL,
+	cpf character varying(11) NOT NULL,
+	data_de_nascimento date NOT NULL DEFAULT '1900-01-01',
+	sexo_cliente public.sexo NOT NULL,
+	estado_civil_cliente public.estado_civil NOT NULL,
+	CONSTRAINT cliente_pk PRIMARY KEY (id),
+	CONSTRAINT cpf_unique UNIQUE (cpf)
+
+);
+-- ddl-end --
+ALTER TABLE public.clientes OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.view_telefone_cliente | type: VIEW --
@@ -203,6 +205,86 @@ ALTER TABLE public.users OWNER TO postgres;
 -- ddl-end --
 
 INSERT INTO public.users (id, username, password) VALUES (E'1', E'admin', E'$2y$10$fwpKXPecTh6ThLcekkY2HuMeY5JkPiDDAbddzku0HAVDStpkd5TM6');
+-- ddl-end --
+
+-- object: public.categoria_endereco | type: TYPE --
+-- DROP TYPE IF EXISTS public.categoria_endereco CASCADE;
+CREATE TYPE public.categoria_endereco AS
+ ENUM ('Residencial','Comercial','Caixa postal');
+-- ddl-end --
+ALTER TYPE public.categoria_endereco OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.endereco_id_seq | type: SEQUENCE --
+-- DROP SEQUENCE IF EXISTS public.endereco_id_seq CASCADE;
+CREATE SEQUENCE public.endereco_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+
+-- ddl-end --
+ALTER SEQUENCE public.endereco_id_seq OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.endereco | type: TABLE --
+-- DROP TABLE IF EXISTS public.endereco CASCADE;
+CREATE TABLE public.endereco (
+	id integer NOT NULL DEFAULT nextval('public.endereco_id_seq'::regclass),
+	id_clientes integer,
+	categoria_endereco public.categoria_endereco NOT NULL,
+	tipo character varying(20) NOT NULL,
+	nome character varying(100) NOT NULL,
+	numero character varying(10) NOT NULL,
+	bairro character varying(100) NOT NULL,
+	cidade character varying(100) NOT NULL,
+	uf character varying(2) NOT NULL,
+	cep character varying(8) NOT NULL,
+	complemento character varying(60),
+	CONSTRAINT endereco_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.endereco OWNER TO postgres;
+-- ddl-end --
+
+-- object: clientes_fk | type: CONSTRAINT --
+-- ALTER TABLE public.endereco DROP CONSTRAINT IF EXISTS clientes_fk CASCADE;
+ALTER TABLE public.endereco ADD CONSTRAINT clientes_fk FOREIGN KEY (id_clientes)
+REFERENCES public.clientes (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: clientes_fk | type: CONSTRAINT --
+-- ALTER TABLE public.telefone_cliente DROP CONSTRAINT IF EXISTS clientes_fk CASCADE;
+ALTER TABLE public.telefone_cliente ADD CONSTRAINT clientes_fk FOREIGN KEY (id_clientes)
+REFERENCES public.clientes (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.view_endereco | type: VIEW --
+-- DROP VIEW IF EXISTS public.view_endereco CASCADE;
+CREATE VIEW public.view_endereco
+AS 
+
+SELECT clientes.id,
+    clientes.cpf,
+    endereco.categoria_endereco,
+    endereco.tipo,
+    endereco.nome,
+    endereco.numero,
+    endereco.bairro,
+    endereco.cidade,
+    endereco.uf,
+    endereco.cep,
+    endereco.complemento
+   FROM (endereco
+     JOIN clientes ON ((endereco.id_clientes = clientes.id)));
+-- ddl-end --
+ALTER VIEW public.view_endereco OWNER TO postgres;
 -- ddl-end --
 
 
