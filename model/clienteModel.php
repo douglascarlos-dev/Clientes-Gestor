@@ -4,7 +4,7 @@ include_once 'connection.php';
 class Cliente extends Connection {
     private $id;
     private $nome;
-    private $cpf;  
+    private $cpf;
 
     function database_select_one($valor1, $valor2, $valor3){
         $pdo = $this->o_db;
