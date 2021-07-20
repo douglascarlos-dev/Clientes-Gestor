@@ -250,18 +250,18 @@ END;]]></definition>
 	</initial-data>
 </table>
 
-<usertype name="categoria_endereco" configuration="enumeration">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<enumeration values="Residencial,Comercial,Caixa postal"/>
-</usertype>
-
 <sequence name="endereco_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
 	<schema name="public"/>
 	<role name="postgres"/>
 </sequence>
 
-<table name="endereco" layer="0" collapse-mode="2" max-obj-count="13" z-value="0">
+<usertype name="address_category" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Residencial,Comercial,Caixa postal"/>
+</usertype>
+
+<table name="address" layer="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="67" y="332"/>
@@ -269,7 +269,7 @@ END;]]></definition>
 		<type name="integer" length="0"/>
 	</column>
 	<column name="categoria_endereco" not-null="true">
-		<type name="public.categoria_endereco" length="0"/>
+		<type name="public.address_category" length="0"/>
 	</column>
 	<column name="tipo" not-null="true">
 		<type name="character varying" length="20"/>
@@ -295,7 +295,7 @@ END;]]></definition>
 	<column name="complemento">
 		<type name="character varying" length="60"/>
 	</column>
-	<constraint name="endereco_pk" type="pk-constr" table="public.endereco">
+	<constraint name="endereco_pk" type="pk-constr" table="public.address">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 
@@ -307,19 +307,6 @@ END;]]></definition>
 		<object name="clientes_fk" index="1"/>
 	</customidxs>
 </table>
-
-<relationship name="clientes_has_many_endereco" type="rel1n" layer="0"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 custom-color="#36004e"
-	 src-table="public.clientes"
-	 dst-table="public.endereco"
-	 src-required="false" dst-required="false">
-	<label ref-type="name-label">
-		<position x="-90.1675" y="-23.6073"/>
-	</label>
-</relationship>
 
 <relationship name="clientes_has_many_telefone_cliente" type="rel1n" layer="0"
 	 src-col-pattern="{sc}_{st}"
@@ -335,24 +322,24 @@ END;]]></definition>
 	</label>
 </relationship>
 
-<view name="view_endereco" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
+<view name="view_address" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="561" y="349"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
-    endereco.categoria_endereco,
-    endereco.tipo,
-    endereco.nome,
-    endereco.numero,
-    endereco.bairro,
-    endereco.cidade,
-    endereco.uf,
-    endereco.cep,
-    endereco.complemento
-   FROM (endereco
-     JOIN clientes ON ((endereco.id_clientes = clientes.id)));]]></expression>
+    address.categoria_endereco,
+    address.tipo,
+    address.nome,
+    address.numero,
+    address.bairro,
+    address.cidade,
+    address.uf,
+    address.cep,
+    address.complemento
+   FROM (address
+     JOIN clientes ON ((address.id_clientes = clientes.id)));]]></expression>
 	<column name="id">
 		<type name="integer" length="0"/>
 	</column>
@@ -360,7 +347,7 @@ END;]]></definition>
 		<type name="character varying" length="11"/>
 	</column>
 	<column name="categoria_endereco">
-		<type name="public.categoria_endereco" length="0"/>
+		<type name="public.address_category" length="0"/>
 	</column>
 	<column name="tipo">
 		<type name="character varying" length="20"/>
@@ -387,12 +374,12 @@ END;]]></definition>
 		<type name="character varying" length="60"/>
 	</column>
 		<reftable name="public.clientes"/>
-		<reftable name="public.endereco"/>
+		<reftable name="public.address"/>
 	</reference>
 </view>
 
 <relationship name="rel_view_telefone_cliente_cp_clientes" type="reltv" layer="0"
-	 src-table="public.view_endereco"
+	 src-table="public.view_address"
 	 dst-table="public.clientes"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
@@ -401,11 +388,112 @@ END;]]></definition>
 </relationship>
 
 <relationship name="rel_view_endereco_endereco" type="reltv" layer="0"
-	 src-table="public.view_endereco"
-	 dst-table="public.endereco"
+	 src-table="public.view_address"
+	 dst-table="public.address"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
 		<position x="2.74262" y="13.2978"/>
+	</label>
+</relationship>
+
+<function name="address_delete_function"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql"/>
+	<return-type>
+	<type name="integer" length="0"/>
+	</return-type>
+	<parameter name="cpf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="categoria_endereco_">
+		<type name="public.address_category" length="0"/>
+	</parameter>
+	<definition><![CDATA[DECLARE id_retorno integer;
+BEGIN
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+DELETE FROM address 	WHERE id_clientes=id_retorno AND categoria_endereco=categoria_endereco_;
+
+RETURN id_retorno;
+
+END;]]></definition>
+</function>
+
+<function name="address_insert_function"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql"/>
+	<return-type>
+	<type name="integer" length="0"/>
+	</return-type>
+	<parameter name="cpf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="categoria_endereco_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="tipo_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="nome_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="numero_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="bairro_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="cidade_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="uf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="cep_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="complemento_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<definition><![CDATA[DECLARE id_retorno integer;
+BEGIN
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+INSERT INTO address(id_clientes, categoria_endereco, tipo, nome, numero, bairro, cidade, uf, cep, complemento) VALUES (id_retorno, categoria_endereco_::address_category, tipo_, nome_, numero_, bairro_, cidade_, uf_, cep_, complemento_);
+
+RETURN id_retorno;
+
+END;]]></definition>
+</function>
+
+<relationship name="clientes_has_many_endereco" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#36004e"
+	 src-table="public.clientes"
+	 dst-table="public.address"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-90.1675" y="-23.6073"/>
 	</label>
 </relationship>
 

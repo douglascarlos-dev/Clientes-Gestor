@@ -230,12 +230,20 @@ CREATE SEQUENCE public.endereco_id_seq
 ALTER SEQUENCE public.endereco_id_seq OWNER TO postgres;
 -- ddl-end --
 
--- object: public.endereco | type: TABLE --
--- DROP TABLE IF EXISTS public.endereco CASCADE;
-CREATE TABLE public.endereco (
+-- object: public.address_category | type: TYPE --
+-- DROP TYPE IF EXISTS public.address_category CASCADE;
+CREATE TYPE public.address_category AS
+ ENUM ('Residencial','Comercial','Caixa postal');
+-- ddl-end --
+ALTER TYPE public.address_category OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.address | type: TABLE --
+-- DROP TABLE IF EXISTS public.address CASCADE;
+CREATE TABLE public.address (
 	id integer NOT NULL DEFAULT nextval('public.endereco_id_seq'::regclass),
 	id_clientes integer,
-	categoria_endereco public.categoria_endereco NOT NULL,
+	categoria_endereco public.address_category NOT NULL,
 	tipo character varying(20) NOT NULL,
 	nome character varying(100) NOT NULL,
 	numero character varying(10) NOT NULL,
@@ -248,14 +256,7 @@ CREATE TABLE public.endereco (
 
 );
 -- ddl-end --
-ALTER TABLE public.endereco OWNER TO postgres;
--- ddl-end --
-
--- object: clientes_fk | type: CONSTRAINT --
--- ALTER TABLE public.endereco DROP CONSTRAINT IF EXISTS clientes_fk CASCADE;
-ALTER TABLE public.endereco ADD CONSTRAINT clientes_fk FOREIGN KEY (id_clientes)
-REFERENCES public.clientes (id) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE public.address OWNER TO postgres;
 -- ddl-end --
 
 -- object: clientes_fk | type: CONSTRAINT --
@@ -265,26 +266,83 @@ REFERENCES public.clientes (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: public.view_endereco | type: VIEW --
--- DROP VIEW IF EXISTS public.view_endereco CASCADE;
-CREATE VIEW public.view_endereco
+-- object: public.view_address | type: VIEW --
+-- DROP VIEW IF EXISTS public.view_address CASCADE;
+CREATE VIEW public.view_address
 AS 
 
 SELECT clientes.id,
     clientes.cpf,
-    endereco.categoria_endereco,
-    endereco.tipo,
-    endereco.nome,
-    endereco.numero,
-    endereco.bairro,
-    endereco.cidade,
-    endereco.uf,
-    endereco.cep,
-    endereco.complemento
-   FROM (endereco
-     JOIN clientes ON ((endereco.id_clientes = clientes.id)));
+    address.categoria_endereco,
+    address.tipo,
+    address.nome,
+    address.numero,
+    address.bairro,
+    address.cidade,
+    address.uf,
+    address.cep,
+    address.complemento
+   FROM (address
+     JOIN clientes ON ((address.id_clientes = clientes.id)));
 -- ddl-end --
-ALTER VIEW public.view_endereco OWNER TO postgres;
+ALTER VIEW public.view_address OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.address_delete_function | type: FUNCTION --
+-- DROP FUNCTION IF EXISTS public.address_delete_function(character varying,public.address_category) CASCADE;
+CREATE FUNCTION public.address_delete_function (cpf_ character varying, categoria_endereco_ public.address_category)
+	RETURNS integer
+	LANGUAGE plpgsql
+	VOLATILE 
+	CALLED ON NULL INPUT
+	SECURITY INVOKER
+	COST 1
+	AS $$
+DECLARE id_retorno integer;
+BEGIN
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+DELETE FROM address 	WHERE id_clientes=id_retorno AND categoria_endereco=categoria_endereco_;
+
+RETURN id_retorno;
+
+END;
+$$;
+-- ddl-end --
+ALTER FUNCTION public.address_delete_function(character varying,public.address_category) OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.address_insert_function | type: FUNCTION --
+-- DROP FUNCTION IF EXISTS public.address_insert_function(character varying,character varying,character varying,character varying,character varying,character varying,character varying,character varying,character varying,character varying) CASCADE;
+CREATE FUNCTION public.address_insert_function (cpf_ character varying, categoria_endereco_ character varying, tipo_ character varying, nome_ character varying, numero_ character varying, bairro_ character varying, cidade_ character varying, uf_ character varying, cep_ character varying, complemento_ character varying)
+	RETURNS integer
+	LANGUAGE plpgsql
+	VOLATILE 
+	CALLED ON NULL INPUT
+	SECURITY INVOKER
+	COST 1
+	AS $$
+DECLARE id_retorno integer;
+BEGIN
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+INSERT INTO address(id_clientes, categoria_endereco, tipo, nome, numero, bairro, cidade, uf, cep, complemento) VALUES (id_retorno, categoria_endereco_::address_category, tipo_, nome_, numero_, bairro_, cidade_, uf_, cep_, complemento_);
+
+RETURN id_retorno;
+
+END;
+$$;
+-- ddl-end --
+ALTER FUNCTION public.address_insert_function(character varying,character varying,character varying,character varying,character varying,character varying,character varying,character varying,character varying,character varying) OWNER TO postgres;
+-- ddl-end --
+
+-- object: clientes_fk | type: CONSTRAINT --
+-- ALTER TABLE public.address DROP CONSTRAINT IF EXISTS clientes_fk CASCADE;
+ALTER TABLE public.address ADD CONSTRAINT clientes_fk FOREIGN KEY (id_clientes)
+REFERENCES public.clientes (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 
