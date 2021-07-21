@@ -2,12 +2,22 @@
 include_once 'connection.php';
 
 class Address extends Connection {
-    private $descricao;
+    private $id;
+    private $id_clientes;
     private $cpf;
+    private $address_category;
+    private $type;
+    private $name;
+    private $number;
+    private $district;
+    private $city;
+    private $state;
+    private $zip_code;
+    private $complement;
 
     function address_insert($function_name, $cpf, $address_category, $type, $name, $number, $district, $city, $state, $zip_code, $complement){
         $pdo = $this->o_db;
-        $stmt = $pdo->prepare("SELECT * FROM $tabela_name('$cpf', '$address_category', '$type', '$name', '$number', '$district', '$city', '$state', '$zip_code', '$complement')"); 
+        $stmt = $pdo->prepare("SELECT * FROM $function_name('$cpf', '$address_category', '$type', '$name', '$number', '$district', '$city', '$state', '$zip_code', '$complement')"); 
         $stmt->execute(); 
         $row = $stmt->fetch();
         return $row;

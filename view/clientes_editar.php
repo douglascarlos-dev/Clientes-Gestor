@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="<?php echo ENDERECO; ?>/css/bootstrap.min.css" crossorigin="anonymous">
 
     <title>Sistema 1.0</title>
+
+    <style>
+    .mt-4, .my-4 {
+    margin-top: 2rem!important;
+    }
+    </style>
     
   </head>
   <body>
@@ -78,30 +84,119 @@ $telefone = $cliente->get_cliente_telefone($cpf);
 foreach($telefone as &$value):
 
     echo "<div class=\"form-row\">";
-    echo "<div class=\"form-group col-md-6\">";
+
+    echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo ENDERECO; echo "/telefones/apagar/";
+    echo $cpf;
+    echo "/";
+    echo $value["tipo"];
+    echo "/";
+    echo $value["telefone"];
+    echo "\" role=\"button\">Deletar</a>";
+    
+    echo "<div class=\"form-group col-md-5\">";
     echo "<label for=\"inputTipoTelefone\">Telefone</label>";
 
     echo "<input type=\"text\" class=\"form-control\" id=\"inputTipoTelefone\" name=\"tipo_telefone\" value=\"" . $value["tipo"] . "\" readonly>";
     
     echo "</div>";
-    echo "<div class=\"form-group col-md-5\">";
+    echo "<div class=\"form-group col-md-6\">";
     echo "<label for=\"inputTelefone\">Número</label>";
 
     echo "<input type=\"text\" class=\"form-control\" id=\"inputTelefone\" name=\"telefone\" value=\"" . Mask("(##) # ####-####",$value["telefone"]) . "\" readonly>";
     
     echo "</div>";
 
-    echo "<div class=\"form-group col-md-1\">
-      <label for=\"inputZip\">Apagar</label>
-      <a class=\"btn btn-danger\" href=\"";echo ENDERECO; echo "/telefones/apagar/";
+    
+
+    echo "</div>";
+
+endforeach;
+
+$address = $cliente->get_cliente_address($cpf);
+
+foreach($address as &$value):
+
+    echo "<div class=\"form-row\">";
+
+    echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo ENDERECO; echo "/address/remove/";
     echo $cpf;
     echo "/";
-    echo $value["tipo"];
-    echo "/";
-    echo $value["telefone"];
-    echo "\" role=\"button\">Deletar</a>
-    </div>";
+    echo $value["categoria_endereco"];
+    echo "\" role=\"button\">Deletar</a>";
 
+
+    echo "<div class=\"form-group col-md-5\">";
+    echo "<label for=\"inputCategoria\">Categoria endereço</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputCategoria\" name=\"address_category\" value=\"" . $value["categoria_endereco"] . "\" readonly>";
+    
+    echo "</div>";
+    echo "<div class=\"form-group col-md-6\">";
+    echo "<label for=\"inputTipo\">Tipo</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputTipo\" name=\"type\" value=\"" . $value["tipo"] . "\" readonly>";
+    
+    echo "</div>";
+
+    
+
+    echo "</div>";
+
+    echo "<div class=\"form-row\">";
+    echo "<div class=\"form-group col-md-6\">";
+    echo "<label for=\"inputNome\">Nome</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"name\" value=\"" . $value["nome"] . "\" readonly>";
+    
+    echo "</div>";
+    echo "<div class=\"form-group col-md-2\">";
+    echo "<label for=\"inputNumero\">Número</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputNumero\" name=\"number\" value=\"" . $value["numero"] . "\" readonly>";
+    
+    echo "</div>";
+
+    echo "<div class=\"form-group col-md-4\">";
+    echo "<label for=\"inputBairro\">Bairro</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputBairro\" name=\"district\" value=\"" . $value["bairro"] . "\" readonly>";
+    
+    echo "</div>";
+    echo "</div>";
+
+    
+
+    echo "<div class=\"form-row\">";
+    echo "<div class=\"form-group col-md-6\">";
+    echo "<label for=\"inputCidade\">Cidade</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputCidade\" name=\"city\" value=\"" . $value["cidade"] . "\" readonly>";
+    
+    echo "</div>";
+    echo "<div class=\"form-group col-md-2\">";
+    echo "<label for=\"inputUF\">UF</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputUF\" name=\"state\" value=\"" . $value["uf"] . "\" readonly>";
+    
+    echo "</div>";
+
+    echo "<div class=\"form-group col-md-4\">";
+    echo "<label for=\"inputCEP\">CEP</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputCEP\" name=\"zip_code\" value=\"" . Mask("##.###-###",$value["cep"]) . "\" readonly>";
+    
+    echo "</div>";
+    echo "</div>";
+
+
+
+    echo "<div class=\"form-row\">";
+    echo "<div class=\"form-group col-md-12\">";
+    echo "<label for=\"inputComplemento\">Complemento</label>";
+
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputComplemento\" name=\"complement\" value=\"" . $value["complemento"] . "\" readonly>";
+    
+    echo "</div>";
     echo "</div>";
 
 endforeach;
@@ -110,6 +205,7 @@ endforeach;
   
 
   <button type="submit" class="btn btn-primary">Atualizar</button>
+  <a class="btn btn-outline-primary" id="newAddress" href="<?php echo ENDERECO; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
   <a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo ENDERECO; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
   <a class="btn btn-danger" href="<?php echo ENDERECO; ?>/clientes/deletar/<?php echo $cpf; ?>" role="button">Deletar</a>
 

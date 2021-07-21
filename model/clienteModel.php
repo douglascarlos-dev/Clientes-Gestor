@@ -69,6 +69,12 @@ class Cliente extends Connection {
         return $consulta;
     }
 
+    function get_cliente_address($id){
+        $id = (string) $id;
+        $consulta = $this->database_select_all_var('view_address', 'cpf', $id);
+        return $consulta;
+    }
+
     function post_cliente_new($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
         $consulta = $this->database_insert('clientes', $valor1, $valor2, $valor3, $valor4, $valor5, $valor6);
         return $consulta;
