@@ -112,29 +112,27 @@ foreach($telefone as &$value):
 
 endforeach;
 
-$address = $cliente->get_cliente_address($cpf);
-
-foreach($address as &$value):
+foreach($address as &$address_value):
 
     echo "<div class=\"form-row\">";
 
     echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo ENDERECO; echo "/address/remove/";
     echo $cpf;
     echo "/";
-    echo $value["categoria_endereco"];
+    echo $address_value->getAddressCategory();
     echo "\" role=\"button\">Deletar</a>";
 
 
     echo "<div class=\"form-group col-md-5\">";
     echo "<label for=\"inputCategoria\">Categoria endereço</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputCategoria\" name=\"address_category\" value=\"" . $value["categoria_endereco"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputCategoria\" name=\"address_category\" value=\"" . $address_value->getAddressCategory() . "\" readonly>";
     
     echo "</div>";
     echo "<div class=\"form-group col-md-6\">";
     echo "<label for=\"inputTipo\">Tipo</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputTipo\" name=\"type\" value=\"" . $value["tipo"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputTipo\" name=\"type\" value=\"" . $address_value->getType() . "\" readonly>";
     
     echo "</div>";
 
@@ -146,20 +144,20 @@ foreach($address as &$value):
     echo "<div class=\"form-group col-md-6\">";
     echo "<label for=\"inputNome\">Nome</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"name\" value=\"" . $value["nome"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"name\" value=\"" . $address_value->getName() . "\" readonly>";
     
     echo "</div>";
     echo "<div class=\"form-group col-md-2\">";
     echo "<label for=\"inputNumero\">Número</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputNumero\" name=\"number\" value=\"" . $value["numero"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputNumero\" name=\"number\" value=\"" . $address_value->getNumber() . "\" readonly>";
     
     echo "</div>";
 
     echo "<div class=\"form-group col-md-4\">";
     echo "<label for=\"inputBairro\">Bairro</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputBairro\" name=\"district\" value=\"" . $value["bairro"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputBairro\" name=\"district\" value=\"" . $address_value->getDistrict() . "\" readonly>";
     
     echo "</div>";
     echo "</div>";
@@ -170,20 +168,20 @@ foreach($address as &$value):
     echo "<div class=\"form-group col-md-6\">";
     echo "<label for=\"inputCidade\">Cidade</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputCidade\" name=\"city\" value=\"" . $value["cidade"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputCidade\" name=\"city\" value=\"" . $address_value->getCity() . "\" readonly>";
     
     echo "</div>";
     echo "<div class=\"form-group col-md-2\">";
     echo "<label for=\"inputUF\">UF</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputUF\" name=\"state\" value=\"" . $value["uf"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputUF\" name=\"state\" value=\"" .  $address_value->getState() . "\" readonly>";
     
     echo "</div>";
 
     echo "<div class=\"form-group col-md-4\">";
     echo "<label for=\"inputCEP\">CEP</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputCEP\" name=\"zip_code\" value=\"" . Mask("##.###-###",$value["cep"]) . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputCEP\" name=\"zip_code\" value=\"" . Mask("##.###-###",$address_value->getZipCode()) . "\" readonly>";
     
     echo "</div>";
     echo "</div>";
@@ -194,7 +192,7 @@ foreach($address as &$value):
     echo "<div class=\"form-group col-md-12\">";
     echo "<label for=\"inputComplemento\">Complemento</label>";
 
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputComplemento\" name=\"complement\" value=\"" . $value["complemento"] . "\" readonly>";
+    echo "<input type=\"text\" class=\"form-control\" id=\"inputComplemento\" name=\"complement\" value=\"" . $address_value->getComplement() . "\" readonly>";
     
     echo "</div>";
     echo "</div>";

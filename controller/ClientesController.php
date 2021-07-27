@@ -1,8 +1,9 @@
 <?php
 
 require_once 'model/clienteModel.php';
+require_once 'model/addressModel.php';
 
-class ClientesController{
+class ClientesController {
 
     public function visualizar() {
         $cliente = new Cliente();
@@ -11,6 +12,8 @@ class ClientesController{
 
     public static function editar( $cpf ) {
         $cliente = new Cliente();
+        $address = new Address();
+        $address = $address->post_address_list($cpf);
         require_once 'view/clientes_editar.php';
     }
 

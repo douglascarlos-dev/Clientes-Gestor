@@ -4,21 +4,11 @@ require_once 'model/addressModel.php';
 require_once 'controller/ClientesController.php';
 
 class AddressController {
-    private $id;
-    private $id_clientes;
-    private $cpf;
-    private $address_category;
-    private $type;
-    private $name;
-    private $number;
-    private $district;
-    private $city;
-    private $state;
-    private $zip_code;
-    private $complement;
 
     public function list( $cpf ){
-        //require_once 'view/address_new.php';
+        $address = new Address();
+        $address = $address->post_address_list($cpf);
+        require_once 'view/address_list.php';
     }
 
     public function new( $cpf ){
