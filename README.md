@@ -2,7 +2,7 @@
 
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
-Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a Objetos com banco de dados Postgresql com PDO.
+Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO.
 
 ![Logo API](./img/tela_cliente.png)
 
@@ -17,6 +17,7 @@ Software Web para cadastro de clientes com URL amigavel usando PHP Orientado a O
 - DBeaver Community Edition;
 - Git;
 - Visual Studio Code;
+- MVC
 
 ## Instalação:
 
