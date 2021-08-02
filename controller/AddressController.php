@@ -7,7 +7,7 @@ class AddressController {
 
     public function list( $cpf ){
         $address = new Address();
-        $address = $address->post_address_list($cpf);
+        $address->post_address_list($cpf);
         require_once 'view/address_list.php';
     }
 
@@ -17,9 +17,19 @@ class AddressController {
 
     public function save( $cpf ){
         $address = new Address();
-        //if($_REQUEST['address_category'] != 0) {
-            $address->post_address_new($cpf, $_REQUEST['address_category'], $_REQUEST['type'], $_REQUEST['name'], $_REQUEST['number'], $_REQUEST['district'], $_REQUEST['city'], $_REQUEST['state'], $_REQUEST['zip_code'], $_REQUEST['complement']);
-        //}
+        $address->setCPF($cpf);
+        $address->setAddressCategory($_REQUEST['address_category']);
+        $address->setType($_REQUEST['type']);
+        $address->setName($_REQUEST['name']);
+        $address->setNumber($_REQUEST['number']);
+        $address->setDistrict($_REQUEST['neighborhood']);
+        $address->setCity($_REQUEST['city']);
+        $address->setState($_REQUEST['state']);
+        $address->setZipCode($_REQUEST['zip_code']);
+        $address->setComplement($_REQUEST['complement']);
+        
+        $address->post_address_new();
+        
         ClientesController::editar($cpf);
     }
 

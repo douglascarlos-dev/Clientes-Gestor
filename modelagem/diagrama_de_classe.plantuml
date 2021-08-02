@@ -1,0 +1,56 @@
+@startuml Class Diagram
+
+package "Class Diagram" {
+left to right direction
+
+class Customer {
+    -id : Int
+    +nome : String
+    +email : String
+    +cpf : String
+    +data_de_nascimento : Date
+    +sexo_cliente : sexo
+    +estado_civil_cliente : estado_civil
+    ..
+    +outro_function : abc
+}
+
+class Telephone {
+    -id: Int
+    +id_clientes: Int
+    +telefone : String
+    +tipo : tipo_telefone
+}
+
+class Address {
+    -id : Int
+    -cpf : String
+    -address_category : String
+    -type : String
+    -name : String
+    -number : String
+    -district : String
+    -city : String
+    -state : String
+    -zip_code : String
+    -complement : String
+    ..
+    +new(CPF)
+    +save(CPF)
+    +list(CPF)
+    +remove(CPF)
+}
+
+class Connection {
+    #protected
+    ~package private
+    -private
+    +public
+
+}
+
+Customer::id *-- Telephone::id_clientes : Association
+Customer::id *-- Address::id_clientes : Association
+class Customer extends Connection
+}
+@enduml

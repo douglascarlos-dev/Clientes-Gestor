@@ -8,7 +8,7 @@ Software Web para cadastro de clientes com URL amigável usando PHP Orientado a 
 
 ## Recursos usados no desenvolvimento:
 
-- PHP 7;
+- PHP 7.4;
 - PostgreSQL 12;
 - pgModeler 0.9.3;
 - HTML;
@@ -71,3 +71,9 @@ A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.3,
 É necessario estar instalado o módulo pgsql para php para uma correta comunicação.
 
 ![Logo API](./pgmodeler/database_model.png)
+
+## Diagrama de classes
+
+A pasta modelagem contem o diagrama de classes criado usando o programa PlantUML, permitindo identificar as classes e métodos utilizados na execução do software.
+
+![Class Diagram](./modelagem/Class_Diagram.png)

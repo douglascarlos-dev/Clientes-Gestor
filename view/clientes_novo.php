@@ -42,7 +42,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCpf">CPF</label>
-                        <input type="number" class="form-control" id="inputCpf" name="cpf" maxlength="11">
+                        <input type="number" class="form-control" id="inputCpf" name="cpf">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputDataDeNascimento">Data de Nascimento</label>

@@ -121,10 +121,23 @@ class Address extends Connection {
         return $this->complement;
     }
 
-    function address_insert($function_name, $cpf, $address_category, $type, $name, $number, $district, $city, $state, $zip_code, $complement){
+    function address_insert(){
+        $sql_query = "SELECT * FROM address_insert_function
+                        (
+                            '" . $this->getCPF() . "',
+                            '" . $this->getAddressCategory() . "',
+                            '" . $this->getType() . "',
+                            '" . $this->getName() . "',
+                            '" . $this->getNumber() . "',
+                            '" . $this->getDistrict() . "',
+                            '" . $this->getCity() . "',
+                            '" . $this->getState() . "',
+                            '" . $this->getZipCode() . "',
+                            '" . $this->getComplement() . "'
+                        )";
         $pdo = $this->o_db;
-        $stmt = $pdo->prepare("SELECT * FROM $function_name('$cpf', '$address_category', '$type', '$name', '$number', '$district', '$city', '$state', '$zip_code', '$complement')"); 
-        $stmt->execute(); 
+        $stmt = $pdo->prepare($sql_query);
+        $stmt->execute();
         $row = $stmt->fetch();
         return $row;
     }
@@ -137,15 +150,16 @@ class Address extends Connection {
         return $row;
     }
 
-    function address_list($valor1, $valor2, $valor3){
+    function address_list($valor1, $valor2){
+        $sql_query = "SELECT * FROM $valor1 WHERE $valor2 = '" . $this->getCPF() . "'";
         $pdo = $this->o_db;
-        $stmt = $pdo->prepare("SELECT * FROM $valor1 WHERE $valor2 = '$valor3'");
+        $stmt = $pdo->prepare($sql_query);
         $array_address = array();
         $stmt->execute();
         while($row = $stmt->fetch())
         {
             $the_address = new Address();
-            $the_address->setId($row[0]);
+            //$the_address->setId($row[0]);
             $the_address->setCPF($row[1]);
             $the_address->setAddressCategory($row[2]);
             $the_address->setType($row[3]);
@@ -161,8 +175,8 @@ class Address extends Connection {
         return $array_address;
     }
 
-    function post_address_new($cpf, $address_category, $type, $name, $number, $district, $city, $state, $zip_code, $complement){
-        $result = $this->address_insert('address_insert_function', $cpf, $address_category, $type, $name, $number, $district, $city, $state, $zip_code, $complement);
+    function post_address_new(){
+        $result = $this->address_insert();
         return $result;
     }
 
@@ -172,7 +186,8 @@ class Address extends Connection {
     }
 
     function post_address_list($cpf){
-        $result = $this->address_list('view_address', 'cpf', $cpf);
+        $this->setCPF($cpf);
+        $result = $this->address_list('view_address', 'cpf');
         return $result;
     }
 }

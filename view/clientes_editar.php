@@ -117,7 +117,7 @@ foreach($address as &$address_value):
     echo "<div class=\"form-row\">";
 
     echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo ENDERECO; echo "/address/remove/";
-    echo $cpf;
+    echo $address_value->getCPF();
     echo "/";
     echo $address_value->getAddressCategory();
     echo "\" role=\"button\">Deletar</a>";

@@ -47,7 +47,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputBairro">Bairro</label>
-      <input type="text" class="form-control" id="inputBairro" name="district" maxlength="100">
+      <input type="text" class="form-control" id="inputBairro" name="neighborhood" maxlength="100">
     </div>
     <div class="form-group col-md-6">
       <label for="inputCidade">Cidade</label>
