@@ -1,0 +1,37 @@
+@startuml Class Diagram
+
+package "Class Diagram - Address" {
+
+AddressController -left- View
+AddressController -right- Address
+
+class AddressController {
+    -model: Address
+    -view: View
+    +list()
+    +new()
+    +save()
+    +remove()
+}
+
+class Address {
+    -id : Int
+    -cpf : String
+    -address_category : String
+    -type : String
+    -name : String
+    -number : String
+    -district : String
+    -city : String
+    -state : String
+    -zip_code : String
+    -complement : String
+    +post_address_list()
+    +post_address_delete()
+    +post_address_new()
+}
+
+class View {
+}
+
+@enduml

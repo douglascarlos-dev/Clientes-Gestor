@@ -13,7 +13,8 @@ class ClientesController {
     public static function editar( $cpf ) {
         $cliente = new Cliente();
         $address = new Address();
-        $address = $address->post_address_list($cpf);
+        $address->setCPF($cpf);
+        $address = $address->post_address_list();
         require_once 'view/clientes_editar.php';
     }
 
@@ -29,7 +30,6 @@ class ClientesController {
         } else {
             $this->visualizar();
         }
-        
     }
 
     public function deletar( $cpf ){

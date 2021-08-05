@@ -142,16 +142,21 @@ class Address extends Connection {
         return $row;
     }
 
-    function address_delete($function_name, $cpf, $address_category){
+    function address_delete(){
+        $sql_query = "SELECT * FROM address_delete_function
+                        (
+                            '" . $this->getCPF() . "',
+                            '" . $this->getAddressCategory() . "'
+                        )";
         $pdo = $this->o_db;
-        $stmt = $pdo->prepare("SELECT * FROM $function_name('$cpf', '$address_category')");
+        $stmt = $pdo->prepare($sql_query);
         $stmt->execute(); 
         $row = $stmt->fetchAll();
         return $row;
     }
 
-    function address_list($valor1, $valor2){
-        $sql_query = "SELECT * FROM $valor1 WHERE $valor2 = '" . $this->getCPF() . "'";
+    function address_list(){
+        $sql_query = "SELECT * FROM view_address WHERE cpf = '" . $this->getCPF() . "'";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
         $array_address = array();
@@ -159,7 +164,6 @@ class Address extends Connection {
         while($row = $stmt->fetch())
         {
             $the_address = new Address();
-            //$the_address->setId($row[0]);
             $the_address->setCPF($row[1]);
             $the_address->setAddressCategory($row[2]);
             $the_address->setType($row[3]);
@@ -180,16 +184,15 @@ class Address extends Connection {
         return $result;
     }
 
-    function post_address_delete($cpf, $address_category){
-        $result = $this->address_delete('address_delete_function', $cpf, $address_category);
+    function post_address_delete(){
+        $result = $this->address_delete();
         return $result;
     }
 
-    function post_address_list($cpf){
-        $this->setCPF($cpf);
-        $result = $this->address_list('view_address', 'cpf');
+    function post_address_list(){
+        $result = $this->address_list();
         return $result;
     }
+    
 }
-
 ?>

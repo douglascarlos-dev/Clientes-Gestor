@@ -6,9 +6,12 @@ require_once 'controller/ClientesController.php';
 class AddressController {
 
     public function list( $cpf ){
-        $address = new Address();
-        $address->post_address_list($cpf);
-        require_once 'view/address_list.php';
+        //$address = new Address();
+        //$this->setCPF($cpf);
+        //$address->setCPF($cpf);
+        //echo $cpf;
+        //$address->post_address_list($cpf);
+        //require_once 'view/address_list.php';
     }
 
     public function new( $cpf ){
@@ -35,10 +38,12 @@ class AddressController {
 
     public function remove( $array ){
         $address = new Address();
-        $cpf = $array[0];
         if(sizeof($array) == 2){
+            $cpf = $array[0];
             $address_category = $array[1];
-            $address->post_address_delete($cpf, $address_category);
+            $address->setCPF($cpf);
+            $address->setAddressCategory($address_category);
+            $address->post_address_delete();
         }
         ClientesController::editar($cpf);
     }

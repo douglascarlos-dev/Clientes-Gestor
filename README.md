@@ -2,7 +2,7 @@
 
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
-Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO.
+Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO.
 
 ![Logo API](./img/tela_cliente.png)
 
@@ -17,7 +17,8 @@ Software Web para cadastro de clientes com URL amigável usando PHP Orientado a 
 - DBeaver Community Edition;
 - Git;
 - Visual Studio Code;
-- MVC
+- MVC;
+- PlantUML;
 
 ## Instalação:
 
@@ -74,6 +75,6 @@ A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.3,
 
 ## Diagrama de classes
 
-A pasta modelagem contem o diagrama de classes criado usando o programa PlantUML, permitindo identificar as classes e métodos utilizados na execução do software.
+A pasta modelagem contem os diagramas de UML criados usando o programa PlantUML, permitindo identificar as classes, métodos, atores e interaçãoes utilizados na execução do software.
 
 ![Class Diagram](./modelagem/Class_Diagram.png)

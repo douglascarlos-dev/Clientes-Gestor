@@ -29,7 +29,7 @@
   </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Entar</button>
+  <button type="submit" class="btn btn-primary">Entrar</button>
   </form>
 
   </div>
