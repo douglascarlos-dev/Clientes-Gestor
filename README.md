@@ -75,6 +75,6 @@ A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.3,
 
 ## Diagrama de classes
 
-A pasta modelagem contem os diagramas de UML criados usando o programa PlantUML, permitindo identificar as classes, métodos, atores e interaçãoes utilizados na execução do software.
+A pasta modelagem contem os diagramas de UML criados usando o programa PlantUML, permitindo identificar as classes, métodos, atores e interações utilizadas na execução do software.
 
 ![Class Diagram](./modelagem/Class_Diagram.png)

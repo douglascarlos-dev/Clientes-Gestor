@@ -1,0 +1,26 @@
+@startuml Class Diagram
+left to right direction
+package "Use Case Diagram - Clientes Gestor" {
+actor Usuário as u
+rectangle "Clientes Gestor" {
+  usecase "Efetuar Login" as UC1
+  usecase "Cadastrar Cliente" as UC2
+  usecase "Cadastrar Telefone" as UC3
+  usecase "Cadastrar Endereço" as UC4
+  usecase "Apagar Endereço" as UC5 #pink
+  usecase "Apagar Telefone" as UC6 #pink
+  usecase "Apagar Cliente" as UC7 #pink
+  usecase "Sair" as UC8
+  usecase "Atualizar Cliente" as UC9
+}
+u --> UC1
+u --> UC2
+UC2 ..> UC3
+UC2 ..> UC4
+UC4 ..> UC5
+UC3 ..> UC6
+UC2 ..> UC7
+UC1 ..> UC8
+UC2 ..> UC9
+}
+@enduml
