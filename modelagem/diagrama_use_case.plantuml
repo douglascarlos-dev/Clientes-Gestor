@@ -1,4 +1,4 @@
-@startuml Class Diagram
+@startuml Use Case Diagram
 left to right direction
 package "Use Case Diagram - Clientes Gestor" {
 actor Usuário as u

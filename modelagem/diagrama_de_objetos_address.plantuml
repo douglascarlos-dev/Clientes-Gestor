@@ -1,0 +1,19 @@
+@startuml Object Diagram
+
+package "Object Diagram - Address" {
+
+object Address {
+  id : 1
+  cpf : "111.111.111-11"
+  address_category : "Residencial"
+  type : "Rua"
+  name : "Principal"
+  number : "01"
+  district : "Centro"
+  city : "Minha Cidade"
+  state : "SP"
+  zip_code : "11.111-111"
+  complement : "Casa de esquina"
+}
+
+@enduml
