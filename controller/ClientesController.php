@@ -1,6 +1,7 @@
 <?php
 
 require_once 'model/clienteModel.php';
+require_once 'model/telefoneModel.php';
 require_once 'model/addressModel.php';
 
 class ClientesController {
@@ -12,6 +13,9 @@ class ClientesController {
 
     public static function editar( $cpf ) {
         $cliente = new Cliente();
+        $telefone = new Telefone();
+        $telefone->setCPF($cpf);
+        $telefone = $telefone->telefone_list();
         $address = new Address();
         $address->setCPF($cpf);
         $address = $address->post_address_list();

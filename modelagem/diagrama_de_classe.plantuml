@@ -1,25 +1,28 @@
-@startuml Class Diagram old
+@startuml Class Diagram
 
-package "Class Diagram" {
-left to right direction
+package "Class Diagram - Clientes Gestor" {
 
-class Customer {
-    -id : Int
-    +nome : String
-    +email : String
-    +cpf : String
-    +data_de_nascimento : Date
-    +sexo_cliente : sexo
-    +estado_civil_cliente : estado_civil
-    ..
-    +outro_function : abc
+TelefonesController -- TelefonesView
+TelefonesController -- Telefones
+
+AddressController -- AddressView
+AddressController -- Address
+
+class AddressController {
+    -model: Address
+    -view: AddressView
+    +list()
+    +new()
+    +save()
+    +remove()
 }
 
-class Telephone {
-    -id: Int
-    +id_clientes: Int
-    +telefone : String
-    +tipo : tipo_telefone
+class TelefonesController {
+    -model: Address
+    -view: TelefonesView
+    +novo()
+    +cadastrar()
+    +apagar()
 }
 
 class Address {
@@ -34,23 +37,22 @@ class Address {
     -state : String
     -zip_code : String
     -complement : String
-    ..
-    +new(CPF)
-    +save(CPF)
-    +list(CPF)
-    +remove(CPF)
+    +post_address_list()
+    +post_address_delete()
+    +post_address_new()
 }
 
-class Connection {
-    #protected
-    ~package private
-    -private
-    +public
-
+class Telefones {
+    -id : Int
+    -cpf : String
+    -tipo : String
+    -telefone : String
+    +telefone_list()
+    +telefone_delete()
+    +telefone_insert()
 }
 
-Customer::id *-- Telephone::id_clientes : Association
-Customer::id *-- Address::id_clientes : Association
-class Customer extends Connection
+class AddressView {
 }
+
 @enduml

@@ -78,7 +78,7 @@ $resultado = $cliente->get_cliente($cpf);
   </div>
   
   <?php
-
+/*
 $telefone = $cliente->get_cliente_telefone($cpf);
 
 foreach($telefone as &$value):
@@ -106,10 +106,25 @@ foreach($telefone as &$value):
     
     echo "</div>";
 
-    
-
     echo "</div>";
 
+endforeach;
+*/
+
+foreach($telefone as &$telefone_value):
+?>
+<div class="form-row">
+<a class="btn btn-danger col-md-1 my-4" href="<?php echo ENDERECO; ?>/telefones/apagar/<?php echo $telefone_value->getCPF(); ?>/<?php echo $telefone_value->getTipo(); ?>/<?php echo $telefone_value->getTelefone(); ?>" role="button">Deletar</a>
+<div class="form-group col-md-5">
+<label for="inputTipoTelefone">Telefone</label>
+<input type="text" class="form-control" id="inputTipoTelefone" name="tipo_telefone" value="<?php echo $telefone_value->getTipo(); ?>" readonly>
+</div>
+<div class="form-group col-md-6">
+<label for="inputTelefone">Número</label>
+<input type="text" class="form-control" id="inputTelefone" name="telefone" value="<?php echo Mask('(##) # ####-####',$telefone_value->getTelefone()); ?>" readonly>
+</div>
+</div>
+<?php
 endforeach;
 
 foreach($address as &$address_value):
