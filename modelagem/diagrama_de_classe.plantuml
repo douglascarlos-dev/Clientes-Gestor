@@ -2,11 +2,41 @@
 
 package "Class Diagram - Clientes Gestor" {
 
-TelefonesController -- TelefonesView
+ClientesController -left- ClientesView
+ClientesController -right- Clientes
+ClientesController -- AddressController
+ClientesController -- TelefonesController
+
+AddressController -left- AddressView
+AddressController -- Address
+
+TelefonesController -right- TelefonesView
 TelefonesController -- Telefones
 
-AddressController -- AddressView
-AddressController -- Address
+class ClientesController {
+    -model: Clientes
+    -view: ClientesView
+    +list()
+    +new()
+    +save()
+    +remove()
+    +update()
+}
+
+class Clientes {
+    -id : Int
+    -saudacao: String
+    -nome: String
+    -email: String
+    -cpf : String
+    -data_de_nascimento: Date
+    -sexo_cliente: String
+    -estado_civil_cliente: String
+    +clientes_list()
+    +clientes_delete()
+    +clientes_new()
+    +clientes_update()
+}
 
 class AddressController {
     -model: Address

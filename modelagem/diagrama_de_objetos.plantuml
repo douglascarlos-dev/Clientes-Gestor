@@ -2,8 +2,19 @@
 
 package "Object Diagram - Clientes Gestor" {
 
-Cliente -- Address
-Cliente -- Telefone
+Clientes -right- Address
+Clientes -left- Telefone
+
+object Clientes {
+  id : 1
+  saudacao: "Sr."
+  nome: "Fulano da Silva"
+  email: "eu@meuemail.com"
+  cpf : "111.111.111-11"
+  data_de_nascimento: "01/01/2000"
+  sexo_cliente: "Masculino"
+  estado_civil_cliente: "Solteiro"
+}
 
 object Address {
   id : 1
