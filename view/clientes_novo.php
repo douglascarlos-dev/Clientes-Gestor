@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo ENDERECO; ?>/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/bootstrap.min.css" crossorigin="anonymous">
 
     <title>Sistema 1.0</title>
 
@@ -28,7 +28,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form name="register" action="<?php echo ENDERECO; ?>/clientes/cadastrar" method="post">
+            <form name="register" action="<?php echo URLROOT; ?>/clientes/cadastrar" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNome">Nome</label>
@@ -73,8 +73,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="<?php echo ENDERECO; ?>/js/jquery-3.5.1.slim.min.js"></script>
-<script src="<?php echo ENDERECO; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>
+<script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 
     <script type="text/javascript">

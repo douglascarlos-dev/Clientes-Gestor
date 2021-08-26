@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo ENDERECO; ?>/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/bootstrap.min.css" crossorigin="anonymous">
 
    
     <title>Sistema 1.0</title>
@@ -25,7 +25,7 @@
 
 <div class="card">
 <div class="card-body">
-<form name="register" action="<?php echo ENDERECO; ?>/telefones/cadastrar/<?php echo $cpf; ?>" method="post">
+<form name="register" action="<?php echo URLROOT; ?>/telefones/cadastrar/<?php echo $cpf; ?>" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Descrição</label>
@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <a class="btn btn-outline-primary" href="<?php echo ENDERECO; ?>/clientes/editar/<?php echo $cpf; ?>" role="button">Cancelar</a> 
+  <a class="btn btn-outline-primary" href="<?php echo URLROOT; ?>/clientes/editar/<?php echo $cpf; ?>" role="button">Cancelar</a> 
   <button type="submit" class="btn btn-primary">Cadastrar</button> 
 
 </form>
@@ -54,10 +54,10 @@
 
 <script
     type="text/javascript"
-    src="<?php echo ENDERECO; ?>/js/jquery-3.5.1.slim.min.js"
+    src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"
     
   ></script>
-<script src="<?php echo ENDERECO; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 
     <script type="text/javascript">

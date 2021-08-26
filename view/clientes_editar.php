@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo ENDERECO; ?>/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/bootstrap.min.css" crossorigin="anonymous">
 
     <title>Sistema 1.0</title>
 
@@ -36,7 +36,7 @@ function Mask($mask,$str){
 
 $resultado = $cliente->get_cliente($cpf);
 ?>
-<form action="<?php echo ENDERECO; ?>/clientes/atualizar/<?php echo $resultado["cpf"]; ?>" method="post">
+<form action="<?php echo URLROOT; ?>/clientes/atualizar/<?php echo $resultado["cpf"]; ?>" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Nome</label>
@@ -114,7 +114,7 @@ endforeach;
 foreach($telefone as &$telefone_value):
 ?>
 <div class="form-row">
-<a class="btn btn-danger col-md-1 my-4" href="<?php echo ENDERECO; ?>/telefones/apagar/<?php echo $telefone_value->getCPF(); ?>/<?php echo $telefone_value->getTipo(); ?>/<?php echo $telefone_value->getTelefone(); ?>" role="button">Deletar</a>
+<a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/telefones/apagar/<?php echo $telefone_value->getCPF(); ?>/<?php echo $telefone_value->getTipo(); ?>/<?php echo $telefone_value->getTelefone(); ?>" role="button">Deletar</a>
 <div class="form-group col-md-5">
 <label for="inputTipoTelefone">Telefone</label>
 <input type="text" class="form-control" id="inputTipoTelefone" name="tipo_telefone" value="<?php echo $telefone_value->getTipo(); ?>" readonly>
@@ -131,7 +131,7 @@ foreach($address as &$address_value):
 
     echo "<div class=\"form-row\">";
 
-    echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo ENDERECO; echo "/address/remove/";
+    echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo URLROOT; echo "/address/remove/";
     echo $address_value->getCPF();
     echo "/";
     echo $address_value->getAddressCategory();
@@ -218,9 +218,9 @@ endforeach;
   
 
   <button type="submit" class="btn btn-primary">Atualizar</button>
-  <a class="btn btn-outline-primary" id="newAddress" href="<?php echo ENDERECO; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
-  <a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo ENDERECO; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
-  <a class="btn btn-danger" href="<?php echo ENDERECO; ?>/clientes/deletar/<?php echo $cpf; ?>" role="button">Deletar</a>
+  <a class="btn btn-outline-primary" id="newAddress" href="<?php echo URLROOT; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
+  <a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo URLROOT; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
+  <a class="btn btn-danger" href="<?php echo URLROOT; ?>/clientes/deletar/<?php echo $cpf; ?>" role="button">Deletar</a>
 
   
 </form>
@@ -230,7 +230,7 @@ endforeach;
 </div>
 </div>
 
-<script type="text/javascript" src="<?php echo ENDERECO; ?>/js/jquery-3.5.1.slim.min.js"></script>
-<script src="<?php echo ENDERECO; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>
+<script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
