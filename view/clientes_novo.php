@@ -25,8 +25,12 @@
 <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
 
 <div class="alert alert-danger d-none" role="alert" id="myDIV">Certifique-se de que todos os campos estão preenchidos e tente novamente.</div>
+<div class="alert alert-danger d-none" role="alert" id="divNome">O campo Nome deve ter no mínimo 10 caracteres.</div>
+<div class="alert alert-danger d-none" role="alert" id="divEmail">O campo E-mail deve ter no mínimo 10 caracteres.</div>
+<div class="alert alert-danger d-none" role="alert" id="divCpf">Verifique o campo CPF.</div>
+<div class="alert alert-danger d-none" role="alert" id="divData">Verifique o campo Data de Nascimento.</div>
 
-    <div class="card">
+<div class="card">
         <div class="card-body">
             <form name="register" action="<?php echo URLROOT; ?>/clientes/cadastrar" method="post">
                 <div class="form-row">
@@ -93,6 +97,35 @@
             } else {
                 $("#myDIV").addClass('d-none');
             }
+
+            if ($.trim(username.val().length) <= 10) {
+                $("#divNome").removeClass('d-none');
+                e.preventDefault();
+            } else {
+                $("#divNome").addClass('d-none');
+            }
+
+            if ($.trim(useremail.val().length) <= 10) {
+                $("#divEmail").removeClass('d-none');
+                e.preventDefault();
+            } else {
+                $("#divEmail").addClass('d-none');
+            }
+
+            if ($.trim(usercpf.val().length) != 11 || $.isNumeric( usercpf.val() ) != true) {
+                $("#divCpf").removeClass('d-none');
+                e.preventDefault();
+            } else {
+                $("#divCpf").addClass('d-none');
+            }
+
+            if ($.trim(userdata_de_nascimento.val()) > new Date().toJSON().substring(0,10) || $.trim(userdata_de_nascimento.val()) === "") {
+                $("#divData").removeClass('d-none');
+                e.preventDefault();
+            } else {
+                $("#divData").addClass('d-none');
+            }
+            
         });
 
     });
