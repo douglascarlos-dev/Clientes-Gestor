@@ -13,7 +13,7 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 - pgModeler 0.9.3;
 - HTML;
 - Bootstrap v4.6.0;
-- jQuery v.3.5.1
+- jQuery v.3.5.1;
 - Apache HTTP Server;
 - DBeaver Community Edition;
 - Git;
