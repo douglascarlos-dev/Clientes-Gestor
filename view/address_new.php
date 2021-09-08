@@ -16,6 +16,8 @@
   <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
 
   <div class="alert alert-danger d-none" role="alert" id="myDIV">Certifique-se de que todos os campos estão preenchidos e tente novamente.</div>
+  <div class="alert alert-danger d-none" role="alert" id="divCep">Verifique o campo CEP.</div>
+  <div class="alert alert-danger d-none" role="alert" id="divUf">Verifique o campo UF.</div>
 
 <div class="card">
 <div class="card-body">
@@ -57,7 +59,7 @@
   <div class="form-row">
     <div class="form-group col-md-3">
       <label for="inputUF">UF</label>
-      <input type="text" class="form-control" id="inputUF" name="state" maxlength="2">
+      <input type="text" class="form-control" id="inputUF" name="state" maxlength="2" style="text-transform:uppercase">
     </div>
     <div class="form-group col-md-3">
       <label for="inputCEP">CEP</label>
@@ -92,13 +94,34 @@
 
         $('form[name="register"]').on("submit", function (e) {
 
-            var usertelefone = $(this).find('input[name="name"]');
+            var useraddresstype = $(this).find('input[name="type"]');
+            var useraddressname = $(this).find('input[name="name"]');
+            var useraddressnumber = $(this).find('input[name="number"]');
+            var useraddressneighborhood = $(this).find('input[name="neighborhood"]');
+            var useraddresscity = $(this).find('input[name="city"]');
+            var useraddressstate = $(this).find('input[name="state"]');
+            var useraddresszipcode = $(this).find('input[name="zip_code"]');
+            var useraddresscomplement = $(this).find('input[name="complement"]');
 
-            if ($.trim(usertelefone.val()) === "") {
+            if ($.trim(useraddresstype.val()) === "" || $.trim(useraddressname.val()) === "" || $.trim(useraddressnumber.val()) === "" || $.trim(useraddressneighborhood.val()) === "" || $.trim(useraddresscity.val()) === "" || $.trim(useraddressstate.val()) === "" || $.trim(useraddresszipcode.val()) === "") {
                 $("#myDIV").removeClass('d-none');
                 e.preventDefault();
             } else {
                 $("#myDIV").addClass('d-none');
+            }
+
+            if ($.trim(useraddressstate.val().length) != 2) {
+                $("#divUf").removeClass('d-none');
+                e.preventDefault();
+            } else {
+                $("#divUf").addClass('d-none');
+            }
+
+            if ($.trim(useraddresszipcode.val().length) != 8 || $.isNumeric( useraddresszipcode.val() ) != true) {
+                $("#divCep").removeClass('d-none');
+                e.preventDefault();
+            } else {
+                $("#divCep").addClass('d-none');
             }
         });
 
