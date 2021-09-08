@@ -16,8 +16,9 @@
   <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
 
   <div class="alert alert-danger d-none" role="alert" id="myDIV">Certifique-se de que todos os campos estão preenchidos e tente novamente.</div>
-  <div class="alert alert-danger d-none" role="alert" id="divCep">Verifique o campo CEP.</div>
   <div class="alert alert-danger d-none" role="alert" id="divUf">Verifique o campo UF.</div>
+  <div class="alert alert-danger d-none" role="alert" id="divCep">Verifique o campo CEP.</div>
+  
 
 <div class="card">
 <div class="card-body">
