@@ -46,7 +46,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCpf">CPF</label>
-                        <input type="text" class="form-control" id="inputCpf" name="cpf" maxlength="11">
+                        <input type="text" class="form-control" id="inputCpf" name="cpf" maxlength="14" data-mask="000.000.000-00">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputDataDeNascimento">Data de Nascimento</label>
@@ -78,6 +78,7 @@
 </div>
 
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>
+<script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery.mask.js"></script>
 <script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 
@@ -89,6 +90,7 @@
             var username = $(this).find('input[name="nome"]');
             var useremail = $(this).find('input[name="email"]');
             var usercpf = $(this).find('input[name="cpf"]');
+            var cpf = $('input[name="cpf"]').val().replace(/[^0-9]/g, '').toString();
             var userdata_de_nascimento = $(this).find('input[name="data_de_nascimento"]');
 
             if ($.trim(username.val()) === "" || $.trim(useremail.val()) === "" || $.trim(usercpf.val()) === "" || $.trim(userdata_de_nascimento.val()) === "") {
@@ -112,11 +114,37 @@
                 $("#divEmail").addClass('d-none');
             }
 
-            if ($.trim(usercpf.val().length) != 11 || $.isNumeric( usercpf.val() ) != true) {
+            if( cpf.length == 11 && $.trim(usercpf.val().length) == 14 && $.trim(usercpf.val()) != "000.000.000-00" && $.trim(usercpf.val()) != "111.111.111-11" && $.trim(usercpf.val()) != "222.222.222-22" && $.trim(usercpf.val()) != "333.333.333-33" && $.trim(usercpf.val()) != "444.444.444-44" && $.trim(usercpf.val()) != "555.555.555-55" && $.trim(usercpf.val()) != "666.666.666-66" && $.trim(usercpf.val()) != "777.777.777-77" && $.trim(usercpf.val()) != "888.888.888-88" && $.trim(usercpf.val()) != "999.999.999-99")
+            {
+                var v = [];
+
+                //Calcula o primeiro dígito de verificação.
+                v[0] = 1 * cpf[0] + 2 * cpf[1] + 3 * cpf[2];
+                v[0] += 4 * cpf[3] + 5 * cpf[4] + 6 * cpf[5];
+                v[0] += 7 * cpf[6] + 8 * cpf[7] + 9 * cpf[8];
+                v[0] = v[0] % 11;
+                v[0] = v[0] % 10;
+
+                //Calcula o segundo dígito de verificação.
+                v[1] = 1 * cpf[1] + 2 * cpf[2] + 3 * cpf[3];
+                v[1] += 4 * cpf[4] + 5 * cpf[5] + 6 * cpf[6];
+                v[1] += 7 * cpf[7] + 8 * cpf[8] + 9 * v[0];
+                v[1] = v[1] % 11;
+                v[1] = v[1] % 10;
+
+                //Retorna Verdadeiro se os dígitos de verificação são os esperados.
+                if ( (v[0] != cpf[9]) || (v[1] != cpf[10]) )
+                {
+                    $("#divCpf").removeClass('d-none');
+                    e.preventDefault();
+                } else {
+                    $("#divCpf").addClass('d-none');
+                }
+            }
+            else
+            {
                 $("#divCpf").removeClass('d-none');
                 e.preventDefault();
-            } else {
-                $("#divCpf").addClass('d-none');
             }
 
             if ($.trim(userdata_de_nascimento.val()) > new Date().toJSON().substring(0,10) || $.trim(userdata_de_nascimento.val()) === "") {

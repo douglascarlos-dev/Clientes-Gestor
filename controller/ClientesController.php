@@ -12,6 +12,7 @@ class ClientesController {
     }
 
     public static function editar( $cpf ) {
+        $cpf = preg_replace("/[^0-9]/", "", $cpf);
         $cliente = new Cliente();
         $telefone = new Telefone();
         $telefone->setCPF($cpf);
@@ -29,7 +30,9 @@ class ClientesController {
     public function cadastrar() {
         $cliente = new Cliente();
         if($_REQUEST['cpf'] != 0) {
-            $cliente->post_cliente_new($_REQUEST['nome'], $_REQUEST['email'], $_REQUEST['cpf'], $_REQUEST['data_de_nascimento'], $_REQUEST['sexo'], $_REQUEST['estado_civil']);
+            $cpf = $_REQUEST['cpf'];
+            $cpf = preg_replace("/[^0-9]/", "", $cpf);
+            $cliente->post_cliente_new($_REQUEST['nome'], $_REQUEST['email'], $cpf, $_REQUEST['data_de_nascimento'], $_REQUEST['sexo'], $_REQUEST['estado_civil']);
             $this->editar($_REQUEST['cpf']);
         } else {
             $this->visualizar();
