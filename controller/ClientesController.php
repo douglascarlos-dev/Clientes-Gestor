@@ -32,8 +32,15 @@ class ClientesController {
         if($_REQUEST['cpf'] != 0) {
             $cpf = $_REQUEST['cpf'];
             $cpf = preg_replace("/[^0-9]/", "", $cpf);
-            $cliente->post_cliente_new($_REQUEST['nome'], $_REQUEST['email'], $cpf, $_REQUEST['data_de_nascimento'], $_REQUEST['sexo'], $_REQUEST['estado_civil']);
-            $this->editar($_REQUEST['cpf']);
+            
+            try {
+                $cliente->post_cliente_new($_REQUEST['nome'], $_REQUEST['email'], $cpf, $_REQUEST['data_de_nascimento'], $_REQUEST['sexo'], $_REQUEST['estado_civil']);
+                $this->editar($_REQUEST['cpf']);
+            } catch (Exception $e) {
+                //echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+                $this->visualizar();
+            }
+
         } else {
             $this->visualizar();
         }
