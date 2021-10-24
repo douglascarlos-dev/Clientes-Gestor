@@ -13,9 +13,13 @@
   <body>
   <?php require_once 'menu.php'; ?>
   
-    Bem vindo <?php echo $_SESSION['username']; ?>.
+  &emsp;Bem vindo <?php echo $_SESSION['username']; ?>.<br><br>
 
   <div id="dashboard">
+    <p>&emsp;Clientes Gestor</p>
+    <p>&emsp;Esse projeto faz parte dos meus estudos sobre programação e teste de software.</p>
+    <p>&emsp;Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO.</p>
+    <p>&emsp;Para mais informações, acesse o site <a href="https://github.com/douglascarlos-dev/Clientes-Gestor" target="_blank">https://github.com/douglascarlos-dev/Clientes-Gestor</a>.</p>
   </div>
 
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>

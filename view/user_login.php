@@ -20,12 +20,12 @@
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="inputUsuario">Usuário</label>
-      <input type="text" class="form-control" id="inputUsuario" name="username" autocomplete="username" placeholder="admin" maxlength="100">
+      <input type="text" class="form-control" id="inputUsuario" name="username" autocomplete="username" placeholder="admin" value="admin" maxlength="100">
   </div>
 
   <div class="form-group col-md-6">
       <label for="inputSenha">Senha</label>
-      <input type="password" class="form-control" id="inputSenha" name="password" autocomplete="off" placeholder="admin" maxlength="100">
+      <input type="password" class="form-control" id="inputSenha" name="password" autocomplete="off" placeholder="admin" value="admin" maxlength="100">
   </div>
   </div>
 
