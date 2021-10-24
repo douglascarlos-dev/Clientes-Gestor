@@ -1,0 +1,38 @@
+@startuml Sequence Diagram
+
+mainframe Sequence Diagram - **Clientes Gestor**
+
+actor Usuario
+activate Usuario
+deactivate Usuario
+
+Usuario -> ":View \n Novo Cliente": Incluir dados cadastrais
+activate ":View \n Novo Cliente"
+
+":View \n Novo Cliente" -> ":Controller \n Componente de Negócio": Valida se cliente existe
+activate ":Controller \n Componente de Negócio"
+
+":Controller \n Componente de Negócio" -> ":Model \n Banco de Dados": Checa se cliente existe no \n Banco de Dados
+activate ":Model \n Banco de Dados"
+":Model \n Banco de Dados" -->> ":Controller \n Componente de Negócio": Cliente não existe
+deactivate ":Model \n Banco de Dados"
+
+":Controller \n Componente de Negócio" -->> ":View \n Novo Cliente": 
+deactivate ":Controller \n Componente de Negócio"
+
+":View \n Novo Cliente" -> ":Controller \n Componente de Negócio": Grava dados do cliente
+activate ":Controller \n Componente de Negócio"
+
+":Controller \n Componente de Negócio" -> ":Model \n Banco de Dados": Insere os dados do cliente no \n Banco de Dados
+activate ":Model \n Banco de Dados"
+":Model \n Banco de Dados" -->> ":Controller \n Componente de Negócio":
+deactivate ":Model \n Banco de Dados"
+
+":Controller \n Componente de Negócio" -->> ":View \n Novo Cliente": 
+deactivate ":Controller \n Componente de Negócio"
+
+":View \n Novo Cliente" -->> Usuario: 
+deactivate ":View \n Novo Cliente"
+
+
+@enduml

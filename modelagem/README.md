@@ -9,3 +9,4 @@ Esse projeto está em andamento e mudanças são esperadas nessa seção.
 ![Use Case Diagram](./Use_Case_Diagram.png)
 ![Class Diagram](./Class_Diagram.png)
 ![Object Diagram](./Object_Diagram.png)
+![Object Diagram](./Sequence_Diagram.png)

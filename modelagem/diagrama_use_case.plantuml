@@ -1,7 +1,7 @@
 @startuml Use Case Diagram
 left to right direction
 package "Use Case Diagram - Clientes Gestor" {
-actor Usuário as u
+actor Usuario as u
 rectangle "Clientes Gestor" {
   usecase "Efetuar Login" as UC1
   usecase "Cadastrar Cliente" as UC2
