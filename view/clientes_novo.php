@@ -19,9 +19,6 @@
   <body>
   <?php require_once 'menu.php'; ?>
 
-
-
-
 <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
 
 <div class="alert alert-danger d-none" role="alert" id="myDIV">Certifique-se de que todos os campos estão preenchidos e tente novamente.</div>
@@ -80,7 +77,6 @@
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery.mask.js"></script>
 <script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
 
     <script type="text/javascript">
     $(document).ready(function () {
@@ -153,7 +149,6 @@
             } else {
                 $("#divData").addClass('d-none');
             }
-            
         });
 
     });
