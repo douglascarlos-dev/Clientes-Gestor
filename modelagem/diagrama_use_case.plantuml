@@ -6,8 +6,8 @@ rectangle "Clientes Gestor" {
   usecase "Efetuar Login" as UC1
   usecase "Cadastrar Cliente" as UC2
   usecase "Cadastrar Telefone" as UC3
-  usecase "Cadastrar Endereço" as UC4
-  usecase "Apagar Endereço" as UC5 #pink
+  usecase "Cadastrar Endereco" as UC4
+  usecase "Apagar Endereco" as UC5 #pink
   usecase "Apagar Telefone" as UC6 #pink
   usecase "Apagar Cliente" as UC7 #pink
   usecase "Sair" as UC8
