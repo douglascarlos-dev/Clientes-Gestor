@@ -14,7 +14,7 @@ activate ":Controller \n Componente de Negocio"
 
 ":Controller \n Componente de Negocio" -> ":Model \n Banco de Dados": Checa se cliente existe no \n Banco de Dados
 activate ":Model \n Banco de Dados"
-":Model \n Banco de Dados" -->> ":Controller \n Componente de Negocio": Cliente não existe
+":Model \n Banco de Dados" -->> ":Controller \n Componente de Negocio": Cliente nao existe
 deactivate ":Model \n Banco de Dados"
 
 ":Controller \n Componente de Negocio" -->> ":View \n Novo Cliente": 
