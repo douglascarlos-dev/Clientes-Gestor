@@ -3,8 +3,74 @@ include_once 'connection.php';
 
 class Cliente extends Connection {
     private $id;
-    private $nome;
     private $cpf;
+    private $name;
+    private $email;
+    private $birthdate;
+    private $sex;
+    private $maritalstatus;
+
+    public function setId($id){
+        $this->id=$id;
+        return $this;
+    }
+    public function setCPF($cpf){
+        $this->cpf=$cpf;
+        return $this;
+    }
+    public function setName($name){
+        $this->name=$name;
+        return $this;
+    }
+    public function setEmail($email){
+        $this->email=$email;
+        return $this;
+    }
+    public function setBirthDate($birthdate){
+        $this->birthdate=$birthdate;
+        return $this;
+    }
+    public function setSex($sex){
+        $this->sex=$sex;
+        return $this;
+    }
+    public function setMaritalStatus($maritalstatus){
+        $this->maritalstatus=$maritalstatus;
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getCPF()
+    {
+        return $this->cpf;
+    }
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function getBirthDate()
+    {
+        return $this->birthdate;
+    }
+    public function getSex()
+    {
+        return $this->sex;
+    }
+    public function getMaritalStatus()
+    {
+        return $this->maritalstatus;
+    }
+
+
+
+    // old
 
     function database_select_one($valor1, $valor2, $valor3){
         $pdo = $this->o_db;
@@ -89,6 +155,30 @@ class Cliente extends Connection {
     function atualizar_cliente($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
         $consulta = $this->cliente_update($valor1, $valor2, $valor3, $valor4, $valor5, $valor6);
         return $consulta;
+    }
+
+    // new
+
+    function customer_insert(){
+        $sql_query = "SELECT * FROM customer_insert_function
+                        (
+                            '" . $this->getCPF() . "',
+                            '" . $this->getName() . "',
+                            '" . $this->getEmail() . "',
+                            '" . $this->getBirthDate() . "',
+                            '" . $this->getSex() . "',
+                            '" . $this->getMaritalStatus() . "'
+                        )";
+        $pdo = $this->o_db;
+        $stmt = $pdo->prepare($sql_query);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row;
+    }
+
+    function post_customer_new(){
+        $result = $this->customer_insert();
+        return $result;
     }
 
 }

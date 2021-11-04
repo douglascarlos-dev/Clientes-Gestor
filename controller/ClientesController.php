@@ -27,6 +27,7 @@ class ClientesController {
         require_once 'view/clientes_novo.php';
     }
 
+    /*
     public function cadastrar() {
         $cliente = new Cliente();
         if($_REQUEST['cpf'] != 0) {
@@ -44,6 +45,20 @@ class ClientesController {
         } else {
             $this->visualizar();
         }
+    }
+    */
+
+    public function save() {
+        $clientes = new Cliente();
+        $clientes->setCPF($_REQUEST['cpf']);
+        $clientes->setName($_REQUEST['nome']);
+        $clientes->setEmail($_REQUEST['email']);
+        $clientes->setBirthDate($_REQUEST['data_de_nascimento']);
+        $clientes->setSex($_REQUEST['sexo']);
+        $clientes->setMaritalStatus($_REQUEST['estado_civil']);
+
+        $clientes->post_customer_new();
+        ClientesController::editar($cpf);
     }
 
     public function deletar( $cpf ){

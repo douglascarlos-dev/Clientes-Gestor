@@ -18,7 +18,6 @@ class Address extends Connection {
         $this->id=$id;
         return $this;
     }
-
     public function setCPF($cpf){
         $this->cpf=$cpf;
         return $this;
@@ -35,32 +34,26 @@ class Address extends Connection {
         $this->name=$name;
         return $this;
     }
-
     public function setNumber($number){
         $this->number=$number;
         return $this;
     }
-
     public function setDistrict($district){
         $this->district=$district;
         return $this;
     }
-
     public function setCity($city){
         $this->city=$city;
         return $this;
     }
-
     public function setState($state){
         $this->state=$state;
         return $this;
     }
-
     public function setZipCode($zip_code){
         $this->zip_code=$zip_code;
         return $this;
     }
-
     public function setComplement($complement){
         $this->complement=$complement;
         return $this;

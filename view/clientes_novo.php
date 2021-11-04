@@ -29,7 +29,7 @@
 
 <div class="card">
         <div class="card-body">
-            <form name="register" action="<?php echo URLROOT; ?>/clientes/cadastrar" method="post">
+            <form name="register" action="<?php echo URLROOT; ?>/clientes/save" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNome">Nome</label>
