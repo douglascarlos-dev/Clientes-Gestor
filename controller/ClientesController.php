@@ -48,29 +48,44 @@ class ClientesController {
     }
     */
 
-    public function save() {
-        $clientes = new Cliente();
-        $clientes->setCPF($_REQUEST['cpf']);
-        $clientes->setName($_REQUEST['nome']);
-        $clientes->setEmail($_REQUEST['email']);
-        $clientes->setBirthDate($_REQUEST['data_de_nascimento']);
-        $clientes->setSex($_REQUEST['sexo']);
-        $clientes->setMaritalStatus($_REQUEST['estado_civil']);
-
-        $clientes->post_customer_new();
-        ClientesController::editar($cpf);
-    }
+    
 
     public function deletar( $cpf ){
         $cliente = new Cliente();
         $cliente->deletar_cliente($cpf);
         $this->visualizar();
     }
-
+/*
     public function atualizar( $cpf ){
         $cliente = new Cliente();
         $cliente->atualizar_cliente($_REQUEST['nome'], $_REQUEST['email'], $_REQUEST['data_de_nascimento'], $_REQUEST['sexo'], $_REQUEST['estado_civil'], $cpf);
         $this->editar($cpf);
+    }
+*/
+    // new
+
+    public function save() {
+        $clientes = new Cliente();
+        $clientes->setCPF(preg_replace("/[^0-9]/", "", $_REQUEST['cpf']));
+        $clientes->setName($_REQUEST['nome']);
+        $clientes->setEmail($_REQUEST['email']);
+        $clientes->setBirthDate($_REQUEST['data_de_nascimento']);
+        $clientes->setSex($_REQUEST['sexo']);
+        $clientes->setMaritalStatus($_REQUEST['estado_civil']);
+        $clientes->post_customer_new();
+        ClientesController::editar($clientes->getCPF());
+    }
+
+    public function update( $cpf ) {
+        $clientes = new Cliente();
+        $clientes->setCPF($cpf);
+        $clientes->setName($_REQUEST['nome']);
+        $clientes->setEmail($_REQUEST['email']);
+        $clientes->setBirthDate($_REQUEST['data_de_nascimento']);
+        $clientes->setSex($_REQUEST['sexo']);
+        $clientes->setMaritalStatus($_REQUEST['estado_civil']);
+        $clientes->post_customer_update();
+        ClientesController::editar($clientes->getCPF());
     }
    
 }

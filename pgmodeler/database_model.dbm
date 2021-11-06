@@ -48,7 +48,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="telefone_cliente" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="601" y="24"/>
+	<position x="600" y="20"/>
 	<column name="id" not-null="true" sequence="public.telefone_cliente_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -74,7 +74,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="clientes" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="67" y="42"/>
+	<position x="60" y="40"/>
 	<column name="id" not-null="true" sequence="public.clientes_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -110,7 +110,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <view name="view_telefone_cliente" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="630" y="225"/>
+	<position x="640" y="220"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
@@ -231,7 +231,7 @@ END;]]></definition>
 <table name="users" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="596" y="574"/>
+	<position x="600" y="580"/>
 	<column name="id" not-null="true" sequence="public.users_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -264,7 +264,7 @@ END;]]></definition>
 <table name="address" layer="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="67" y="332"/>
+	<position x="60" y="340"/>
 	<column name="id" not-null="true" sequence="public.endereco_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -325,7 +325,7 @@ END;]]></definition>
 <view name="view_address" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="561" y="349"/>
+	<position x="560" y="340"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
@@ -496,5 +496,49 @@ END;]]></definition>
 		<position x="-90.1675" y="-23.6073"/>
 	</label>
 </relationship>
+
+<function name="customer_insert_function"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql"/>
+	<return-type>
+	<type name="integer" length="0"/>
+	</return-type>
+	<parameter name="nome_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="email_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="cpf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<parameter name="data_de_nascimento_">
+		<type name="date" length="0"/>
+	</parameter>
+	<parameter name="sexo_cliente_">
+		<type name="public.sexo" length="0"/>
+	</parameter>
+	<parameter name="estado_civil_cliente_">
+		<type name="public.estado_civil" length="0"/>
+	</parameter>
+	<definition><![CDATA[DECLARE id_retorno integer;
+BEGIN
+
+INSERT INTO clientes(nome, email, cpf, data_de_nascimento, sexo_cliente, estado_civil_cliente) VALUES (nome_, email_, cpf_, data_de_nascimento_, sexo_cliente_, estado_civil_cliente_);
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+RETURN id_retorno;
+
+END;]]></definition>
+</function>
 
 </dbmodel>

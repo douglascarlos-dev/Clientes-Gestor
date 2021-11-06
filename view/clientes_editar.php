@@ -36,7 +36,7 @@ function Mask($mask,$str){
 
 $resultado = $cliente->get_cliente($cpf);
 ?>
-<form action="<?php echo URLROOT; ?>/clientes/atualizar/<?php echo $resultado["cpf"]; ?>" method="post">
+<form action="<?php echo URLROOT; ?>/clientes/update/<?php echo $resultado["cpf"]; ?>" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Nome</label>
