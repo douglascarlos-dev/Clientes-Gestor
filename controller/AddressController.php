@@ -30,9 +30,7 @@ class AddressController {
         $address->setState($_REQUEST['state']);
         $address->setZipCode($_REQUEST['zip_code']);
         $address->setComplement($_REQUEST['complement']);
-        
         $address->post_address_new();
-        
         ClientesController::editar($cpf);
     }
 

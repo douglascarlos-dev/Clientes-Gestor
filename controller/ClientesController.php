@@ -87,6 +87,15 @@ class ClientesController {
         $clientes->post_customer_update();
         ClientesController::editar($clientes->getCPF());
     }
+
+    public function remove( $cpf ){
+        $cliente = new Cliente();
+        $clientes->setCPF($cpf);
+        //$cliente->deletar_cliente($cpf);
+        $clientes->post_customer_remove();
+        //$this->visualizar();
+        ClientesController::visualizar();
+    }
    
 }
 ?>

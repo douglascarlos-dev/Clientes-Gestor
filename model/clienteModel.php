@@ -200,7 +200,26 @@ class Cliente extends Connection {
     }
 
     function post_customer_update(){
-        $result = $this->custumer_updat();
+        $result = $this->custumer_update();
+        return $result;
+    }
+
+    function custumer_remove(){
+        $sql_query = "SELECT * FROM customer_remove_function
+                        (
+                            '" . $this->getCPF() . "'
+                        )";
+        $pdo = $this->o_db;
+        $stmt = $pdo->prepare($sql_query);
+        $stmt->execute();
+        //$row = $stmt->fetch();
+        //$stmt->execute();
+        $row = $stmt->rowCount();
+        return $row;
+    }
+
+    function post_customer_remove(){
+        $result = $this->custumer_remove();
         return $result;
     }
 

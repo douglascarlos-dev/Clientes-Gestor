@@ -220,7 +220,7 @@ endforeach;
   <button type="submit" class="btn btn-primary">Atualizar</button>
   <a class="btn btn-outline-primary" id="newAddress" href="<?php echo URLROOT; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
   <a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo URLROOT; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
-  <a class="btn btn-danger" href="<?php echo URLROOT; ?>/clientes/deletar/<?php echo $cpf; ?>" role="button">Deletar</a>
+  <a class="btn btn-danger" href="<?php echo URLROOT; ?>/clientes/remove/<?php echo $cpf; ?>" role="button">Deletar</a>
 
   
 </form>
