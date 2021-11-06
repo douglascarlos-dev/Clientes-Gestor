@@ -111,12 +111,14 @@ class Cliente extends Connection {
         return true;
     }
 */
+/*
     function deletar($tabela, $coluna, $valor){
         $pdo = $this->o_db;
         $stmt = $pdo->prepare("DELETE FROM $tabela WHERE $coluna = '$valor'");
         $stmt->execute();
         return $stmt->rowCount();
     }
+*/
 
 
     function get_cliente($id){
@@ -147,11 +149,13 @@ class Cliente extends Connection {
         return $consulta;
     }
 */
+/*
     function deletar_cliente($cpf){
         $cpf = (string) $cpf;
         $consulta = $this->deletar('clientes', 'cpf', $cpf);
         return $consulta;
     }
+*/
 /*
     function atualizar_cliente($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
         $consulta = $this->cliente_update($valor1, $valor2, $valor3, $valor4, $valor5, $valor6);

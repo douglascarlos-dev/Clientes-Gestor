@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="8"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="10"
 	 default-owner="postgres">
 <database name="clientesgestor" is-template="false" allow-conns="true">
 </database>
@@ -593,6 +593,45 @@ UPDATE clientes SET nome = nome_, email = email_, data_de_nascimento = data_de_n
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
 RETURN id_retorno;
+
+END;]]></definition>
+</function>
+
+<usertype name="estado_civil_cp1" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Casado,Divorciado,Solteiro,Viúvo"/>
+</usertype>
+
+<usertype name="sexo_cp1" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Feminino,Masculino"/>
+</usertype>
+
+<function name="customer_remove_function"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql"/>
+	<return-type>
+	<type name="integer" length="0"/>
+	</return-type>
+	<parameter name="cpf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<definition><![CDATA[DECLARE id_retorno integer;
+BEGIN
+
+DELETE FROM clientes WHERE clientes.cpf = cpf_;
+
+RETURN 1;
 
 END;]]></definition>
 </function>

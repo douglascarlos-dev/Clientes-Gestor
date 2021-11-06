@@ -49,12 +49,13 @@ class ClientesController {
     */
 
     
-
+/*
     public function deletar( $cpf ){
         $cliente = new Cliente();
         $cliente->deletar_cliente($cpf);
         $this->visualizar();
     }
+*/
 /*
     public function atualizar( $cpf ){
         $cliente = new Cliente();
@@ -89,7 +90,7 @@ class ClientesController {
     }
 
     public function remove( $cpf ){
-        $cliente = new Cliente();
+        $clientes = new Cliente();
         $clientes->setCPF($cpf);
         //$cliente->deletar_cliente($cpf);
         $clientes->post_customer_remove();
