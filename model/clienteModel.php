@@ -72,6 +72,7 @@ class Cliente extends Connection {
 
     // old
 
+    /*
     function database_select_one($valor1, $valor2, $valor3){
         $pdo = $this->o_db;
         $stmt = $pdo->prepare("SELECT * FROM $valor1 WHERE $valor2 = '$valor3' LIMIT 1"); 
@@ -79,6 +80,7 @@ class Cliente extends Connection {
         $row = $stmt->fetch();
         return $row;
     }
+    */
 
     function database_select_all_var($valor1, $valor2, $valor3){
         $pdo = $this->o_db;
@@ -120,12 +122,13 @@ class Cliente extends Connection {
     }
 */
 
-
+/*
     function get_cliente($id){
         $id = (string) $id;
         $consulta = $this->database_select_one('clientes', 'cpf', $id);
         return $consulta;
     }
+    */
     
     function get_all_clientes(){
         $consulta = $this->database_select_all('clientes');
@@ -225,6 +228,22 @@ class Cliente extends Connection {
     function post_customer_remove(){
         $result = $this->custumer_remove();
         return $result;
+    }
+
+    function customer_list(){
+        $pdo = $this->o_db;
+        //$cpf = $this->getCPF();
+        $stmt = $pdo->prepare("SELECT * FROM clientes WHERE cpf = '" . $this->getCPF() . "' LIMIT 1"); 
+        $stmt->execute(); 
+        $row = $stmt->fetch();
+        $cliente = new Cliente();
+        $cliente->setName($row[2]);
+        $cliente->setEmail($row[3]);
+        $cliente->setCPF($row[4]);
+        $cliente->setBirthDate($row[5]);
+        $cliente->setSex($row[6]);
+        $cliente->setMaritalStatus($row[7]);
+        return $cliente;
     }
 
 }

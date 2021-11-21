@@ -17,7 +17,7 @@ class TelefonesController {
             $telefone->setTelefone($_REQUEST['telefone']);
             $telefone->telefone_insert();
         }
-        ClientesController::editar($cpf);
+        ClientesController::edit($cpf);
     }
 
     public function apagar( $array ){
@@ -31,7 +31,7 @@ class TelefonesController {
             $telefone->setTelefone($numero);
             $telefone->telefone_delete();
         }
-        ClientesController::editar($cpf);
+        ClientesController::edit($cpf);
     }
 
 }

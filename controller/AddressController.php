@@ -31,7 +31,7 @@ class AddressController {
         $address->setZipCode($_REQUEST['zip_code']);
         $address->setComplement($_REQUEST['complement']);
         $address->post_address_new();
-        ClientesController::editar($cpf);
+        ClientesController::edit($cpf);
     }
 
     public function remove( $array ){
@@ -43,7 +43,7 @@ class AddressController {
             $address->setAddressCategory($address_category);
             $address->post_address_delete();
         }
-        ClientesController::editar($cpf);
+        ClientesController::edit($cpf);
     }
 
 }

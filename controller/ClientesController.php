@@ -6,14 +6,19 @@ require_once 'model/addressModel.php';
 
 class ClientesController {
 
+    /*
     public function visualizar() {
         $cliente = new Cliente();
         require_once 'view/clientes_view.php';
     }
-
+    */
+/*
     public static function editar( $cpf ) {
-        $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $cliente = new Cliente();
+        //$cpf = preg_replace("/[^0-9]/", "", $cpf);
+        //$cpf = $cpf;
+        $clientes = new Cliente();
+        $clientes->setCPF($cpf);
+        //$clientes->customer_list();
         $telefone = new Telefone();
         $telefone->setCPF($cpf);
         $telefone = $telefone->telefone_list();
@@ -22,11 +27,12 @@ class ClientesController {
         $address = $address->post_address_list();
         require_once 'view/clientes_editar.php';
     }
-
+*/
+/*
     public function novo() {
         require_once 'view/clientes_novo.php';
     }
-
+*/
     /*
     public function cadastrar() {
         $cliente = new Cliente();
@@ -74,7 +80,7 @@ class ClientesController {
         $clientes->setSex($_REQUEST['sexo']);
         $clientes->setMaritalStatus($_REQUEST['estado_civil']);
         $clientes->post_customer_new();
-        ClientesController::editar($clientes->getCPF());
+        ClientesController::edit($clientes->getCPF());
     }
 
     public function update( $cpf ) {
@@ -86,7 +92,7 @@ class ClientesController {
         $clientes->setSex($_REQUEST['sexo']);
         $clientes->setMaritalStatus($_REQUEST['estado_civil']);
         $clientes->post_customer_update();
-        ClientesController::editar($clientes->getCPF());
+        ClientesController::edit($clientes->getCPF());
     }
 
     public function remove( $cpf ){
@@ -96,6 +102,29 @@ class ClientesController {
         $clientes->post_customer_remove();
         //$this->visualizar();
         ClientesController::visualizar();
+    }
+
+    public static function edit( $cpf ) {
+        $clientes = new Cliente();
+        $clientes->setCPF($cpf);
+        $cliente = $clientes->customer_list();
+        $telefone = new Telefone();
+        $telefone->setCPF($cpf);
+        $telefone = $telefone->telefone_list();
+        $address = new Address();
+        $address->setCPF($cpf);
+        $address = $address->post_address_list();
+        require_once 'view/clientes_editar.php';
+        //ClientesController::editar($clientes->getCPF());
+    }
+
+    public function new() {
+        require_once 'view/clientes_novo.php';
+    }
+
+    public function view() {
+        $cliente = new Cliente();
+        require_once 'view/clientes_view.php';
     }
    
 }

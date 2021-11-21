@@ -34,45 +34,47 @@ function Mask($mask,$str){
   return $mask;
 }
 
-$resultado = $cliente->get_cliente($cpf);
+//$resultado = $clientes->get_cliente($cpf);
+//$resultado = $clientes->customer_list();
+//$resultado = $clientes;
 ?>
-<form action="<?php echo URLROOT; ?>/clientes/update/<?php echo $resultado["cpf"]; ?>" method="post">
+<form action="<?php echo URLROOT; ?>/clientes/update/<?php echo $cliente->getCPF(); ?>" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Nome</label>
-      <input type="text" class="form-control" id="inputNome" name="nome" value="<?php echo $resultado["nome"]; ?>" maxlength="100">
+      <input type="text" class="form-control" id="inputNome" name="nome" value="<?php echo $cliente->getName(); ?>" maxlength="100">
       
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail">E-mail</label>
-      <input type="text" class="form-control" id="inputEmail" name="email" value="<?php echo $resultado["email"]; ?>" maxlength="100">
+      <input type="text" class="form-control" id="inputEmail" name="email" value="<?php echo $cliente->getEmail(); ?>" maxlength="100">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCPF">CPF</label>
-      <input type="text" class="form-control" id="inputCPF" name="cpf" value="<?php echo Mask("###.###.###-##",$resultado["cpf"]); ?>" readonly>
+      <input type="text" class="form-control" id="inputCPF" name="cpf" value="<?php echo Mask("###.###.###-##",$cliente->getCPF()); ?>" readonly>
     </div>
     <div class="form-group col-md-6">
       <label for="inputDataDeNascimento">Data de Nascimento</label>
-      <input type="date" class="form-control" id="inputDataDeNascimento" name="data_de_nascimento" value="<?php echo $resultado["data_de_nascimento"]; ?>">
+      <input type="date" class="form-control" id="inputDataDeNascimento" name="data_de_nascimento" value="<?php echo $cliente->getBirthDate(); ?>">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputSexo">Sexo</label>
         <select name="sexo" id="selectSexo" class="form-control">
-          <option value='Masculino' name='Masculino'  <?php if($resultado["sexo_cliente"] == 'Masculino') { echo 'selected'; } ?>>Masculino</option>
-          <option value='Feminino' name='Feminino' <?php if($resultado["sexo_cliente"] == 'Feminino') { echo 'selected'; } ?>>Feminino</option>
+          <option value='Masculino' name='Masculino'  <?php if($cliente->getSex() == 'Masculino') { echo 'selected'; } ?>>Masculino</option>
+          <option value='Feminino' name='Feminino' <?php if($cliente->getSex() == 'Feminino') { echo 'selected'; } ?>>Feminino</option>
         </select>
     </div>
     <div class="form-group col-md-6">
         <label for="selectEstadoCivil">Estado Civil</label>
             <select id="selectEstadoCivil" name='estado_civil' class="form-control">
-            <option value="Solteiro" name='Solteiro' <?php if($resultado["estado_civil_cliente"] == 'Solteiro') { echo 'selected'; } ?>>Solteiro</option>
-                <option value="Casado" name='Casado' <?php if($resultado["estado_civil_cliente"] == 'Casado') { echo 'selected'; } ?>>Casado</option>
-                <option value="Divorciado" name='Divorciado' <?php if($resultado["estado_civil_cliente"] == 'Divorciado') { echo 'selected'; } ?>>Divorciado</option>
-                <option value="Viúvo" name='Viúvo' <?php if($resultado["estado_civil_cliente"] == 'Viúvo') { echo 'selected'; } ?>>Viúvo</option>
+            <option value="Solteiro" name='Solteiro' <?php if($cliente->getMaritalStatus() == 'Solteiro') { echo 'selected'; } ?>>Solteiro</option>
+                <option value="Casado" name='Casado' <?php if($cliente->getMaritalStatus() == 'Casado') { echo 'selected'; } ?>>Casado</option>
+                <option value="Divorciado" name='Divorciado' <?php if($cliente->getMaritalStatus() == 'Divorciado') { echo 'selected'; } ?>>Divorciado</option>
+                <option value="Viúvo" name='Viúvo' <?php if($cliente->getMaritalStatus() == 'Viúvo') { echo 'selected'; } ?>>Viúvo</option>
             </select>
     </div>
   </div>
