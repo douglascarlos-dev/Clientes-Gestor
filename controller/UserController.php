@@ -80,7 +80,7 @@ class UserController{
 
     public function logout() {
         unset($_SESSION['username']);
-        header("Location: ./user");
+        header("Location: ./");
     }
 }
 ?>

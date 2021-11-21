@@ -33,8 +33,8 @@ if (!empty($classe) and class_exists($classe)) {
                 $$classe->$metodo($parametros);
             }
 
-        } elseif (method_exists($$classe,'view')) {
-            $$classe->view();
+        } elseif (method_exists($$classe,'visualizar')) {
+            $$classe->visualizar();
         } else {
             require_once 'controller/Home.php';
             $Home = new Home();

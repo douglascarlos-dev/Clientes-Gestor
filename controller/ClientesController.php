@@ -122,7 +122,7 @@ class ClientesController {
         require_once 'view/clientes_novo.php';
     }
 
-    public function view() {
+    public function visualizar() {
         $cliente = new Cliente();
         require_once 'view/clientes_view.php';
     }
