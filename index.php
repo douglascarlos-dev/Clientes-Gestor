@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-//define('ENDERECO', '/' . basename(__DIR__));
 define('URLROOT', '/' . basename(__DIR__));
 
 include_once 'controller/UserController.php';

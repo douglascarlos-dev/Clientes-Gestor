@@ -1,11 +1,9 @@
 <!doctype html>
 <html lang="pt-br">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/bootstrap.min.css" crossorigin="anonymous">
 
     <title>Sistema 1.0</title>
@@ -34,9 +32,6 @@ function Mask($mask,$str){
   return $mask;
 }
 
-//$resultado = $clientes->get_cliente($cpf);
-//$resultado = $clientes->customer_list();
-//$resultado = $clientes;
 ?>
 <form action="<?php echo URLROOT; ?>/clientes/update/<?php echo $cliente->getCPF(); ?>" method="post">
   <div class="form-row">
@@ -79,152 +74,81 @@ function Mask($mask,$str){
     </div>
   </div>
   
-  <?php
-/*
-$telefone = $cliente->get_cliente_telefone($cpf);
-
-foreach($telefone as &$value):
-
-    echo "<div class=\"form-row\">";
-
-    echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo ENDERECO; echo "/telefones/apagar/";
-    echo $cpf;
-    echo "/";
-    echo $value["tipo"];
-    echo "/";
-    echo $value["telefone"];
-    echo "\" role=\"button\">Deletar</a>";
-    
-    echo "<div class=\"form-group col-md-5\">";
-    echo "<label for=\"inputTipoTelefone\">Telefone</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputTipoTelefone\" name=\"tipo_telefone\" value=\"" . $value["tipo"] . "\" readonly>";
-    
-    echo "</div>";
-    echo "<div class=\"form-group col-md-6\">";
-    echo "<label for=\"inputTelefone\">Número</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputTelefone\" name=\"telefone\" value=\"" . Mask("(##) # ####-####",$value["telefone"]) . "\" readonly>";
-    
-    echo "</div>";
-
-    echo "</div>";
-
-endforeach;
-*/
-
+<?php
 foreach($telefone as &$telefone_value):
 ?>
 <div class="form-row">
-<a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/telefones/apagar/<?php echo $telefone_value->getCPF(); ?>/<?php echo $telefone_value->getTipo(); ?>/<?php echo $telefone_value->getTelefone(); ?>" role="button">Deletar</a>
-<div class="form-group col-md-5">
-<label for="inputTipoTelefone">Telefone</label>
-<input type="text" class="form-control" id="inputTipoTelefone" name="tipo_telefone" value="<?php echo $telefone_value->getTipo(); ?>" readonly>
-</div>
-<div class="form-group col-md-6">
-<label for="inputTelefone">Número</label>
-<input type="text" class="form-control" id="inputTelefone" name="telefone" value="<?php echo Mask('(##) # ####-####',$telefone_value->getTelefone()); ?>" readonly>
-</div>
+  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/telefones/apagar/<?php echo $telefone_value->getCPF(); ?>/<?php echo $telefone_value->getTipo(); ?>/<?php echo $telefone_value->getTelefone(); ?>" role="button">Deletar</a>
+  <div class="form-group col-md-5">
+    <label for="inputTipoTelefone">Telefone</label>
+    <input type="text" class="form-control" id="inputTipoTelefone" name="tipo_telefone" value="<?php echo $telefone_value->getTipo(); ?>" readonly>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputTelefone">Número</label>
+    <input type="text" class="form-control" id="inputTelefone" name="telefone" value="<?php echo Mask('(##) # ####-####',$telefone_value->getTelefone()); ?>" readonly>
+  </div>
 </div>
 <?php
 endforeach;
 
 foreach($address as &$address_value):
+?>
 
-    echo "<div class=\"form-row\">";
+<div class="form-row">
+  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/address/remove/<?php echo $address_value->getCPF(); ?>/<?php echo $address_value->getAddressCategory(); ?>" role="button">Deletar</a>
+  <div class="form-group col-md-5">
+  <label for="inputCategoria">Categoria endereço</label>
+  <input type="text" class="form-control" id="inputCategoria" name="address_category" value="<?php echo $address_value->getAddressCategory(); ?>" readonly>
+</div>
+<div class="form-group col-md-6">
+  <label for="inputTipo">Tipo</label>
+  <input type="text" class="form-control" id="inputTipo" name="type" value="<?php echo $address_value->getType(); ?>" readonly>
+</div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputNome">Nome</label>
+    <input type="text" class="form-control" id="inputNome" name="name" value="<?php echo $address_value->getName(); ?>" readonly>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="inputNumero">Número</label>
+    <input type="text" class="form-control" id="inputNumero" name="number" value="<?php echo $address_value->getNumber(); ?>" readonly>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="inputBairro">Bairro</label>
+    <input type="text" class="form-control" id="inputBairro" name="district" value="<?php echo $address_value->getDistrict(); ?>" readonly>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputCidade">Cidade</label>
+    <input type="text" class="form-control" id="inputCidade" name="city" value="<?php echo $address_value->getCity(); ?>" readonly>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="inputUF">UF</label>
+    <input type="text" class="form-control" id="inputUF" name="state" value="<?php echo $address_value->getState(); ?>" readonly>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="inputCEP">CEP</label>
+    <input type="text" class="form-control" id="inputCEP" name="zip_code" value="<?php echo Mask("##.###-###",$address_value->getZipCode()); ?>" readonly>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <label for="inputComplemento">Complemento</label>
+    <input type="text" class="form-control" id="inputComplemento" name="complement" value="<?php echo $address_value->getComplement(); ?>" readonly>
+  </div>
+</div>
 
-    echo "<a class=\"btn btn-danger col-md-1 my-4\" href=\"";echo URLROOT; echo "/address/remove/";
-    echo $address_value->getCPF();
-    echo "/";
-    echo $address_value->getAddressCategory();
-    echo "\" role=\"button\">Deletar</a>";
-
-
-    echo "<div class=\"form-group col-md-5\">";
-    echo "<label for=\"inputCategoria\">Categoria endereço</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputCategoria\" name=\"address_category\" value=\"" . $address_value->getAddressCategory() . "\" readonly>";
-    
-    echo "</div>";
-    echo "<div class=\"form-group col-md-6\">";
-    echo "<label for=\"inputTipo\">Tipo</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputTipo\" name=\"type\" value=\"" . $address_value->getType() . "\" readonly>";
-    
-    echo "</div>";
-
-    
-
-    echo "</div>";
-
-    echo "<div class=\"form-row\">";
-    echo "<div class=\"form-group col-md-6\">";
-    echo "<label for=\"inputNome\">Nome</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputNome\" name=\"name\" value=\"" . $address_value->getName() . "\" readonly>";
-    
-    echo "</div>";
-    echo "<div class=\"form-group col-md-2\">";
-    echo "<label for=\"inputNumero\">Número</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputNumero\" name=\"number\" value=\"" . $address_value->getNumber() . "\" readonly>";
-    
-    echo "</div>";
-
-    echo "<div class=\"form-group col-md-4\">";
-    echo "<label for=\"inputBairro\">Bairro</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputBairro\" name=\"district\" value=\"" . $address_value->getDistrict() . "\" readonly>";
-    
-    echo "</div>";
-    echo "</div>";
-
-    
-
-    echo "<div class=\"form-row\">";
-    echo "<div class=\"form-group col-md-6\">";
-    echo "<label for=\"inputCidade\">Cidade</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputCidade\" name=\"city\" value=\"" . $address_value->getCity() . "\" readonly>";
-    
-    echo "</div>";
-    echo "<div class=\"form-group col-md-2\">";
-    echo "<label for=\"inputUF\">UF</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputUF\" name=\"state\" value=\"" .  $address_value->getState() . "\" readonly>";
-    
-    echo "</div>";
-
-    echo "<div class=\"form-group col-md-4\">";
-    echo "<label for=\"inputCEP\">CEP</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputCEP\" name=\"zip_code\" value=\"" . Mask("##.###-###",$address_value->getZipCode()) . "\" readonly>";
-    
-    echo "</div>";
-    echo "</div>";
-
-
-
-    echo "<div class=\"form-row\">";
-    echo "<div class=\"form-group col-md-12\">";
-    echo "<label for=\"inputComplemento\">Complemento</label>";
-
-    echo "<input type=\"text\" class=\"form-control\" id=\"inputComplemento\" name=\"complement\" value=\"" . $address_value->getComplement() . "\" readonly>";
-    
-    echo "</div>";
-    echo "</div>";
-
+<?php
 endforeach;
-  ?>
-  
-  
+?>
 
-  <button type="submit" class="btn btn-primary">Atualizar</button>
-  <a class="btn btn-outline-primary" id="newAddress" href="<?php echo URLROOT; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
-  <a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo URLROOT; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
-  <a class="btn btn-danger" href="<?php echo URLROOT; ?>/clientes/remove/<?php echo $cpf; ?>" role="button">Deletar</a>
+<button type="submit" class="btn btn-primary">Atualizar</button>
+<a class="btn btn-outline-primary" id="newAddress" href="<?php echo URLROOT; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
+<a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo URLROOT; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
+<a class="btn btn-danger" href="<?php echo URLROOT; ?>/clientes/remove/<?php echo $cpf; ?>" role="button">Deletar</a>
 
-  
 </form>
 
 </div>
