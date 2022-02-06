@@ -1,6 +1,6 @@
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.9.3
--- PostgreSQL version: 12.0
+-- PostgreSQL version: 9.6
 -- Project Site: pgmodeler.io
 -- Model Author: ---
 

@@ -45,20 +45,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<enumeration values="Sr.,Sra.,Srta.,Dr."/>
 </usertype>
 
-<table name="telefone_cliente" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+<table name="phone_customer" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="600" y="20"/>
 	<column name="id" not-null="true" sequence="public.telefone_cliente_id_seq">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="telefone" not-null="true">
+	<column name="phone" not-null="true">
 		<type name="character varying" length="11"/>
 	</column>
-	<column name="tipo" not-null="true">
+	<column name="type" not-null="true">
 		<type name="public.tipo_telefone" length="0"/>
 	</column>
-	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.telefone_cliente">
+	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.phone_customer">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 
@@ -107,46 +107,46 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<view name="view_telefone_cliente" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
+<view name="view_phone_customer" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="640" y="220"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
-    telefone_cliente.telefone,
-    telefone_cliente.tipo
-   FROM (telefone_cliente
-     JOIN clientes ON ((telefone_cliente.id_clientes = clientes.id)));]]></expression>
+    phone_customer.phone,
+    phone_customer.type
+   FROM (phone_customer
+     JOIN clientes ON ((phone_customer.id_clientes = clientes.id)));]]></expression>
 	<column name="id">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="cpf">
 		<type name="character varying" length="11"/>
 	</column>
-	<column name="telefone">
+	<column name="phone">
 		<type name="character varying" length="11"/>
 	</column>
-	<column name="tipo">
+	<column name="type">
 		<type name="public.tipo_telefone" length="0"/>
 	</column>
 		<reftable name="public.clientes"/>
-		<reftable name="public.telefone_cliente"/>
+		<reftable name="public.phone_customer"/>
 	</reference>
 </view>
 
 <relationship name="rel_view_telefone_cliente_clientes" type="reltv" layer="0"
-	 src-table="public.view_telefone_cliente"
+	 src-table="public.view_phone_customer"
 	 dst-table="public.clientes"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-7.53238" y="1.0256"/>
+		<position x="5.69262" y="23.5182"/>
 	</label>
 </relationship>
 
 <relationship name="rel_view_telefone_cliente_telefone_cliente" type="reltv" layer="0"
-	 src-table="public.view_telefone_cliente"
-	 dst-table="public.telefone_cliente"
+	 src-table="public.view_phone_customer"
+	 dst-table="public.phone_customer"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
 		<position x="-0.942855" y="0.123324"/>
@@ -181,7 +181,7 @@ BEGIN
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
-DELETE FROM telefone_cliente 	WHERE id_clientes=id_retorno AND tipo=tipo_ AND telefone=telefone_;
+DELETE FROM phone_customer WHERE id_clientes=id_retorno AND type=tipo_ AND phone=telefone_;
 
 RETURN id_retorno;
 
@@ -216,7 +216,7 @@ BEGIN
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
-INSERT INTO telefone_cliente(id_clientes, telefone, tipo) VALUES (id_retorno, telefone_, tipo_::tipo_telefone);
+INSERT INTO phone_customer(id_clientes, phone, type) VALUES (id_retorno, telefone_, tipo_::tipo_telefone);
 
 RETURN id_retorno;
 
@@ -231,7 +231,7 @@ END;]]></definition>
 <table name="users" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="600" y="580"/>
+	<position x="580" y="600"/>
 	<column name="id" not-null="true" sequence="public.users_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -314,11 +314,11 @@ END;]]></definition>
 	 src-fk-pattern="{st}_fk"
 	 custom-color="#f8d280"
 	 src-table="public.clientes"
-	 dst-table="public.telefone_cliente"
+	 dst-table="public.phone_customer"
 	 src-required="false" dst-required="false"
 	del-action="CASCADE">
 	<label ref-type="name-label">
-		<position x="-1.61738" y="15.5837"/>
+		<position x="10.1076" y="23.757"/>
 	</label>
 </relationship>
 

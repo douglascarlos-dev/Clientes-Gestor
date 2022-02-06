@@ -12,8 +12,25 @@
   </head>
   <body>
   <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
+
   <div class="card">
+    <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputUsuario">Usuário: admin</label>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputUsuario">Usuário: admin</label>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="card">
+    
   <div class="card-body">
+
+  
 
   <form name="entrar" action="<?php echo URLROOT; ?>/user/login" method="post">
 

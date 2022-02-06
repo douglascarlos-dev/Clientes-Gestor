@@ -71,7 +71,7 @@ class Telefone extends Connection{
     }
 
     function telefone_list(){
-        $sql_query = "SELECT * FROM view_telefone_cliente WHERE cpf = '" . $this->getCPF() . "'";
+        $sql_query = "SELECT * FROM view_phone_customer WHERE cpf = '" . $this->getCPF() . "'";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
         $array_telefone = array();
