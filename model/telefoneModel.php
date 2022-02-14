@@ -4,8 +4,8 @@ include_once 'connection.php';
 class Telefone extends Connection{
     private $id;
     private $cpf;
-    private $telefone;
-    private $tipo;
+    private $phone;
+    private $type;
 
     public function setId($id){
         $this->id=$id;
@@ -17,12 +17,12 @@ class Telefone extends Connection{
         return $this;
     }
 
-    public function setTelefone($telefone){
-        $this->telefone=$telefone;
+    public function setTelefone($phone){
+        $this->telefone=$phone;
         return $this;
     }
-    public function setTipo($tipo){
-        $this->tipo=$tipo;
+    public function setTipo($type){
+        $this->tipo=$type;
         return $this;
     }
 

@@ -75,8 +75,8 @@ class Address {
 class Telefones {
     -id : Int
     -cpf : String
-    -tipo : String
-    -telefone : String
+    -type : String
+    -phone : String
     +telefone_list()
     +telefone_delete()
     +telefone_insert()

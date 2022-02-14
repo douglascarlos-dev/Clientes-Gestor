@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 CAUTION: Do not modify this file unless you know what you are doing.
-         Unexpected results may occur if the code is changed deliberately.
+ Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="10"
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="10"
 	 default-owner="postgres">
 <database name="clientesgestor" is-template="false" allow-conns="true">
 </database>
 
-<schema name="public" layer="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
 <usertype name="estado_civil" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Casado,Divorciado,Solteiro,Viúvo"/>
+	<enumeration label="Casado"/>
+	<enumeration label="Divorciado"/>
+	<enumeration label="Solteiro"/>
+	<enumeration label="Viúvo"/>
 </usertype>
 
 <usertype name="tipo_telefone" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Casa,Celular,Recado,Trabalho"/>
+	<enumeration label="Casa"/>
+	<enumeration label="Celular"/>
+	<enumeration label="Recado"/>
+	<enumeration label="Trabalho"/>
 </usertype>
 
 <usertype name="sexo" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Feminino,Masculino"/>
+	<enumeration label="Feminino"/>
+	<enumeration label="Masculino"/>
 </usertype>
 
 <sequence name="clientes_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
@@ -42,10 +49,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <usertype name="saudacao" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Sr.,Sra.,Srta.,Dr."/>
+	<enumeration label="Sr."/>
+	<enumeration label="Sra."/>
+	<enumeration label="Srta."/>
+	<enumeration label="Dr."/>
 </usertype>
 
-<table name="phone_customer" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+<table name="phone_customer" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="600" y="20"/>
@@ -71,7 +81,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</customidxs>
 </table>
 
-<table name="clientes" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="clientes" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="60" y="40"/>
@@ -107,7 +117,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<view name="view_phone_customer" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
+<view name="view_phone_customer" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="640" y="220"/>
@@ -135,7 +145,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</reference>
 </view>
 
-<relationship name="rel_view_telefone_cliente_clientes" type="reltv" layer="0"
+<relationship name="rel_view_telefone_cliente_clientes" type="reltv" layers="0"
 	 src-table="public.view_phone_customer"
 	 dst-table="public.clientes"
 	 src-required="false" dst-required="false">
@@ -144,7 +154,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</label>
 </relationship>
 
-<relationship name="rel_view_telefone_cliente_telefone_cliente" type="reltv" layer="0"
+<relationship name="rel_view_telefone_cliente_telefone_cliente" type="reltv" layers="0"
 	 src-table="public.view_phone_customer"
 	 dst-table="public.phone_customer"
 	 src-required="false" dst-required="false">
@@ -159,6 +169,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		behavior-type="CALLED ON NULL INPUT"
 		function-type="VOLATILE"
 		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
@@ -194,6 +205,7 @@ END;]]></definition>
 		behavior-type="CALLED ON NULL INPUT"
 		function-type="VOLATILE"
 		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
@@ -228,7 +240,7 @@ END;]]></definition>
 	<role name="postgres"/>
 </sequence>
 
-<table name="users" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="users" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="580" y="600"/>
@@ -239,7 +251,7 @@ END;]]></definition>
 		<type name="character varying" length="100"/>
 	</column>
 	<column name="password">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="255"/>
 	</column>
 	<constraint name="users_pk" type="pk-constr" table="public.users">
 		<columns names="id" ref-type="src-columns"/>
@@ -258,10 +270,12 @@ END;]]></definition>
 <usertype name="address_category" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Residencial,Comercial,Caixa postal"/>
+	<enumeration label="Residencial"/>
+	<enumeration label="Comercial"/>
+	<enumeration label="Caixa postal"/>
 </usertype>
 
-<table name="address" layer="0" collapse-mode="2" max-obj-count="13" z-value="0">
+<table name="address" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="60" y="340"/>
@@ -298,17 +312,9 @@ END;]]></definition>
 	<constraint name="endereco_pk" type="pk-constr" table="public.address">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
-
-	<customidxs object-type="column">
-		<object name="id_clientes" index="1"/>
-	</customidxs>
-
-	<customidxs object-type="constraint">
-		<object name="clientes_fk" index="1"/>
-	</customidxs>
 </table>
 
-<relationship name="clientes_has_many_telefone_cliente" type="rel1n" layer="0"
+<relationship name="clientes_has_many_telefone_cliente" type="rel1n" layers="0"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
@@ -322,7 +328,7 @@ END;]]></definition>
 	</label>
 </relationship>
 
-<view name="view_address" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
+<view name="view_address" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="560" y="340"/>
@@ -378,7 +384,7 @@ END;]]></definition>
 	</reference>
 </view>
 
-<relationship name="rel_view_telefone_cliente_cp_clientes" type="reltv" layer="0"
+<relationship name="rel_view_telefone_cliente_cp_clientes" type="reltv" layers="0"
 	 src-table="public.view_address"
 	 dst-table="public.clientes"
 	 src-required="false" dst-required="false">
@@ -387,7 +393,7 @@ END;]]></definition>
 	</label>
 </relationship>
 
-<relationship name="rel_view_endereco_endereco" type="reltv" layer="0"
+<relationship name="rel_view_endereco_endereco" type="reltv" layers="0"
 	 src-table="public.view_address"
 	 dst-table="public.address"
 	 src-required="false" dst-required="false">
@@ -402,6 +408,7 @@ END;]]></definition>
 		behavior-type="CALLED ON NULL INPUT"
 		function-type="VOLATILE"
 		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
@@ -434,6 +441,7 @@ END;]]></definition>
 		behavior-type="CALLED ON NULL INPUT"
 		function-type="VOLATILE"
 		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
@@ -484,7 +492,7 @@ RETURN id_retorno;
 END;]]></definition>
 </function>
 
-<relationship name="clientes_has_many_endereco" type="rel1n" layer="0"
+<relationship name="clientes_has_many_endereco" type="rel1n" layers="0"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
@@ -503,6 +511,7 @@ END;]]></definition>
 		behavior-type="CALLED ON NULL INPUT"
 		function-type="VOLATILE"
 		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
@@ -532,7 +541,8 @@ END;]]></definition>
 	<definition><![CDATA[DECLARE id_retorno integer;
 BEGIN
 
-INSERT INTO clientes(nome, email, cpf, data_de_nascimento, sexo_cliente, estado_civil_cliente) VALUES (nome_, email_, cpf_, data_de_nascimento_, sexo_cliente_, estado_civil_cliente_);
+INSERT INTO clientes(nome, email, cpf, data_de_nascimento, sexo_cliente, estado_civil_cliente) VALUES (nome_, email_, cpf_, data_de_nascimento_, sexo_cliente_, estado_civil_cliente_)
+ON CONFLICT (cpf) DO NOTHING;
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
@@ -544,13 +554,17 @@ END;]]></definition>
 <usertype name="estado_civil_cp" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Casado,Divorciado,Solteiro,Viúvo"/>
+	<enumeration label="Casado"/>
+	<enumeration label="Divorciado"/>
+	<enumeration label="Solteiro"/>
+	<enumeration label="Viúvo"/>
 </usertype>
 
 <usertype name="sexo_cp" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Feminino,Masculino"/>
+	<enumeration label="Feminino"/>
+	<enumeration label="Masculino"/>
 </usertype>
 
 <function name="customer_update_function"
@@ -559,6 +573,7 @@ END;]]></definition>
 		behavior-type="CALLED ON NULL INPUT"
 		function-type="VOLATILE"
 		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
@@ -600,13 +615,17 @@ END;]]></definition>
 <usertype name="estado_civil_cp1" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Casado,Divorciado,Solteiro,Viúvo"/>
+	<enumeration label="Casado"/>
+	<enumeration label="Divorciado"/>
+	<enumeration label="Solteiro"/>
+	<enumeration label="Viúvo"/>
 </usertype>
 
 <usertype name="sexo_cp1" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<enumeration values="Feminino,Masculino"/>
+	<enumeration label="Feminino"/>
+	<enumeration label="Masculino"/>
 </usertype>
 
 <function name="customer_remove_function"
@@ -615,6 +634,7 @@ END;]]></definition>
 		behavior-type="CALLED ON NULL INPUT"
 		function-type="VOLATILE"
 		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>

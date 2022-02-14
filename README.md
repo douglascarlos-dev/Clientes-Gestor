@@ -10,7 +10,7 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 
 - PHP 7.4;
 - PostgreSQL 12;
-- pgModeler 0.9.3;
+- pgModeler 0.9.4;
 - HTML;
 - Bootstrap v4.6.0;
 - jQuery v.3.5.1;
