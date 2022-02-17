@@ -1,5 +1,5 @@
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.9.3
+-- pgModeler version: 0.9.4
 -- PostgreSQL version: 9.3
 -- Project Site: pgmodeler.io
 -- Model Author: ---
@@ -19,23 +19,15 @@ SET check_function_bodies = false;
 -- object: public.estado_civil | type: TYPE --
 -- DROP TYPE IF EXISTS public.estado_civil CASCADE;
 CREATE TYPE public.estado_civil AS
- ENUM ('Casado','Divorciado','Solteiro','Viúvo');
+ENUM ('Casado','Divorciado','Solteiro','Viúvo');
 -- ddl-end --
 ALTER TYPE public.estado_civil OWNER TO postgres;
--- ddl-end --
-
--- object: public.tipo_telefone | type: TYPE --
--- DROP TYPE IF EXISTS public.tipo_telefone CASCADE;
-CREATE TYPE public.tipo_telefone AS
- ENUM ('Casa','Celular','Recado','Trabalho');
--- ddl-end --
-ALTER TYPE public.tipo_telefone OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.sexo | type: TYPE --
 -- DROP TYPE IF EXISTS public.sexo CASCADE;
 CREATE TYPE public.sexo AS
- ENUM ('Feminino','Masculino');
+ENUM ('Feminino','Masculino');
 -- ddl-end --
 ALTER TYPE public.sexo OWNER TO postgres;
 -- ddl-end --
@@ -73,23 +65,17 @@ ALTER SEQUENCE public.telefone_cliente_id_seq OWNER TO postgres;
 -- object: public.saudacao | type: TYPE --
 -- DROP TYPE IF EXISTS public.saudacao CASCADE;
 CREATE TYPE public.saudacao AS
- ENUM ('Sr.','Sra.','Srta.','Dr.');
+ENUM ('Sr.','Sra.','Srta.','Dr.');
 -- ddl-end --
 ALTER TYPE public.saudacao OWNER TO postgres;
 -- ddl-end --
 
--- object: public.phone_customer | type: TABLE --
--- DROP TABLE IF EXISTS public.phone_customer CASCADE;
-CREATE TABLE public.phone_customer (
-	id integer NOT NULL DEFAULT nextval('public.telefone_cliente_id_seq'::regclass),
-	id_clientes integer,
-	phone character varying(11) NOT NULL,
-	type public.tipo_telefone NOT NULL,
-	CONSTRAINT telefone_cliente_pk PRIMARY KEY (id)
-
-);
+-- object: public.phone_type | type: TYPE --
+-- DROP TYPE IF EXISTS public.phone_type CASCADE;
+CREATE TYPE public.phone_type AS
+ENUM ('Casa','Celular','Recado','Trabalho');
 -- ddl-end --
-ALTER TABLE public.phone_customer OWNER TO postgres;
+ALTER TYPE public.phone_type OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.clientes | type: TABLE --
@@ -105,10 +91,22 @@ CREATE TABLE public.clientes (
 	estado_civil_cliente public.estado_civil NOT NULL,
 	CONSTRAINT cliente_pk PRIMARY KEY (id),
 	CONSTRAINT cpf_unique UNIQUE (cpf)
-
 );
 -- ddl-end --
 ALTER TABLE public.clientes OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.phone_customer | type: TABLE --
+-- DROP TABLE IF EXISTS public.phone_customer CASCADE;
+CREATE TABLE public.phone_customer (
+	id integer NOT NULL DEFAULT nextval('public.telefone_cliente_id_seq'::regclass),
+	id_clientes integer,
+	phone character varying(11) NOT NULL,
+	type public.phone_type NOT NULL,
+	CONSTRAINT telefone_cliente_pk PRIMARY KEY (id)
+);
+-- ddl-end --
+ALTER TABLE public.phone_customer OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.view_phone_customer | type: VIEW --
@@ -127,8 +125,8 @@ ALTER VIEW public.view_phone_customer OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.apagar_telefone | type: FUNCTION --
--- DROP FUNCTION IF EXISTS public.apagar_telefone(character varying,public.tipo_telefone,character varying) CASCADE;
-CREATE FUNCTION public.apagar_telefone (cpf_ character varying, tipo_ public.tipo_telefone, telefone_ character varying)
+-- DROP FUNCTION IF EXISTS public.apagar_telefone(character varying,public.phone_type,character varying) CASCADE;
+CREATE FUNCTION public.apagar_telefone (cpf_ character varying, tipo_ public.phone_type, telefone_ character varying)
 	RETURNS integer
 	LANGUAGE plpgsql
 	VOLATILE 
@@ -148,7 +146,7 @@ RETURN id_retorno;
 END;
 $$;
 -- ddl-end --
-ALTER FUNCTION public.apagar_telefone(character varying,public.tipo_telefone,character varying) OWNER TO postgres;
+ALTER FUNCTION public.apagar_telefone(character varying,public.phone_type,character varying) OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.inserir_telefone | type: FUNCTION --
@@ -166,7 +164,7 @@ BEGIN
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
-INSERT INTO phone_customer(id_clientes, phone, type) VALUES (id_retorno, telefone_, tipo_::tipo_telefone);
+INSERT INTO phone_customer(id_clientes, phone, type) VALUES (id_retorno, telefone_, tipo_::phone_type);
 
 RETURN id_retorno;
 
@@ -196,9 +194,8 @@ ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
 CREATE TABLE public.users (
 	id integer NOT NULL DEFAULT nextval('public.users_id_seq'::regclass),
 	username character varying(100),
-	password character varying(1000),
+	password character varying(255),
 	CONSTRAINT users_pk PRIMARY KEY (id)
-
 );
 -- ddl-end --
 ALTER TABLE public.users OWNER TO postgres;
@@ -225,7 +222,7 @@ ALTER SEQUENCE public.endereco_id_seq OWNER TO postgres;
 -- object: public.address_category | type: TYPE --
 -- DROP TYPE IF EXISTS public.address_category CASCADE;
 CREATE TYPE public.address_category AS
- ENUM ('Residencial','Comercial','Caixa postal');
+ENUM ('Residencial','Comercial','Caixa postal');
 -- ddl-end --
 ALTER TYPE public.address_category OWNER TO postgres;
 -- ddl-end --
@@ -234,7 +231,6 @@ ALTER TYPE public.address_category OWNER TO postgres;
 -- DROP TABLE IF EXISTS public.address CASCADE;
 CREATE TABLE public.address (
 	id integer NOT NULL DEFAULT nextval('public.endereco_id_seq'::regclass),
-	id_clientes integer,
 	categoria_endereco public.address_category NOT NULL,
 	tipo character varying(20) NOT NULL,
 	nome character varying(100) NOT NULL,
@@ -244,18 +240,11 @@ CREATE TABLE public.address (
 	uf character varying(2) NOT NULL,
 	cep character varying(8) NOT NULL,
 	complemento character varying(60),
+	id_clientes integer,
 	CONSTRAINT endereco_pk PRIMARY KEY (id)
-
 );
 -- ddl-end --
 ALTER TABLE public.address OWNER TO postgres;
--- ddl-end --
-
--- object: clientes_fk | type: CONSTRAINT --
--- ALTER TABLE public.phone_customer DROP CONSTRAINT IF EXISTS clientes_fk CASCADE;
-ALTER TABLE public.phone_customer ADD CONSTRAINT clientes_fk FOREIGN KEY (id_clientes)
-REFERENCES public.clientes (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: public.view_address | type: VIEW --
@@ -350,7 +339,8 @@ CREATE FUNCTION public.customer_insert_function (nome_ character varying, email_
 DECLARE id_retorno integer;
 BEGIN
 
-INSERT INTO clientes(nome, email, cpf, data_de_nascimento, sexo_cliente, estado_civil_cliente) VALUES (nome_, email_, cpf_, data_de_nascimento_, sexo_cliente_, estado_civil_cliente_);
+INSERT INTO clientes(nome, email, cpf, data_de_nascimento, sexo_cliente, estado_civil_cliente) VALUES (nome_, email_, cpf_, data_de_nascimento_, sexo_cliente_, estado_civil_cliente_)
+ON CONFLICT (cpf) DO NOTHING;
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
@@ -360,22 +350,6 @@ END;
 $$;
 -- ddl-end --
 ALTER FUNCTION public.customer_insert_function(character varying,character varying,character varying,date,public.sexo,public.estado_civil) OWNER TO postgres;
--- ddl-end --
-
--- object: public.estado_civil_cp | type: TYPE --
--- DROP TYPE IF EXISTS public.estado_civil_cp CASCADE;
-CREATE TYPE public.estado_civil_cp AS
- ENUM ('Casado','Divorciado','Solteiro','Viúvo');
--- ddl-end --
-ALTER TYPE public.estado_civil_cp OWNER TO postgres;
--- ddl-end --
-
--- object: public.sexo_cp | type: TYPE --
--- DROP TYPE IF EXISTS public.sexo_cp CASCADE;
-CREATE TYPE public.sexo_cp AS
- ENUM ('Feminino','Masculino');
--- ddl-end --
-ALTER TYPE public.sexo_cp OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.customer_update_function | type: FUNCTION --
@@ -403,22 +377,6 @@ $$;
 ALTER FUNCTION public.customer_update_function(character varying,character varying,character varying,date,public.sexo,public.estado_civil) OWNER TO postgres;
 -- ddl-end --
 
--- object: public.estado_civil_cp1 | type: TYPE --
--- DROP TYPE IF EXISTS public.estado_civil_cp1 CASCADE;
-CREATE TYPE public.estado_civil_cp1 AS
- ENUM ('Casado','Divorciado','Solteiro','Viúvo');
--- ddl-end --
-ALTER TYPE public.estado_civil_cp1 OWNER TO postgres;
--- ddl-end --
-
--- object: public.sexo_cp1 | type: TYPE --
--- DROP TYPE IF EXISTS public.sexo_cp1 CASCADE;
-CREATE TYPE public.sexo_cp1 AS
- ENUM ('Feminino','Masculino');
--- ddl-end --
-ALTER TYPE public.sexo_cp1 OWNER TO postgres;
--- ddl-end --
-
 -- object: public.customer_remove_function | type: FUNCTION --
 -- DROP FUNCTION IF EXISTS public.customer_remove_function(character varying) CASCADE;
 CREATE FUNCTION public.customer_remove_function (cpf_ character varying)
@@ -440,6 +398,13 @@ END;
 $$;
 -- ddl-end --
 ALTER FUNCTION public.customer_remove_function(character varying) OWNER TO postgres;
+-- ddl-end --
+
+-- object: clientes_fk | type: CONSTRAINT --
+-- ALTER TABLE public.phone_customer DROP CONSTRAINT IF EXISTS clientes_fk CASCADE;
+ALTER TABLE public.phone_customer ADD CONSTRAINT clientes_fk FOREIGN KEY (id_clientes)
+REFERENCES public.clientes (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
 

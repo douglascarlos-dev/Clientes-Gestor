@@ -3,8 +3,13 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="10"
-	 default-owner="postgres">
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="8"
+	 default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#20e0cf"
+	 show-layer-names="false" show-layer-rects="false">
 <database name="clientesgestor" is-template="false" allow-conns="true">
 </database>
 
@@ -18,15 +23,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<enumeration label="Divorciado"/>
 	<enumeration label="Solteiro"/>
 	<enumeration label="Viúvo"/>
-</usertype>
-
-<usertype name="tipo_telefone" configuration="enumeration">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<enumeration label="Casa"/>
-	<enumeration label="Celular"/>
-	<enumeration label="Recado"/>
-	<enumeration label="Trabalho"/>
 </usertype>
 
 <usertype name="sexo" configuration="enumeration">
@@ -55,36 +51,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<enumeration label="Dr."/>
 </usertype>
 
-<table name="phone_customer" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+<usertype name="phone_type" configuration="enumeration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="600" y="20"/>
-	<column name="id" not-null="true" sequence="public.telefone_cliente_id_seq">
-		<type name="integer" length="0"/>
-	</column>
-	<column name="phone" not-null="true">
-		<type name="character varying" length="11"/>
-	</column>
-	<column name="type" not-null="true">
-		<type name="public.tipo_telefone" length="0"/>
-	</column>
-	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.phone_customer">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-
-	<customidxs object-type="column">
-		<object name="id_clientes" index="1"/>
-	</customidxs>
-
-	<customidxs object-type="constraint">
-		<object name="clientes_fk" index="1"/>
-	</customidxs>
-</table>
+	<enumeration label="Casa"/>
+	<enumeration label="Celular"/>
+	<enumeration label="Recado"/>
+	<enumeration label="Trabalho"/>
+</usertype>
 
 <table name="clientes" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="60" y="40"/>
+	<position x="20" y="80"/>
 	<column name="id" not-null="true" sequence="public.clientes_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -117,10 +96,36 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
+<table name="phone_customer" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="560" y="40"/>
+	<column name="id" not-null="true" sequence="public.telefone_cliente_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="phone" not-null="true">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="public.phone_type" length="0"/>
+	</column>
+	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.phone_customer">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_clientes" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="clientes_fk" index="1"/>
+	</customidxs>
+</table>
+
 <view name="view_phone_customer" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="640" y="220"/>
+	<position x="600" y="260"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
@@ -138,28 +143,28 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="11"/>
 	</column>
 	<column name="type">
-		<type name="public.tipo_telefone" length="0"/>
+		<type name="public.phone_type" length="0"/>
 	</column>
 		<reftable name="public.clientes"/>
 		<reftable name="public.phone_customer"/>
 	</reference>
 </view>
 
-<relationship name="rel_view_telefone_cliente_clientes" type="reltv" layers="0"
+<relationship name="rel_view_phone_customer_clientes" type="reltv" layers="0"
 	 src-table="public.view_phone_customer"
 	 dst-table="public.clientes"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="5.69262" y="23.5182"/>
+		<position x="-14.3074" y="43.5182"/>
 	</label>
 </relationship>
 
-<relationship name="rel_view_telefone_cliente_telefone_cliente" type="reltv" layers="0"
+<relationship name="rel_view_phone_customer_phone_customer" type="reltv" layers="0"
 	 src-table="public.view_phone_customer"
 	 dst-table="public.phone_customer"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-0.942855" y="0.123324"/>
+		<position x="-1.73673" y="0.198324"/>
 	</label>
 </relationship>
 
@@ -182,7 +187,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="0"/>
 	</parameter>
 	<parameter name="tipo_">
-		<type name="public.tipo_telefone" length="0"/>
+		<type name="public.phone_type" length="0"/>
 	</parameter>
 	<parameter name="telefone_">
 		<type name="character varying" length="0"/>
@@ -228,7 +233,7 @@ BEGIN
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
-INSERT INTO phone_customer(id_clientes, phone, type) VALUES (id_retorno, telefone_, tipo_::tipo_telefone);
+INSERT INTO phone_customer(id_clientes, phone, type) VALUES (id_retorno, telefone_, tipo_::phone_type);
 
 RETURN id_retorno;
 
@@ -243,7 +248,7 @@ END;]]></definition>
 <table name="users" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="580" y="600"/>
+	<position x="540" y="640"/>
 	<column name="id" not-null="true" sequence="public.users_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -278,7 +283,7 @@ END;]]></definition>
 <table name="address" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="60" y="340"/>
+	<position x="20" y="380"/>
 	<column name="id" not-null="true" sequence="public.endereco_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -314,24 +319,10 @@ END;]]></definition>
 	</constraint>
 </table>
 
-<relationship name="clientes_has_many_telefone_cliente" type="rel1n" layers="0"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 custom-color="#f8d280"
-	 src-table="public.clientes"
-	 dst-table="public.phone_customer"
-	 src-required="false" dst-required="false"
-	del-action="CASCADE">
-	<label ref-type="name-label">
-		<position x="10.1076" y="23.757"/>
-	</label>
-</relationship>
-
 <view name="view_address" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="560" y="340"/>
+	<position x="520" y="380"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
@@ -551,22 +542,6 @@ RETURN id_retorno;
 END;]]></definition>
 </function>
 
-<usertype name="estado_civil_cp" configuration="enumeration">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<enumeration label="Casado"/>
-	<enumeration label="Divorciado"/>
-	<enumeration label="Solteiro"/>
-	<enumeration label="Viúvo"/>
-</usertype>
-
-<usertype name="sexo_cp" configuration="enumeration">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<enumeration label="Feminino"/>
-	<enumeration label="Masculino"/>
-</usertype>
-
 <function name="customer_update_function"
 		window-func="false"
 		returns-setof="false"
@@ -612,22 +587,6 @@ RETURN id_retorno;
 END;]]></definition>
 </function>
 
-<usertype name="estado_civil_cp1" configuration="enumeration">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<enumeration label="Casado"/>
-	<enumeration label="Divorciado"/>
-	<enumeration label="Solteiro"/>
-	<enumeration label="Viúvo"/>
-</usertype>
-
-<usertype name="sexo_cp1" configuration="enumeration">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<enumeration label="Feminino"/>
-	<enumeration label="Masculino"/>
-</usertype>
-
 <function name="customer_remove_function"
 		window-func="false"
 		returns-setof="false"
@@ -655,5 +614,19 @@ RETURN 1;
 
 END;]]></definition>
 </function>
+
+<relationship name="clientes_has_many_phone_customer" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f8d280"
+	 src-table="public.clientes"
+	 dst-table="public.phone_customer"
+	 src-required="false" dst-required="false"
+	del-action="CASCADE">
+	<label ref-type="name-label">
+		<position x="32.1076" y="34.514"/>
+	</label>
+</relationship>
 
 </dbmodel>
