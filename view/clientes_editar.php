@@ -95,7 +95,7 @@ foreach($address as &$address_value):
 ?>
 
 <div class="form-row">
-  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/address/remove/<?php echo $address_value->getCPF(); ?>/<?php echo $address_value->getAddressCategory(); ?>" role="button">Deletar</a>
+  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/address/delete/<?php echo $address_value->getCPF(); ?>/<?php echo $address_value->getAddressCategory(); ?>" role="button">Deletar</a>
   <div class="form-group col-md-5">
   <label for="inputCategoria">Categoria endereço</label>
   <input type="text" class="form-control" id="inputCategoria" name="address_category" value="<?php echo $address_value->getAddressCategory(); ?>" readonly>

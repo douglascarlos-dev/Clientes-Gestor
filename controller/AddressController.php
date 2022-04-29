@@ -34,7 +34,7 @@ class AddressController {
         ClientesController::edit($cpf);
     }
 
-    public function remove( $array ){
+    public function delete( $array ){
         $address = new Address();
         if(sizeof($array) == 2){
             $cpf = $array[0];
