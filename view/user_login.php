@@ -12,19 +12,14 @@
   </head>
   <body>
   <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
-
-  <div class="card">
-    <br>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputUsuario">Usuário: admin</label>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputUsuario">Usuário: admin</label>
-      </div>
-    </div>
-  </div>
+  Clientes Gestor 1.0
+  <br><br>
+  Demonstração:
+  <br><br>
+  Usuário: admin
   <br>
+  Senha: admin
+  <br><br>
 
   <div class="card">
     
@@ -37,12 +32,12 @@
   <div class="form-row">
   <div class="form-group col-md-6">
       <label for="inputUsuario">Usuário</label>
-      <input type="text" class="form-control" id="inputUsuario" name="username" autocomplete="username" placeholder="admin" value="admin" maxlength="100">
+      <input type="text" class="form-control" id="inputUsuario" name="username" autocomplete="username" placeholder="Usuário" maxlength="100">
   </div>
 
   <div class="form-group col-md-6">
       <label for="inputSenha">Senha</label>
-      <input type="password" class="form-control" id="inputSenha" name="password" autocomplete="off" placeholder="admin" value="admin" maxlength="100">
+      <input type="password" class="form-control" id="inputSenha" name="password" autocomplete="off" placeholder="Senha" maxlength="100">
   </div>
   </div>
 
