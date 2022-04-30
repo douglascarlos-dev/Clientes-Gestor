@@ -44,7 +44,7 @@ class AddressController {
     +list()
     +new()
     +save()
-    +remove()
+    +delete()
 }
 
 class TelefonesController {
