@@ -1,7 +1,7 @@
 <?php
 include_once 'connection.php';
 
-class Telefone extends Connection{
+class Phone extends Connection{
     private $id;
     private $cpf;
     private $phone;
@@ -17,12 +17,12 @@ class Telefone extends Connection{
         return $this;
     }
 
-    public function setTelefone($phone){
-        $this->telefone=$phone;
+    public function setPhone($phone){
+        $this->phone=$phone;
         return $this;
     }
-    public function setTipo($type){
-        $this->tipo=$type;
+    public function setType($type){
+        $this->type=$type;
         return $this;
     }
 
@@ -34,20 +34,20 @@ class Telefone extends Connection{
         return $this->cpf;
     }
 
-    public function getTelefone(){
-        return $this->telefone;
+    public function getPhone(){
+        return $this->phone;
     }
 
-    public function getTipo(){
-        return $this->tipo;
+    public function getType(){
+        return $this->type;
     }
 
-    public function telefone_insert(){
+    public function phone_insert(){
         $sql_query = "SELECT * FROM inserir_telefone
                         (
                             '" . $this->getCPF() . "',
-                            '" . $this->getTelefone() . "',
-                            '" . $this->getTipo() . "'
+                            '" . $this->getPhone() . "',
+                            '" . $this->getType() . "'
                         )";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query); 
@@ -56,12 +56,12 @@ class Telefone extends Connection{
         return $row;
     }
 
-    public function telefone_delete(){
+    public function phone_delete(){
         $sql_query = "SELECT * FROM apagar_telefone
                         (
                             '" . $this->getCPF() . "',
-                            '" . $this->getTipo() . "',
-                            '" . $this->getTelefone() . "'
+                            '" . $this->getType() . "',
+                            '" . $this->getPhone() . "'
                         )";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
@@ -70,20 +70,35 @@ class Telefone extends Connection{
         return $row;
     }
 
-    function telefone_list(){
+    function phone_list(){
         $sql_query = "SELECT * FROM view_phone_customer WHERE cpf = '" . $this->getCPF() . "'";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
-        $array_telefone = array();
+        $array_phone= array();
         $stmt->execute();
         while($row = $stmt->fetch()){
-            $the_telefone = new Telefone();
-            $the_telefone->setCPF($row[1]);
-            $the_telefone->setTelefone($row[2]);
-            $the_telefone->setTipo($row[3]);
-            array_push($array_telefone, $the_telefone);
+            $the_phone = new Phone();
+            $the_phone->setCPF($row[1]);
+            $the_phone->setPhone($row[2]);
+            $the_phone->setType($row[3]);
+            array_push($array_phone, $the_phone);
         }
-        return $array_telefone;
+        return $array_phone;
+    }
+
+    function post_phone_new(){
+        $result = $this->phone_insert();
+        return $result;
+    }
+
+    function post_phone_delete(){
+        $result = $this->phone_delete();
+        return $result;
+    }
+
+    function post_phone_list(){
+        $result = $this->phone_list();
+        return $result;
     }
 
 }

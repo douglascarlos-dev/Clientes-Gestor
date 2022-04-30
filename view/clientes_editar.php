@@ -75,17 +75,17 @@ function Mask($mask,$str){
   </div>
   
 <?php
-foreach($telefone as &$telefone_value):
+foreach($phone as &$phone_value):
 ?>
 <div class="form-row">
-  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/telefones/apagar/<?php echo $telefone_value->getCPF(); ?>/<?php echo $telefone_value->getTipo(); ?>/<?php echo $telefone_value->getTelefone(); ?>" role="button">Deletar</a>
+  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/phone/delete/<?php echo $phone_value->getCPF(); ?>/<?php echo $phone_value->getType(); ?>/<?php echo $phone_value->getPhone(); ?>" role="button">Deletar</a>
   <div class="form-group col-md-5">
     <label for="inputTipoTelefone">Telefone</label>
-    <input type="text" class="form-control" id="inputTipoTelefone" name="tipo_telefone" value="<?php echo $telefone_value->getTipo(); ?>" readonly>
+    <input type="text" class="form-control" id="inputTipoTelefone" name="phone_type" value="<?php echo $phone_value->getType(); ?>" readonly>
   </div>
   <div class="form-group col-md-6">
     <label for="inputTelefone">Número</label>
-    <input type="text" class="form-control" id="inputTelefone" name="telefone" value="<?php echo Mask('(##) # ####-####',$telefone_value->getTelefone()); ?>" readonly>
+    <input type="text" class="form-control" id="inputTelefone" name="phone" value="<?php echo Mask('(##) # ####-####',$phone_value->getPhone()); ?>" readonly>
   </div>
 </div>
 <?php
@@ -146,7 +146,7 @@ endforeach;
 
 <button type="submit" class="btn btn-primary">Atualizar</button>
 <a class="btn btn-outline-primary" id="newAddress" href="<?php echo URLROOT; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
-<a class="btn btn-outline-primary" id="novoTelefone" href="<?php echo URLROOT; ?>/telefones/novo/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
+<a class="btn btn-outline-primary" id="newPhone" href="<?php echo URLROOT; ?>/phone/new/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
 <a class="btn btn-danger" href="<?php echo URLROOT; ?>/clientes/remove/<?php echo $cpf; ?>" role="button">Deletar</a>
 
 </form>

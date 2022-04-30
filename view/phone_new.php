@@ -26,11 +26,11 @@
 
 <div class="card">
 <div class="card-body">
-<form name="register" action="<?php echo URLROOT; ?>/telefones/cadastrar/<?php echo $cpf; ?>" method="post">
+<form name="register" action="<?php echo URLROOT; ?>/phone/save/<?php echo $cpf; ?>" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Descrição</label>
-      <select id="selectTipo" name="tipo" class="form-control">
+      <select id="selectTipo" name="type" class="form-control">
           <option value='Casa' name='Casa' selected>Casa</option>
           <option value='Celular' name='Celular'>Celular</option>
           <option value='Recado' name='Recado'>Recado</option>
@@ -39,7 +39,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputTelefone">Telefone</label>
-      <input type="tel" class="form-control" id="inputTelefone" name="telefone" maxlength="11">
+      <input type="tel" class="form-control" id="inputTelefone" name="phone" maxlength="11">
     </div>
   </div>
 
@@ -66,7 +66,7 @@
 
         $('form[name="register"]').on("submit", function (e) {
 
-            var usertelefone = $(this).find('input[name="telefone"]');
+            var usertelefone = $(this).find('input[name="phone"]');
 
             if ($.trim(usertelefone.val()) === "") {
                 $("#myDIV").removeClass('d-none');

@@ -1,7 +1,7 @@
 <?php
 
 require_once 'model/clienteModel.php';
-require_once 'model/telefoneModel.php';
+require_once 'model/phoneModel.php';
 require_once 'model/addressModel.php';
 
 class ClientesController {
@@ -41,9 +41,9 @@ class ClientesController {
         $clientes = new Cliente();
         $clientes->setCPF($cpf);
         $cliente = $clientes->customer_list();
-        $telefone = new Telefone();
-        $telefone->setCPF($cpf);
-        $telefone = $telefone->telefone_list();
+        $phone = new Phone();
+        $phone->setCPF($cpf);
+        $phone = $phone->phone_list();
         $address = new Address();
         $address->setCPF($cpf);
         $address = $address->post_address_list();
