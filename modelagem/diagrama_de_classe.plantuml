@@ -5,13 +5,13 @@ package "Class Diagram - Clientes Gestor" {
 ClientesController -left- ClientesView
 ClientesController -right- Clientes
 ClientesController -- AddressController
-ClientesController -- TelefonesController
+ClientesController -- PhoneController
 
 AddressController -left- AddressView
 AddressController -- Address
 
-TelefonesController -right- TelefonesView
-TelefonesController -- Telefones
+PhoneController -right- PhoneView
+PhoneController -- Phone
 
 class ClientesController {
     -model: Clientes
@@ -47,12 +47,12 @@ class AddressController {
     +delete()
 }
 
-class TelefonesController {
+class PhoneController {
     -model: Address
-    -view: TelefonesView
-    +novo()
-    +cadastrar()
-    +apagar()
+    -view: PhoneView
+    +new()
+    +save()
+    +delete()
 }
 
 class Address {
@@ -72,14 +72,14 @@ class Address {
     +post_address_new()
 }
 
-class Telefones {
+class Phone {
     -id : Int
     -cpf : String
     -type : String
     -phone : String
-    +telefone_list()
-    +telefone_delete()
-    +telefone_insert()
+    +post_phone_list()
+    +post_phone_delete()
+    +post_phone_new()
 }
 
 class AddressView {
