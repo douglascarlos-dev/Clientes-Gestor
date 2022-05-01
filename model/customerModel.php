@@ -1,7 +1,7 @@
 <?php
 include_once 'connection.php';
 
-class Cliente extends Connection {
+class Customer extends Connection {
     private $id;
     private $cpf;
     private $name;
@@ -130,7 +130,7 @@ class Cliente extends Connection {
     }
     */
     
-    function get_all_clientes(){
+    function get_all_customer(){
         $consulta = $this->database_select_all('clientes');
         return $consulta;
     }
@@ -211,7 +211,7 @@ class Cliente extends Connection {
         return $result;
     }
 
-    function custumer_remove(){
+    function custumer_delete(){
         $sql_query = "SELECT * FROM customer_remove_function
                         (
                             '" . $this->getCPF() . "'
@@ -225,8 +225,8 @@ class Cliente extends Connection {
         return $row;
     }
 
-    function post_customer_remove(){
-        $result = $this->custumer_remove();
+    function post_customer_delete(){
+        $result = $this->custumer_delete();
         return $result;
     }
 
@@ -236,7 +236,7 @@ class Cliente extends Connection {
         $stmt = $pdo->prepare("SELECT * FROM clientes WHERE cpf = '" . $this->getCPF() . "' LIMIT 1"); 
         $stmt->execute(); 
         $row = $stmt->fetch();
-        $cliente = new Cliente();
+        $cliente = new Customer();
         $cliente->setName($row[2]);
         $cliente->setEmail($row[3]);
         $cliente->setCPF($row[4]);

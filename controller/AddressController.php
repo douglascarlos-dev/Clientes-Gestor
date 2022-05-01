@@ -1,18 +1,9 @@
 <?php
 
 require_once 'model/addressModel.php';
-require_once 'controller/ClientesController.php';
+require_once 'controller/CustomerController.php';
 
 class AddressController {
-
-    public function list( $cpf ){
-        //$address = new Address();
-        //$this->setCPF($cpf);
-        //$address->setCPF($cpf);
-        //echo $cpf;
-        //$address->post_address_list($cpf);
-        //require_once 'view/address_list.php';
-    }
 
     public function new( $cpf ){
         require_once 'view/address_new.php';
@@ -31,7 +22,7 @@ class AddressController {
         $address->setZipCode($_REQUEST['zip_code']);
         $address->setComplement($_REQUEST['complement']);
         $address->post_address_new();
-        ClientesController::edit($cpf);
+        CustomerController::edit($cpf);
     }
 
     public function delete( $array ){
@@ -43,7 +34,7 @@ class AddressController {
             $address->setAddressCategory($address_category);
             $address->post_address_delete();
         }
-        ClientesController::edit($cpf);
+        CustomerController::edit($cpf);
     }
 
 }

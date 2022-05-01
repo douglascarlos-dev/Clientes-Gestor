@@ -33,43 +33,43 @@ function Mask($mask,$str){
 }
 
 ?>
-<form action="<?php echo URLROOT; ?>/clientes/update/<?php echo $cliente->getCPF(); ?>" method="post">
+<form action="<?php echo URLROOT; ?>/customer/update/<?php echo $customer->getCPF(); ?>" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Nome</label>
-      <input type="text" class="form-control" id="inputNome" name="nome" value="<?php echo $cliente->getName(); ?>" maxlength="100">
+      <input type="text" class="form-control" id="inputNome" name="nome" value="<?php echo $customer->getName(); ?>" maxlength="100">
       
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail">E-mail</label>
-      <input type="text" class="form-control" id="inputEmail" name="email" value="<?php echo $cliente->getEmail(); ?>" maxlength="100">
+      <input type="text" class="form-control" id="inputEmail" name="email" value="<?php echo $customer->getEmail(); ?>" maxlength="100">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCPF">CPF</label>
-      <input type="text" class="form-control" id="inputCPF" name="cpf" value="<?php echo Mask("###.###.###-##",$cliente->getCPF()); ?>" readonly>
+      <input type="text" class="form-control" id="inputCPF" name="cpf" value="<?php echo Mask("###.###.###-##",$customer->getCPF()); ?>" readonly>
     </div>
     <div class="form-group col-md-6">
       <label for="inputDataDeNascimento">Data de Nascimento</label>
-      <input type="date" class="form-control" id="inputDataDeNascimento" name="data_de_nascimento" value="<?php echo $cliente->getBirthDate(); ?>">
+      <input type="date" class="form-control" id="inputDataDeNascimento" name="data_de_nascimento" value="<?php echo $customer->getBirthDate(); ?>">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputSexo">Sexo</label>
         <select name="sexo" id="selectSexo" class="form-control">
-          <option value='Masculino' name='Masculino'  <?php if($cliente->getSex() == 'Masculino') { echo 'selected'; } ?>>Masculino</option>
-          <option value='Feminino' name='Feminino' <?php if($cliente->getSex() == 'Feminino') { echo 'selected'; } ?>>Feminino</option>
+          <option value='Masculino' name='Masculino'  <?php if($customer->getSex() == 'Masculino') { echo 'selected'; } ?>>Masculino</option>
+          <option value='Feminino' name='Feminino' <?php if($customer->getSex() == 'Feminino') { echo 'selected'; } ?>>Feminino</option>
         </select>
     </div>
     <div class="form-group col-md-6">
         <label for="selectEstadoCivil">Estado Civil</label>
             <select id="selectEstadoCivil" name='estado_civil' class="form-control">
-            <option value="Solteiro" name='Solteiro' <?php if($cliente->getMaritalStatus() == 'Solteiro') { echo 'selected'; } ?>>Solteiro</option>
-                <option value="Casado" name='Casado' <?php if($cliente->getMaritalStatus() == 'Casado') { echo 'selected'; } ?>>Casado</option>
-                <option value="Divorciado" name='Divorciado' <?php if($cliente->getMaritalStatus() == 'Divorciado') { echo 'selected'; } ?>>Divorciado</option>
-                <option value="Viúvo" name='Viúvo' <?php if($cliente->getMaritalStatus() == 'Viúvo') { echo 'selected'; } ?>>Viúvo</option>
+            <option value="Solteiro" name='Solteiro' <?php if($customer->getMaritalStatus() == 'Solteiro') { echo 'selected'; } ?>>Solteiro</option>
+                <option value="Casado" name='Casado' <?php if($customer->getMaritalStatus() == 'Casado') { echo 'selected'; } ?>>Casado</option>
+                <option value="Divorciado" name='Divorciado' <?php if($customer->getMaritalStatus() == 'Divorciado') { echo 'selected'; } ?>>Divorciado</option>
+                <option value="Viúvo" name='Viúvo' <?php if($customer->getMaritalStatus() == 'Viúvo') { echo 'selected'; } ?>>Viúvo</option>
             </select>
     </div>
   </div>
@@ -147,7 +147,7 @@ endforeach;
 <button type="submit" class="btn btn-primary">Atualizar</button>
 <a class="btn btn-outline-primary" id="newAddress" href="<?php echo URLROOT; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
 <a class="btn btn-outline-primary" id="newPhone" href="<?php echo URLROOT; ?>/phone/new/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
-<a class="btn btn-danger" href="<?php echo URLROOT; ?>/clientes/remove/<?php echo $cpf; ?>" role="button">Deletar</a>
+<a class="btn btn-danger" href="<?php echo URLROOT; ?>/customer/delete/<?php echo $cpf; ?>" role="button">Deletar</a>
 
 </form>
 

@@ -18,7 +18,7 @@
   <body>
   <?php require_once 'menu.php'; ?>
   <div class="px-3">
-<a class="btn btn-primary" href="<?php echo URLROOT; ?>/clientes/new/" role="button">Novo Cliente</a>
+<a class="btn btn-primary" href="<?php echo URLROOT; ?>/customer/new/" role="button">Novo Cliente</a>
 </div>
 
 <div class="px-3 pt-md-3 pb-md-4 mx-auto text-center">
@@ -33,7 +33,7 @@ function Mask($mask,$str){
   return $mask;
 }
 
-$resultado = $cliente->get_all_clientes();
+$resultado = $customer->get_all_customer();
 if(count($resultado) >= 1){
 ?>
 
@@ -54,7 +54,7 @@ foreach($resultado as &$value):
       <div class="w-100"></div>
       <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><?php echo $value["nome"]; ?></div>  
       <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><?php echo Mask("###.###.###-##",$value["cpf"]); ?></div>  
-      <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><a class="btn btn-primary btn-xs" href="<?php echo URLROOT; ?>/clientes/edit/<?php echo $value["cpf"]; ?>">Visualizar</a></div>   
+      <div class="col<?php echo !($i % 2) ? " bg-light text-dark p-2" : " p-2"; ?>"><a class="btn btn-primary btn-xs" href="<?php echo URLROOT; ?>/customer/edit/<?php echo $value["cpf"]; ?>">Visualizar</a></div>   
       
       <?php
       $i++;

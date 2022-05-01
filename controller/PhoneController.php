@@ -1,7 +1,7 @@
 <?php
 
 require_once 'model/phoneModel.php';
-require_once 'controller/ClientesController.php';
+require_once 'controller/CustomerController.php';
 
 class PhoneController {
 
@@ -17,7 +17,7 @@ class PhoneController {
             $phone->setPhone($_REQUEST['phone']);
             $phone->post_phone_new();
         }
-        ClientesController::edit($cpf);
+        CustomerController::edit($cpf);
     }
 
     public function delete( $array ){
@@ -31,7 +31,7 @@ class PhoneController {
             $phone->setPhone($number);
             $phone->post_phone_delete();
         }
-        ClientesController::edit($cpf);
+        CustomerController::edit($cpf);
     }
 
 }
