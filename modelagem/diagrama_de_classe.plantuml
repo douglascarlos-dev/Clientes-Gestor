@@ -1,11 +1,11 @@
 @startuml Class Diagram
 
-package "Class Diagram - Clientes Gestor" {
+package "Class Diagram - Customer Gestor" {
 
-ClientesController -left- ClientesView
-ClientesController -right- Clientes
-ClientesController -- AddressController
-ClientesController -- PhoneController
+CustomerController -left- CustomerView
+CustomerController -right- Customer
+CustomerController -- AddressController
+CustomerController -- PhoneController
 
 AddressController -left- AddressView
 AddressController -- Address
@@ -13,35 +13,33 @@ AddressController -- Address
 PhoneController -right- PhoneView
 PhoneController -- Phone
 
-class ClientesController {
-    -model: Clientes
-    -view: ClientesView
+class CustomerController {
+    -model: Customer
+    -view: CustomerView
     +list()
     +new()
     +save()
-    +remove()
+    +delete()
     +update()
 }
 
-class Clientes {
+class Customer {
     -id : Int
-    -saudacao: String
-    -nome: String
+    -name: String
     -email: String
     -cpf : String
-    -data_de_nascimento: Date
-    -sexo_cliente: String
-    -estado_civil_cliente: String
-    +clientes_list()
-    +clientes_delete()
-    +clientes_new()
-    +clientes_update()
+    -birthdate: Date
+    -sex: String
+    -maritalstatus: String
+    +customer_list()
+    +customer_delete()
+    +customer_new()
+    +customer_update()
 }
 
 class AddressController {
     -model: Address
     -view: AddressView
-    +list()
     +new()
     +save()
     +delete()
