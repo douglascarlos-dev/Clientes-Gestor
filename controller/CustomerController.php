@@ -51,7 +51,7 @@ class CustomerController {
     }
 
     public function new() {
-        require_once 'view/customer_novo.php';
+        require_once 'view/customer_new.php';
     }
 
     public function visualizar() {
