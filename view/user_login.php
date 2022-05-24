@@ -4,16 +4,18 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta name="description" content="Clientes Gestor - Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO">
+    <meta name="author" content="Douglas">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/bootstrap.min.css" crossorigin="anonymous">
-
-    <title>Sistema 1.0</title>
+    <title>Clientes Gestor</title>
+    <meta property="og:image" content="<?php echo URLROOT; ?>/img/5138237.jpg"/>
   </head>
   <body>
-  <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-md-8 order-md-1">
-  Clientes Gestor 1.0
-  <br><br>
+  <div class="mx-auto text-center col-md-8 order-md-1">
+  <img src="<?php echo URLROOT; ?>/img/5138237.jpg" height=200>
+  <h4>Clientes Gestor 1.0</h4>
+  <br>
   Demonstração:
   <br><br>
   Usuário: admin
@@ -24,6 +26,8 @@
   <div class="card">
     
   <div class="card-body">
+
+  
 
   
 
