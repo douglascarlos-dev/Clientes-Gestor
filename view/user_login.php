@@ -14,7 +14,7 @@
   </head>
   <body>
   <div class="mx-auto text-center col-md-8 order-md-1">
-  <img src="<?php echo URLROOT; ?>/img/5138237.jpg" height=200>
+  <img src="<?php echo URLROOT; ?>/img/5138237.svg" height=200>
   <h4>Clientes Gestor 1.0</h4>
   <br>
   Demonstração:
