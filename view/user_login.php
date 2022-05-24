@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/bootstrap.min.css" crossorigin="anonymous">
     <title>Clientes Gestor</title>
     <meta property="og:image" content="https://douglascarlos.dev/clientesgestordemo/img/5138237.jpg"/>
+    <meta property="og:description" content="Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO"/>
   </head>
   <body>
   <div class="mx-auto text-center col-md-8 order-md-1">
