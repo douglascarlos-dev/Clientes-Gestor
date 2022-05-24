@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/bootstrap.min.css" crossorigin="anonymous">
     <title>Clientes Gestor</title>
-    <meta property="og:image" content="<?php echo URLROOT; ?>/img/5138237.jpg"/>
+    <meta property="og:image" content="https://douglascarlos.dev/clientesgestordemo/img/5138237.jpg"/>
   </head>
   <body>
   <div class="mx-auto text-center col-md-8 order-md-1">
