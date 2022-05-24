@@ -69,7 +69,7 @@ endforeach;
 } else {
 ?>
 <div id="lista_de_clientes">
-    <img src="<?php echo URLROOT; ?>/img/resultado.png" alt="some text" width=304 height=182>
+    <img src="<?php echo URLROOT; ?>/img/resultado.svg" alt="some text" width=304 height=182>
     <p>Ops! Nenhum resultado encontrado! :(</p>
 </div>
 <?php
