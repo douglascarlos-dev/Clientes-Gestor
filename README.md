@@ -4,6 +4,8 @@
 
 Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO.
 
+![Logo API](./img/tela_login.png)
+
 ![Logo API](./img/tela_cliente.png)
 
 ## Recursos usados no desenvolvimento:
