@@ -2,23 +2,21 @@
 
 package "Object Diagram - Clientes Gestor" {
 
-Clientes -right- Address
-Clientes -left- Phone
+Customer -right- Address
+Customer -left- Phone
 
-object Clientes {
+object Customer {
   id : 1
-  saudacao: "Sr."
-  nome: "Fulano da Silva"
+  name: "Fulano da Silva"
   email: "eu@meuemail.com"
   cpf : "111.111.111-11"
-  data_de_nascimento: "01/01/2000"
-  sexo_cliente: "Masculino"
-  estado_civil_cliente: "Solteiro"
+  birthdate: "01/01/2000"
+  sex: "Masculino"
+  maritalstatus: "Solteiro"
 }
 
 object Address {
   id : 1
-  cpf : "111.111.111-11"
   address_category : "Residencial"
   type : "Rua"
   name : "Principal"
@@ -32,7 +30,6 @@ object Address {
 
 object Phone {
   id : 1
-  cpf : "111.111.111-11"
   phone : "(11) 9 1111-1111"
   type : "Residencial"
 }
