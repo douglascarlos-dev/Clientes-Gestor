@@ -9,6 +9,8 @@ class UserController{
             return true;
         } else {
             header("Location: ./user");
+            #include_once 'view/user_login.php';
+            #$this->visualizar();
         }
     }
 
