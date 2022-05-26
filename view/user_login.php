@@ -11,10 +11,11 @@
     <title>Clientes Gestor</title>
     <meta property="og:image" content="https://douglascarlos.dev/clientesgestordemo/img/5138237.png"/>
     <meta property="og:description" content="Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO"/>
+
   </head>
   <body>
   <div class="mx-auto text-center col-md-8 order-md-1">
-  <img src="<?php echo URLROOT; ?>/img/5138237.svg" height=200>
+  <img src="<?php echo URLROOT; ?>/img/5138237.svg" height="200" width="274" alt="Contato">
   <h4>Clientes Gestor 1.0</h4>
   <br>
   Demonstração:
