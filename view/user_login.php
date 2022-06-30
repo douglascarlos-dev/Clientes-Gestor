@@ -16,14 +16,13 @@
   <body>
   <div class="mx-auto text-center col-md-8 order-md-1">
     <img src="<?php echo URLROOT; ?>/img/5138237.svg" height="200" width="274" alt="Contato">
-    <h4>Clientes Gestor 1.0</h4>
+    <h4>Clientes Gestor</h4>
+    <p>Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO.</p>
+    <p>Demonstração
     <br>
-    Demonstração:
-    <br><br>
-    Usuário: admin
+    <b>Usuário:</b> admin
     <br>
-    Senha: admin
-    <br><br>
+    <b>Senha:</b> admin</p>
     <div class="card">
       <div class="card-body">
         <form name="entrar" action="<?php echo URLROOT; ?>/user/login" method="post">
