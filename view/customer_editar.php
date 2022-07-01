@@ -85,7 +85,7 @@ foreach($phone as &$phone_value):
   </div>
   <div class="form-group col-md-6">
     <label for="inputTelefone">Número</label>
-    <input type="text" class="form-control" id="inputTelefone" name="phone" value="<?php echo Mask('(##) # ####-####',$phone_value->getPhone()); ?>" readonly>
+    <input type="text" class="form-control" id="inputTelefone" name="phone" value="<?php $phone_ = $phone_value->getPhone(); echo (strlen($phone_) == 10) ? Mask('(##) ####-####',$phone_) : Mask('(##) # ####-####',$phone_); ?>" readonly>
   </div>
 </div>
 <?php
