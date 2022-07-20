@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <a class="btn btn-outline-primary" href="<?php echo URLROOT; ?>/clientes/edit/<?php echo $cpf; ?>" role="button">Cancelar</a> 
+  <a class="btn btn-outline-primary" href="<?php echo URLROOT; ?>/customer/edit/<?php echo $cpf; ?>" role="button">Cancelar</a> 
   <button type="submit" class="btn btn-primary">Cadastrar</button> 
 
 </form>
