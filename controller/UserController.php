@@ -8,8 +8,10 @@ class UserController{
         if (isset($_SESSION['username'])) {
             return true;
         } else {
-            header("Location: ./user");
-            #include_once 'view/user_login.php';
+            #header("Location: ./user");
+            #echo " sessao expirada ou não logada. acesse /user para logar";
+            require_once 'view/user_login.php';
+            exit;
             #$this->visualizar();
         }
     }
