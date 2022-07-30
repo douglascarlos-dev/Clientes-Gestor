@@ -36,12 +36,23 @@
                 <input type="password" class="form-control" id="inputSenha" name="password" autocomplete="off" placeholder="Senha" maxlength="100">
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Entrar</button>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <div class="h-captcha" data-sitekey="<?php
+$params = require "model/database.php";
+echo $params['captcha_data-sitekey'];
+?>"></div>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
   </div>
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>
 <script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src='https://www.hCaptcha.com/1/api.js' async defer></script>
 </body>
 </html>

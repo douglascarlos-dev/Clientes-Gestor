@@ -37,17 +37,41 @@ class UserController{
             'title' => 'Login page',
             'username' => '',
             'password' => '',
+            'captcha' => '',
             'usernameError' => '',
             'passwordError' => ''
         ];
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'username' => trim($_REQUEST['username']),
                 'password' => trim($_REQUEST['password']),
+                'captcha' => '',
                 'usernameError' => '',
                 'passwordError' => '',
             ];
+
+            //Validate hcaptcha
+            $params = require "model/database.php";
+            $data_captcha = array(
+                'secret' => $params['captcha_secret'],
+                'response' => $_POST['h-captcha-response']
+                    );
+            $verify = curl_init();
+            curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+            curl_setopt($verify, CURLOPT_POST, true);
+            curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data_captcha));
+            curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($verify);
+            // var_dump($response);
+            $responseData = json_decode($response);
+            if($responseData->success) {
+                $data['captcha'] = true;
+            } 
+            else {
+                $data['captcha'] = false;
+            }
 
             //Validate username
             if (empty($data['username'])) {
@@ -63,7 +87,7 @@ class UserController{
             if (empty($data['usernameError']) && empty($data['passwordError'])) {
                 $loggedInUser = $user->login($data['username'], $data['password']);
 
-                if ($loggedInUser) {
+                if ($loggedInUser && $data['captcha']) {
                     $this->createUserSession($loggedInUser);
                 } else {
                     $data['passwordError'] = 'Password or username is incorrect. Please try again.';
