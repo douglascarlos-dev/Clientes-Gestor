@@ -2,7 +2,7 @@
 
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
-Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO.
+Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC, banco de dados Postgresql com PDO e CAPTCHA.
 
 ![Logo API](./img/tela_login.png)
 
@@ -22,6 +22,7 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 - Visual Studio Code;
 - MVC;
 - PlantUML;
+- hCaptcha;
 
 ## Instalação:
 
@@ -55,7 +56,9 @@ return [
     "port" => "5432",
     "dbname" => "",
     "user" => "",
-    "password" => ""
+    "password" => "",
+    "captcha_secret" => "0x0",
+    "captcha_data-sitekey" => ""
 ];
 ?>
 
