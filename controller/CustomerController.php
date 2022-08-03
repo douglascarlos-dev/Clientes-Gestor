@@ -50,6 +50,19 @@ class CustomerController {
         require_once 'view/customer_editar.php';
     }
 
+    public static function pdf( $cpf ) {
+        $customer = new Customer();
+        $customer->setCPF($cpf);
+        $customer = $customer->customer_list();
+        $phone = new Phone();
+        $phone->setCPF($cpf);
+        $phone = $phone->post_phone_list();
+        $address = new Address();
+        $address->setCPF($cpf);
+        $address = $address->post_address_list();
+        require_once 'view/customer_pdf.php';
+    }
+
     public function new() {
         require_once 'view/customer_new.php';
     }

@@ -145,6 +145,7 @@ endforeach;
 ?>
 
 <button type="submit" class="btn btn-primary">Atualizar</button>
+<a class="btn btn-info" id="newAddress" href="<?php echo URLROOT; ?>/customer/pdf/<?php echo $cpf; ?>" role="button" target="_blank">Relatório em PDF</a>
 <a class="btn btn-outline-primary" id="newAddress" href="<?php echo URLROOT; ?>/address/new/<?php echo $cpf; ?>" role="button">Adicionar endereço</a>
 <a class="btn btn-outline-primary" id="newPhone" href="<?php echo URLROOT; ?>/phone/new/<?php echo $cpf; ?>" role="button">Adicionar telefone</a>
 <a class="btn btn-danger" href="<?php echo URLROOT; ?>/customer/delete/<?php echo $cpf; ?>" role="button">Deletar</a>
