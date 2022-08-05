@@ -10,3 +10,4 @@ deployment:
         - /bin/cp -R js $DEPLOYPATH
         - /bin/cp -R model $DEPLOYPATH
         - /bin/cp -R view $DEPLOYPATH
+        - /bin/cp -R dompdf $DEPLOYPATH
