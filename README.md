@@ -2,7 +2,7 @@
 
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
-Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC, banco de dados Postgresql com PDO e CAPTCHA.
+Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC, banco de dados Postgresql com PDO, CAPTCHA e PDF.
 
 ![Logo API](./img/tela_login.png)
 
@@ -23,6 +23,7 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 - MVC;
 - PlantUML;
 - hCaptcha;
+- Dompdf 2.0.0
 
 ## Instalação:
 
