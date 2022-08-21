@@ -42,7 +42,12 @@ function Mask($mask,$str){
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail">E-mail</label>
+      <div class="input-group mb-2">
+      <div class="input-group-prepend">
+          <div class="input-group-text">@</div>
+      </div>
       <input type="text" class="form-control" id="inputEmail" name="email" value="<?php echo $customer->getEmail(); ?>" maxlength="100">
+      </div>
     </div>
   </div>
   <div class="form-row">
