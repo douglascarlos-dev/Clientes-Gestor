@@ -10,20 +10,20 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 
 ## Recursos usados no desenvolvimento:
 
-- PHP 7.4;
-- PostgreSQL 12;
+- PHP 8.1.2;
+- PostgreSQL 14.5;
 - pgModeler 0.9.4;
 - HTML;
 - Bootstrap v4.6.0;
 - jQuery v.3.5.1;
 - Apache HTTP Server;
-- DBeaver Community Edition;
-- Git;
-- Visual Studio Code;
+- [DBeaver Community Edition](https://github.com/dbeaver/dbeaver);
+- [Git](https://git-scm.com);
+- [Visual Studio Code](https://github.com/Microsoft/vscode/);
 - MVC;
-- PlantUML;
-- hCaptcha;
-- Dompdf 2.0.0
+- [PlantUML](https://github.com/plantuml/plantuml);
+- [hCaptcha](https://www.hcaptcha.com/);
+- [Dompdf](https://github.com/dompdf/dompdf) 2.0.0;
 
 ## Instalação:
 
