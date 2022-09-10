@@ -10,13 +10,13 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 
 ## Recursos usados no desenvolvimento:
 
-- PHP 8.1.2;
-- PostgreSQL 14.5;
-- pgModeler 0.9.4;
+- [PHP](https://www.php.net/) 8.1.2;
+- [PostgreSQL](https://www.postgresql.org/) 14.5;
+- [pgModeler](https://github.com/pgmodeler/pgmodeler) 0.9.4;
 - HTML;
-- Bootstrap v4.6.0;
-- jQuery v.3.5.1;
-- Apache HTTP Server;
+- [Bootstrap](https://github.com/twbs/bootstrap) v4.6.0;
+- [jQuery](https://github.com/jquery/jquery) v.3.5.1;
+- [Apache HTTP Server](https://github.com/apache/httpd);
 - [DBeaver Community Edition](https://github.com/dbeaver/dbeaver);
 - [Git](https://git-scm.com);
 - [Visual Studio Code](https://github.com/Microsoft/vscode/);
