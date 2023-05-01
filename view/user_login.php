@@ -17,7 +17,7 @@
   <div class="mx-auto text-center col-md-8 order-md-1">
     <img src="<?php echo URLROOT; ?>/img/5138237.svg" height="200" width="274" alt="Contato">
     <h4>Clientes Gestor</h4>
-    <p>Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO e CAPTCHA.</p>
+    <p>Software Web para cadastro de clientes com URL amigável usando PHP Orientado a Objetos, MVC e banco de dados Postgresql com PDO, CAPTCHA e PDF.</p>
     <p>Demonstração
     <br>
     <b>Usuário:</b> admin
