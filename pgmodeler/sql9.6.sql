@@ -140,7 +140,7 @@ BEGIN
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
-DELETE FROM phone_customer WHERE id_clientes=id_retorno AND type=tipo_ AND phone=telefone_;
+DELETE FROM phone_customer WHERE id = any (array(SELECT id FROM phone_customer WHERE id_clientes=id_retorno AND type=tipo_ AND phone=telefone_ ORDER BY id LIMIT 1));
 
 RETURN id_retorno;
 
