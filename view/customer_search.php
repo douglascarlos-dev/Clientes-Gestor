@@ -52,7 +52,7 @@ function Mask($mask,$str){
   return $mask;
 }
 
-$resultado = $customer->get_all_customer();
+$resultado = $customer->post_customer_search();
 if(count($resultado) >= 1){
 ?>
 

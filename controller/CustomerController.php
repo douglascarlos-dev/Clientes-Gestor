@@ -71,6 +71,12 @@ class CustomerController {
         $customer = new Customer();
         require_once 'view/customer_view.php';
     }
+
+    public function search() {
+        $customer = new Customer();
+        $customer->setName($_REQUEST['search']);
+        require_once 'view/customer_search.php';
+    }
    
 }
 ?>
