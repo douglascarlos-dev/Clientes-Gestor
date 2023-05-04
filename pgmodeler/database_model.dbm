@@ -96,7 +96,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="phone_customer" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+<table name="phone_customer" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="560" y="40"/>
@@ -108,6 +108,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="type" not-null="true">
 		<type name="public.phone_type" length="0"/>
+	</column>
+	<column name="created" default-value="NOW()">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="updated">
+		<type name="timestamptz" length="0"/>
 	</column>
 	<constraint name="telefone_cliente_pk" type="pk-constr" table="public.phone_customer">
 		<columns names="id" ref-type="src-columns"/>
