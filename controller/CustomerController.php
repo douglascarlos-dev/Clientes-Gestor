@@ -26,6 +26,7 @@ class CustomerController {
         $customer->setBirthDate($_REQUEST['data_de_nascimento']);
         $customer->setSex($_REQUEST['sexo']);
         $customer->setMaritalStatus($_REQUEST['estado_civil']);
+        $customer->setUpdated($_REQUEST['estado_civil']);
         $customer->post_customer_update();
         CustomerController::edit($customer->getCPF());
     }

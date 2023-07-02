@@ -60,7 +60,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<enumeration label="Trabalho"/>
 </usertype>
 
-<table name="clientes" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="clientes" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="20" y="80"/>
@@ -87,6 +87,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="estado_civil_cliente" not-null="true">
 		<type name="public.estado_civil" length="0"/>
+	</column>
+	<column name="created" default-value="NOW()">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="updated">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="photo">
+		<type name="character varying" length="100"/>
 	</column>
 	<constraint name="cliente_pk" type="pk-constr" table="public.clientes">
 		<columns names="id" ref-type="src-columns"/>
@@ -131,7 +140,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <view name="view_phone_customer" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="600" y="260"/>
+	<position x="620" y="280"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
@@ -161,7 +170,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.clientes"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-14.3074" y="43.5182"/>
+		<position x="-2.30738" y="1.08768"/>
 	</label>
 </relationship>
 
@@ -254,7 +263,7 @@ END;]]></definition>
 <table name="users" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="540" y="640"/>
+	<position x="560" y="640"/>
 	<column name="id" not-null="true" sequence="public.users_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -286,10 +295,10 @@ END;]]></definition>
 	<enumeration label="Caixa postal"/>
 </usertype>
 
-<table name="address" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+<table name="address" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="20" y="380"/>
+	<position x="20" y="400"/>
 	<column name="id" not-null="true" sequence="public.endereco_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -320,15 +329,29 @@ END;]]></definition>
 	<column name="complemento">
 		<type name="character varying" length="60"/>
 	</column>
+	<column name="created" default-value="NOW()">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="updated">
+		<type name="timestamptz" length="0"/>
+	</column>
 	<constraint name="endereco_pk" type="pk-constr" table="public.address">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_clientes" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="clientes_fk" index="1"/>
+	</customidxs>
 </table>
 
 <view name="view_address" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="520" y="380"/>
+	<position x="540" y="400"/>
 	<reference>
 		<expression><![CDATA[ SELECT clientes.id,
     clientes.cpf,
@@ -581,10 +604,13 @@ END;]]></definition>
 	<parameter name="estado_civil_cliente_">
 		<type name="public.estado_civil" length="0"/>
 	</parameter>
+	<parameter name="updated_">
+		<type name="timestamptz" length="0"/>
+	</parameter>
 	<definition><![CDATA[DECLARE id_retorno integer;
 BEGIN
 
-UPDATE clientes SET nome = nome_, email = email_, data_de_nascimento = data_de_nascimento_, sexo_cliente = sexo_cliente_, estado_civil_cliente = estado_civil_cliente_ WHERE cpf = cpf_;
+UPDATE clientes SET nome = nome_, email = email_, data_de_nascimento = data_de_nascimento_, sexo_cliente = sexo_cliente_, estado_civil_cliente = estado_civil_cliente_, updated = updated_ WHERE cpf = cpf_;
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 

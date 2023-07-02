@@ -9,6 +9,9 @@ class Customer extends Connection {
     private $birthdate;
     private $sex;
     private $maritalstatus;
+    private $created;
+    private $updated;
+    private $photo;
 
     public function setId($id){
         $this->id=$id;
@@ -36,6 +39,24 @@ class Customer extends Connection {
     }
     public function setMaritalStatus($maritalstatus){
         $this->maritalstatus=$maritalstatus;
+        return $this;
+    }
+    public function setCreated($created){
+        $created = strftime("%d/%m/%Y %H:%M", strtotime($created));
+        $this->created=$created;
+        return $this;
+    }
+    public function setUpdated($updated){
+        if(is_null($updated)){
+            $updated = "";
+        } else {
+            $updated = strftime("%d/%m/%Y %H:%M", strtotime($updated));
+        }
+        $this->updated=$updated;
+        return $this;
+    }
+    public function setPhoto($photo){
+        $this->photo=$photo;
         return $this;
     }
 
@@ -67,6 +88,18 @@ class Customer extends Connection {
     {
         return $this->maritalstatus;
     }
+    public function getCreated()
+    {
+        return $this->created;
+    }
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
 
     function database_select_all_var($valor1, $valor2, $valor3){
         $pdo = $this->o_db;
@@ -86,18 +119,6 @@ class Customer extends Connection {
     
     function get_all_customer(){
         $consulta = $this->database_select_all('clientes');
-        return $consulta;
-    }
-
-    function get_cliente_telefone($id){
-        $id = (string) $id;
-        $consulta = $this->database_select_all_var('view_telefone_cliente', 'cpf', $id);
-        return $consulta;
-    }
-
-    function get_cliente_address($id){
-        $id = (string) $id;
-        $consulta = $this->database_select_all_var('view_address', 'cpf', $id);
         return $consulta;
     }
 
@@ -124,6 +145,9 @@ class Customer extends Connection {
     }
 
     function custumer_update(){
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = new DateTimeImmutable();
+        $date = $date->format('Y-m-d H:i:s O');
         $sql_query = "SELECT * FROM customer_update_function
                         (
                             '" . $this->getName() . "',
@@ -131,7 +155,8 @@ class Customer extends Connection {
                             '" . $this->getCPF() . "',
                             '" . $this->getBirthDate() . "',
                             '" . $this->getSex() . "',
-                            '" . $this->getMaritalStatus() . "'
+                            '" . $this->getMaritalStatus() . "',
+                            '" . $date . "'
                         )";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
@@ -174,6 +199,9 @@ class Customer extends Connection {
         $cliente->setBirthDate($row[5]);
         $cliente->setSex($row[6]);
         $cliente->setMaritalStatus($row[7]);
+        $cliente->setUpdated($row[8]);
+        $cliente->setCreated($row[9]);
+        $cliente->setPhoto($row[10]);
         return $cliente;
     }
 

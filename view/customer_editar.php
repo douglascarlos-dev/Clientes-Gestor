@@ -12,6 +12,19 @@
     .mt-4, .my-4 {
     margin-top: 2rem!important;
     }
+
+    .thumbnail {
+        border-radius: 50%;
+        display: block;
+        padding: 2px;
+        line-height: 1.42857143;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        /*border-radius: 4px;*/
+        -webkit-transition: border .2s ease-in-out;
+        -o-transition: border .2s ease-in-out;
+        transition: border .2s ease-in-out;
+    }
     </style>
     
   </head>
@@ -34,22 +47,38 @@ function Mask($mask,$str){
 
 ?>
 <form action="<?php echo URLROOT; ?>/customer/update/<?php echo $customer->getCPF(); ?>" method="post">
+
+  <div class="form-row">
+
+    <div class="form-group col-md-2">
+      <center><a href="<?php echo URLROOT; ?>/photo/new/<?php echo $customer->getCPF(); ?>"><img src="<?php echo URLROOT; ?>/images/<?php echo $customer->getPhoto()."?t=".time(); ?>" alt="Image preview" class="thumbnail" width="133" height="133"></a></center>
+    </div>
+
+    <div class="form-group col-md-4 text-left">
+      <p>Cadastrado em: <?php echo $customer->getCreated(); ?></p>
+      <p>Atualizado em: <?php echo $customer->getUpdated(); ?></p>
+    </div>
+
+    <div class="form-group col-md-6">
+    </div>
+  </div>
+
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Nome</label>
       <input type="text" class="form-control" id="inputNome" name="nome" value="<?php echo $customer->getName(); ?>" maxlength="100">
-      
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail">E-mail</label>
       <div class="input-group mb-2">
-      <div class="input-group-prepend">
-          <div class="input-group-text">@</div>
-      </div>
-      <input type="text" class="form-control" id="inputEmail" name="email" value="<?php echo $customer->getEmail(); ?>" maxlength="100">
+        <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+        </div>
+        <input type="text" class="form-control" id="inputEmail" name="email" value="<?php echo $customer->getEmail(); ?>" maxlength="100">
       </div>
     </div>
   </div>
+
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCPF">CPF</label>
@@ -161,7 +190,6 @@ endforeach;
 
 </div>
 </div>
-
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>
 <script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>

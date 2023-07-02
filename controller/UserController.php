@@ -103,7 +103,7 @@ class UserController{
 
     public function createUserSession($user) {
         $_SESSION['username'] = $user["username"];
-        require_once 'view/user_view.php';
+        require_once 'view/home_view.php';
     }
 
     public function logout() {
