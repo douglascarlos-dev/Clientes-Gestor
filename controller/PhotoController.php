@@ -37,10 +37,10 @@ class PhotoController {
                 move_uploaded_file($file_tmp,"images/".$file_name_2);
 
                 $file_name_3 = md5($cpf).".jpg";
-                $image = new Imagick("images/".$file_name_3);
+                $image = new Imagick();
                 $image->readImage("images/".$file_name_2);
-                $image->resizeImage(133,133,Imagick::FILTER_LANCZOS,1);
                 $image->setImageFormat('jpeg');
+                $image->resizeImage(133,133,Imagick::FILTER_BOX,1);
                 $image->setImageCompressionQuality(95);
                 $image->stripImage();
                 
