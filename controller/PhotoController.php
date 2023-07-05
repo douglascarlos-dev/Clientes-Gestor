@@ -40,7 +40,7 @@ class PhotoController {
                 $image = new Imagick();
                 $image->readImage("images/".$file_name_2);
                 $image->setImageFormat('jpeg');
-                $image->resizeImage(133,133,Imagick::FILTER_BOX,1);
+                $image->resizeImage(266,266,Imagick::FILTER_BOX,1);
                 $image->setImageCompressionQuality(95);
                 $image->stripImage();
                 
