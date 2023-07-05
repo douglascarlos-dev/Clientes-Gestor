@@ -89,6 +89,9 @@ CREATE TABLE public.clientes (
 	data_de_nascimento date NOT NULL DEFAULT '1900-01-01',
 	sexo_cliente public.sexo NOT NULL,
 	estado_civil_cliente public.estado_civil NOT NULL,
+	created timestamptz DEFAULT NOW(),
+	updated timestamptz,
+	photo character varying(100) DEFAULT 'default.svg',
 	CONSTRAINT cliente_pk PRIMARY KEY (id),
 	CONSTRAINT cpf_unique UNIQUE (cpf)
 );
@@ -103,6 +106,8 @@ CREATE TABLE public.phone_customer (
 	id_clientes integer,
 	phone character varying(11) NOT NULL,
 	type public.phone_type NOT NULL,
+	created timestamptz DEFAULT NOW(),
+	updated timestamptz,
 	CONSTRAINT telefone_cliente_pk PRIMARY KEY (id)
 );
 -- ddl-end --
@@ -233,6 +238,7 @@ ALTER TYPE public.address_category OWNER TO postgres;
 -- DROP TABLE IF EXISTS public.address CASCADE;
 CREATE TABLE public.address (
 	id integer NOT NULL DEFAULT nextval('public.endereco_id_seq'::regclass),
+	id_clientes integer,
 	categoria_endereco public.address_category NOT NULL,
 	tipo character varying(20) NOT NULL,
 	nome character varying(100) NOT NULL,
@@ -242,7 +248,8 @@ CREATE TABLE public.address (
 	uf character varying(2) NOT NULL,
 	cep character varying(8) NOT NULL,
 	complemento character varying(60),
-	id_clientes integer,
+	created timestamptz DEFAULT NOW(),
+	updated timestamptz,
 	CONSTRAINT endereco_pk PRIMARY KEY (id)
 );
 -- ddl-end --
@@ -358,8 +365,8 @@ ALTER FUNCTION public.customer_insert_function(character varying,character varyi
 -- ddl-end --
 
 -- object: public.customer_update_function | type: FUNCTION --
--- DROP FUNCTION IF EXISTS public.customer_update_function(character varying,character varying,character varying,date,public.sexo,public.estado_civil) CASCADE;
-CREATE FUNCTION public.customer_update_function (nome_ character varying, email_ character varying, cpf_ character varying, data_de_nascimento_ date, sexo_cliente_ public.sexo, estado_civil_cliente_ public.estado_civil)
+-- DROP FUNCTION IF EXISTS public.customer_update_function(character varying,character varying,character varying,date,public.sexo,public.estado_civil,timestamptz) CASCADE;
+CREATE FUNCTION public.customer_update_function (nome_ character varying, email_ character varying, cpf_ character varying, data_de_nascimento_ date, sexo_cliente_ public.sexo, estado_civil_cliente_ public.estado_civil, updated_ timestamptz)
 	RETURNS integer
 	LANGUAGE plpgsql
 	VOLATILE 
@@ -371,7 +378,7 @@ CREATE FUNCTION public.customer_update_function (nome_ character varying, email_
 DECLARE id_retorno integer;
 BEGIN
 
-UPDATE clientes SET nome = nome_, email = email_, data_de_nascimento = data_de_nascimento_, sexo_cliente = sexo_cliente_, estado_civil_cliente = estado_civil_cliente_ WHERE cpf = cpf_;
+UPDATE clientes SET nome = nome_, email = email_, data_de_nascimento = data_de_nascimento_, sexo_cliente = sexo_cliente_, estado_civil_cliente = estado_civil_cliente_, updated = updated_ WHERE cpf = cpf_;
 
 SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
 
@@ -380,7 +387,7 @@ RETURN id_retorno;
 END;
 $$;
 -- ddl-end --
-ALTER FUNCTION public.customer_update_function(character varying,character varying,character varying,date,public.sexo,public.estado_civil) OWNER TO postgres;
+ALTER FUNCTION public.customer_update_function(character varying,character varying,character varying,date,public.sexo,public.estado_civil,timestamptz) OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.customer_remove_function | type: FUNCTION --

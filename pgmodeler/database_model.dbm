@@ -94,7 +94,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="updated">
 		<type name="timestamptz" length="0"/>
 	</column>
-	<column name="photo">
+	<column name="photo" default-value="'default.svg'">
 		<type name="character varying" length="100"/>
 	</column>
 	<constraint name="cliente_pk" type="pk-constr" table="public.clientes">
@@ -179,7 +179,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.phone_customer"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-1.73673" y="0.198324"/>
+		<position x="6.16582" y="-7.40168"/>
 	</label>
 </relationship>
 
@@ -409,7 +409,7 @@ END;]]></definition>
 	 dst-table="public.clientes"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="62.0246" y="11.4233"/>
+		<position x="25.6926" y="-9.14726"/>
 	</label>
 </relationship>
 
@@ -418,7 +418,7 @@ END;]]></definition>
 	 dst-table="public.address"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="2.74262" y="13.2978"/>
+		<position x="5.79262" y="10.3672"/>
 	</label>
 </relationship>
 
@@ -657,7 +657,7 @@ END;]]></definition>
 	 src-required="false" dst-required="false"
 	del-action="CASCADE">
 	<label ref-type="name-label">
-		<position x="32.1076" y="34.514"/>
+		<position x="12.1076" y="12.847"/>
 	</label>
 </relationship>
 
