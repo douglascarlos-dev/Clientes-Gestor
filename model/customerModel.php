@@ -179,6 +179,7 @@ class Customer extends Connection {
         $stmt = $pdo->prepare($sql_query);
         $stmt->execute();
         $row = $stmt->rowCount();
+        unlink("images/".$this->getPhoto());
         return $row;
     }
 

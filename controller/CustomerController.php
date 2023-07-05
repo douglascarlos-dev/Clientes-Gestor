@@ -34,6 +34,7 @@ class CustomerController {
     public function delete( $cpf ){
         $customer = new Customer();
         $customer->setCPF($cpf);
+        $customer = $customer->customer_list();
         $customer->post_customer_delete();
         CustomerController::visualizar();
     }
