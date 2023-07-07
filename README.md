@@ -38,6 +38,7 @@ Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 - Ativar o módulo mod_rewrite do Apache;
 - PHP;
 - Ativar o módulo pgsql do PHP;
+- Ativar a extensão imagick do PHP;
 - PostgreSQL;
 
 ## Obtendo uma cópia:
@@ -76,7 +77,7 @@ define('ENDERECO', ''); //se executar no dirtorio root.
 
 ## Modelagem do banco
 
-A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.3, bem como uma imagem da modelagem e o arquivo sql de criação do banco.
+A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.4, bem como uma imagem da modelagem e o arquivo sql de criação do banco.
 É necessario estar instalado o módulo pgsql para php para uma correta comunicação.
 
 ![Logo API](./pgmodeler/database_model.png)

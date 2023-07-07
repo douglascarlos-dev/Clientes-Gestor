@@ -31,10 +31,14 @@ class Customer {
     -birthdate: Date
     -sex: String
     -maritalstatus: String
+    -photo: String
+    -created: Time
+    -updated: Time
     +customer_list()
     +customer_delete()
     +customer_new()
     +customer_update()
+    +custumer_search()
 }
 
 class AddressController {
@@ -65,6 +69,8 @@ class Address {
     -state : String
     -zip_code : String
     -complement : String
+    -created: Time
+    -updated: Time
     +post_address_list()
     +post_address_delete()
     +post_address_new()
@@ -75,6 +81,8 @@ class Phone {
     -cpf : String
     -type : String
     -phone : String
+    -created: Time
+    -updated: Time
     +post_phone_list()
     +post_phone_delete()
     +post_phone_new()
