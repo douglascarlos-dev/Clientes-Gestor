@@ -11,4 +11,4 @@ deployment:
         - /bin/cp -R model $DEPLOYPATH
         - /bin/cp -R view $DEPLOYPATH
         - /bin/cp -R dompdf $DEPLOYPATH
-        - /bin/cp -R images
+        - /bin/cp -R images $DEPLOYPATH
