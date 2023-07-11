@@ -9,9 +9,9 @@ class Customer extends Connection {
     private $birthdate;
     private $sex;
     private $maritalstatus;
+    private $photo;
     private $created;
     private $updated;
-    private $photo;
 
     public function setId($id){
         $this->id=$id;
@@ -42,7 +42,7 @@ class Customer extends Connection {
         return $this;
     }
     public function setCreated($created){
-        $created = strftime("%d/%m/%Y %H:%M", strtotime($created));
+        $created = date("d/m/Y H:i", strtotime($created));
         $this->created=$created;
         return $this;
     }
@@ -50,7 +50,7 @@ class Customer extends Connection {
         if(is_null($updated)){
             $updated = "";
         } else {
-            $updated = strftime("%d/%m/%Y %H:%M", strtotime($updated));
+            $updated = date("d/m/Y H:i", strtotime($updated));
         }
         $this->updated=$updated;
         return $this;
