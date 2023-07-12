@@ -28,7 +28,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">Descrição</label>
-      <select id="selectTipo" name="type" class="form-control">
+      <select id="selectTipo" name="type" class="form-control" autofocus>
           <option value='Casa' name='Casa' selected>Casa</option>
           <option value='Celular' name='Celular'>Celular</option>
           <option value='Recado' name='Recado'>Recado</option>

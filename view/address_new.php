@@ -25,7 +25,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCategoria">Categoria endereço</label>
-      <select id="selectCategoria" name="address_category" class="form-control">
+      <select id="selectCategoria" name="address_category" class="form-control" autofocus>
           <option value='Residencial' name='Residencial' selected>Residencial</option>
           <option value='Comercial' name='Comercial'>Comercial</option>
           <option value='Caixa postal' name='Caixa postal'>Caixa postal</option>

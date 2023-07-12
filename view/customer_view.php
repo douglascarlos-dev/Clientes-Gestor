@@ -30,7 +30,7 @@
     <div class="form-group col-md-8">
       <form action="<?php echo URLROOT; ?>/customer/search" method="post">
         <div class="input-group">
-          <input type="text" class="form-control" id="inputSearch" name="search" placeholder="Nome do Cliente" maxlength="100">
+          <input type="text" class="form-control" id="inputSearch" name="search" placeholder="Nome do Cliente" maxlength="100" autofocus>
             <div class="input-group-append">
               <button class="btn btn-primary" type="submit">Buscar Cliente</button>
             </div>

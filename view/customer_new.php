@@ -33,7 +33,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNome">Nome</label>
-                        <input type="text" class="form-control" id="inputNome" name="nome" maxlength="100">
+                        <input type="text" class="form-control" id="inputNome" name="nome" maxlength="100" autofocus>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputEmail">E-mail</label>
