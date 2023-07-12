@@ -15,9 +15,9 @@
     <div class="card-body">
       <form name="register" action="<?php echo URLROOT; ?>/photo/save/<?php echo $cpf; ?>" method="post" enctype="multipart/form-data">
         <div class="form-row">
-          <label for="inputPhoto">Foto</label>
           <div class="input-group col-md-12">
-            <input type="file" id="inputPhoto" name="photo" accept="image/png, image/jpeg">
+            <label for="exampleFormControlFile1">Foto</label>
+            <input type="file" class="form-control-file" id="inputPhoto" name="photo" accept="image/png, image/jpeg">
           </div>
         </div>
         <br><a class="btn btn-outline-primary" href="<?php echo URLROOT; ?>/customer/edit/<?php echo $cpf; ?>" role="button">Cancelar</a> 
