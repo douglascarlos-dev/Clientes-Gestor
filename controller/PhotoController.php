@@ -9,6 +9,14 @@ class PhotoController {
         require_once 'view/photo_new.php';
     }
 
+    public function delete( $cpf ){
+        $photo = new Photo();
+        $photo->setCPF($cpf);
+        $photo->setPhoto("default.svg");
+        $photo->post_photo_delete();
+        CustomerController::edit($photo->getCPF());
+    }
+
     public function save( $cpf ){
         $photo = new Photo();
         $photo->setCPF($cpf);

@@ -20,7 +20,8 @@
             <input type="file" class="form-control-file" id="inputPhoto" name="photo" accept="image/png, image/jpeg">
           </div>
         </div>
-        <br><a class="btn btn-outline-primary" href="<?php echo URLROOT; ?>/customer/edit/<?php echo $cpf; ?>" role="button">Cancelar</a> 
+        <br><a class="btn btn-outline-primary" href="<?php echo URLROOT; ?>/customer/edit/<?php echo $cpf; ?>" role="button">Cancelar</a>
+        <a class="btn btn-danger" href="<?php echo URLROOT; ?>/photo/delete/<?php echo $cpf; ?>" role="button">Apagar</a>
         <button type="submit" class="btn btn-primary">Carregar</button> 
       </form>
     </div>

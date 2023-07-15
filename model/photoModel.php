@@ -47,5 +47,16 @@ class Photo extends Connection{
         return $result;
     }
 
+    function post_photo_delete(){
+        $result = $this->photo_delete();
+        return $result;
+    }
+
+    function photo_delete(){
+        $row = $this->photo_save();
+        @unlink("images/".md5($this->getCPF()).".jpg");
+        return $row;
+    }
+
 }
 ?>
