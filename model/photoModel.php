@@ -58,5 +58,16 @@ class Photo extends Connection{
         return $row;
     }
 
+    function photo_view(){
+        $pdo = $this->o_db;
+        $stmt = $pdo->prepare("SELECT * FROM clientes WHERE cpf = '" . $this->getCPF() . "' LIMIT 1"); 
+        $stmt->execute(); 
+        $row = $stmt->fetch();
+        $photo = new Photo();
+        $photo->setCPF($row[4]);
+        $photo->setPhoto($row[10]);
+        return $photo;
+    }
+
 }
 ?>

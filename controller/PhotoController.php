@@ -6,6 +6,9 @@ require_once 'controller/CustomerController.php';
 class PhotoController {
 
     public function new( $cpf ){
+        $photo = new Photo();
+        $photo->setCPF($cpf);
+        $photo = $photo->photo_view();
         require_once 'view/photo_new.php';
     }
 

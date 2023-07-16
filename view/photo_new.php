@@ -16,24 +16,19 @@
       <form name="register" action="<?php echo URLROOT; ?>/photo/save/<?php echo $cpf; ?>" method="post" enctype="multipart/form-data">
         <div class="form-row">
           <div class="input-group col-md-12">
-            <label for="exampleFormControlFile1">Foto</label>
+            <label for="exampleFormControlFile1">Foto</label>     
             <input type="file" class="form-control-file" id="inputPhoto" name="photo" accept="image/png, image/jpeg">
           </div>
         </div>
         <br><a class="btn btn-outline-primary" href="<?php echo URLROOT; ?>/customer/edit/<?php echo $cpf; ?>" role="button">Cancelar</a>
+        <?php if($photo->getPhoto() != "default.svg") { ?>
         <a class="btn btn-danger" href="<?php echo URLROOT; ?>/photo/delete/<?php echo $cpf; ?>" role="button">Apagar</a>
+        <?php } ?>
         <button type="submit" class="btn btn-primary">Carregar</button> 
       </form>
     </div>
     </div>
 </div>
-<script>
-// Add the following code if you want the name of the file appear on select
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>
 <script type="text/javascript" src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"></script>
 <script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
