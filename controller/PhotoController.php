@@ -46,21 +46,36 @@ class PhotoController {
             
             if(empty($errors)==true){
                 move_uploaded_file($file_tmp,"images/".$file_name_2);
-
-                $file_name_3 = md5($cpf).".jpg";
-                $image = new Imagick();
-                $image->readImage("images/".$file_name_2);
-                $image->setImageFormat('jpeg');
-                $image->resizeImage(266,266,Imagick::FILTER_BOX,1);
-                $image->setImageCompressionQuality(95);
-                $image->stripImage();
-                
-                $image->writeImage("images/".$file_name_3);
-                if($file_type != "image/jpeg"){
+                if($file_type == "image/png"){
+                    // convert to jpg
+                    $image = imagecreatefrompng("images/".$file_name_2);
+                    $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
+                    imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
+                    imagealphablending($bg, TRUE);
+                    imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+                    imagedestroy($image);
+                    $quality = 100;
+                    imagejpeg($bg, "images/".md5($cpf).".jpg", $quality);
+                    imagedestroy($bg);
                     unlink("images/".$file_name_2);
+                    $file_name_2 = md5($cpf).".jpg";
                 }
-                
-                $photo->setPhoto($file_name_3);
+                // resize jpg
+                $filename = "images/".$file_name_2;
+                $width = 266;
+                $height = 266;
+                list($width_orig, $height_orig) = getimagesize($filename);
+                $ratio_orig = $width_orig/$height_orig;
+                if ($width/$height > $ratio_orig) {
+                    $width = $height*$ratio_orig;
+                } else {
+                    $height = $width/$ratio_orig;
+                }
+                $image_p = imagecreatetruecolor($width, $height);
+                $image = imagecreatefromjpeg($filename);
+                imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+                imagejpeg($image_p, "images/".$file_name_2, 95);
+                $photo->setPhoto($file_name_2);
                 $photo->post_photo_save();
                 CustomerController::edit($photo->getCPF());
 
