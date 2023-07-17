@@ -24,7 +24,7 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 - [PlantUML](https://github.com/plantuml/plantuml);
 - [hCaptcha](https://www.hcaptcha.com/);
 - [Dompdf](https://github.com/dompdf/dompdf) 2.0.0;
-- [ImageMagick](https://www.php.net/manual/pt_BR/intro.imagick.php);
+- [GD](https://www.php.net/manual/pt_BR/book.image.php);
 
 ## Instalação:
 
@@ -38,7 +38,7 @@ Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 - Ativar o módulo mod_rewrite do Apache;
 - PHP;
 - Ativar o módulo pgsql do PHP;
-- Ativar a extensão imagick do PHP;
+- Ativar a extensão GD do PHP;
 - PostgreSQL;
 
 ## Obtendo uma cópia:
@@ -84,6 +84,6 @@ A pasta pgmodeler contem a modelagem do banco usando o programa pgModeler 0.9.4,
 
 ## Diagrama de classes
 
-A pasta modelagem contem os diagramas de UML criados usando o programa PlantUML, permitindo identificar as classes, métodos, atores e interações utilizadas na execução do software.
+A [pasta modelagem](https://github.com/douglascarlos-dev/Clientes-Gestor/tree/main/modelagem) contem os diagramas de UML criados usando o programa PlantUML, permitindo identificar as classes, métodos, atores e interações utilizadas na execução do software.
 
 ![Class Diagram](./modelagem/Class_Diagram.png)
