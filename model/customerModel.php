@@ -190,7 +190,7 @@ class Customer extends Connection {
 
     function customer_list(){
         $pdo = $this->o_db;
-        $stmt = $pdo->prepare("SELECT * FROM clientes WHERE cpf = '" . $this->getCPF() . "' LIMIT 1"); 
+        $stmt = $pdo->prepare("SELECT id, saudacao, nome, email, cpf, data_de_nascimento, sexo_cliente, estado_civil_cliente, created, updated, photo FROM clientes WHERE cpf = '" . $this->getCPF() . "' LIMIT 1"); 
         $stmt->execute(); 
         $row = $stmt->fetch();
         $cliente = new Customer();
