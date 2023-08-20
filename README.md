@@ -39,6 +39,7 @@ Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 - PHP;
 - Ativar o módulo pgsql do PHP;
 - Ativar a extensão GD do PHP;
+- Ativar a extensão cURL do PHP;
 - PostgreSQL;
 
 ## Obtendo uma cópia:
