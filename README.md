@@ -44,6 +44,8 @@ Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 - Ativar a extensão SimpleXML do PHP;
 - PostgreSQL;
 
+PostgreSQL é um sistema de banco de dados relacional poderoso e testado pelo tempo sendo uma importante opção de código aberto livre para uso comercial sem custos.
+
 ## Obtendo uma cópia:
 
 ```shell
