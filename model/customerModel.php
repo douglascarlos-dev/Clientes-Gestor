@@ -200,8 +200,8 @@ class Customer extends Connection {
         $cliente->setBirthDate($row[5]);
         $cliente->setSex($row[6]);
         $cliente->setMaritalStatus($row[7]);
-        $cliente->setUpdated($row[8]);
-        $cliente->setCreated($row[9]);
+        $cliente->setUpdated($row[9]);
+        $cliente->setCreated($row[8]);
         $cliente->setPhoto($row[10]);
         return $cliente;
     }

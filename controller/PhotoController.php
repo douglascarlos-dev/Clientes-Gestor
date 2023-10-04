@@ -29,12 +29,12 @@ class PhotoController {
             $file_name = $_FILES['photo']['name'];
             $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
             $file_name_2 = md5($cpf).".".$file_ext;
-            $file_size =$_FILES['photo']['size'];
-            $file_tmp =$_FILES['photo']['tmp_name'];
-            $file_type=$_FILES['photo']['type'];
-            @$file_ext=strtolower(end(explode('.',$_FILES['photo']['name'])));
+            $file_size = $_FILES['photo']['size'];
+            $file_tmp = $_FILES['photo']['tmp_name'];
+            $file_type = $_FILES['photo']['type'];
+            @$file_ext = strtolower(end(explode('.',$_FILES['photo']['name'])));
             
-            $extensions= array("jpeg","jpg","png");
+            $extensions = array("jpeg","jpg","png");
             
             if(in_array($file_ext,$extensions)=== false){
                $errors[]="extension not allowed, please choose a JPEG or PNG file.";

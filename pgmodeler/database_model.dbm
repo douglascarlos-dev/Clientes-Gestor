@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="8"
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="9"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -13,7 +13,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <database name="clientesgestor" is-template="false" allow-conns="true">
 </database>
 
-<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
 <usertype name="estado_civil" configuration="enumeration">
@@ -88,14 +88,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="estado_civil_cliente" not-null="true">
 		<type name="public.estado_civil" length="0"/>
 	</column>
+	<column name="photo" default-value="'default.svg'">
+		<type name="character varying" length="100"/>
+	</column>
 	<column name="created" default-value="NOW()">
 		<type name="timestamptz" length="0"/>
 	</column>
 	<column name="updated">
 		<type name="timestamptz" length="0"/>
-	</column>
-	<column name="photo" default-value="'default.svg'">
-		<type name="character varying" length="100"/>
 	</column>
 	<constraint name="cliente_pk" type="pk-constr" table="public.clientes">
 		<columns names="id" ref-type="src-columns"/>
@@ -660,5 +660,35 @@ END;]]></definition>
 		<position x="12.1076" y="12.847"/>
 	</label>
 </relationship>
+
+<function name="photo_remove_function"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		parallel-type="PARALLEL UNSAFE"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql"/>
+	<return-type>
+	<type name="integer" length="0"/>
+	</return-type>
+	<parameter name="cpf_">
+		<type name="character varying" length="0"/>
+	</parameter>
+	<definition><![CDATA[DECLARE id_retorno integer;
+BEGIN
+
+UPDATE clientes SET photo = 'default.svg' WHERE cpf = cpf_;
+
+SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+
+RETURN id_retorno;
+
+END;]]></definition>
+</function>
 
 </dbmodel>
