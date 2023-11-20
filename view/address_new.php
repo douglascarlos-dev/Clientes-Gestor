@@ -31,17 +31,27 @@
           <option value='Caixa postal' name='Caixa postal'>Caixa postal</option>
       </select>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputTipo">Tipo (Avenida, Rua, etc)</label>
-      <input type="text" class="form-control" id="inputTipo" name="type" maxlength="20">
+    <div class="form-group col-md-4">
+    <label for="inputCEP">CEP</label>
+      <input type="text" class="form-control" id="inputCEP" name="zip_code" maxlength="8">
+
     </div>
+    <div class="form-group col-md-2">
+    <label for="inputCEP">Consultar CEP</label>
+    <a class="btn btn-primary" id="buscarCEP" href="#" role="button">Consultar</a>
+</div>
   </div>
   <div class="form-row">
+    
+  <div class="form-group col-md-3">
+    <label for="inputTipo">Tipo (Avenida, Rua, etc)</label>
+      <input type="text" class="form-control" id="inputTipo" name="type" maxlength="20">
+    </div>
     <div class="form-group col-md-6">
       <label for="inputNome">Nome</label>
       <input type="text" class="form-control" id="inputNome" name="name" maxlength="100">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
       <label for="inputNumero">Número</label>
       <input type="text" class="form-control" id="inputNumero" name="number" maxlength="10">
     </div>
@@ -57,15 +67,12 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-2">
       <label for="inputUF">UF</label>
       <input type="text" class="form-control" id="inputUF" name="state" maxlength="2" style="text-transform:uppercase">
     </div>
-    <div class="form-group col-md-3">
-      <label for="inputCEP">CEP</label>
-      <input type="text" class="form-control" id="inputCEP" name="zip_code" maxlength="8">
-    </div>
-    <div class="form-group col-md-6">
+
+    <div class="form-group col-md-10">
       <label for="inputComplemento">Complemento</label>
       <input type="text" class="form-control" id="inputComplemento" name="complement" maxlength="60">
     </div>
@@ -83,7 +90,7 @@
 
 <script
     type="text/javascript"
-    src="<?php echo URLROOT; ?>/js/jquery-3.5.1.slim.min.js"
+    src="<?php echo URLROOT; ?>/js/jquery-3.6.4.min.js"
     
   ></script>
 <script src="<?php echo URLROOT; ?>/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -91,6 +98,42 @@
 
     <script type="text/javascript">
     $(document).ready(function () {
+
+    // Função para buscar e atualizar o valor da cidade
+    function buscarCidadePorCEP() {
+
+      // Obter o valor do input com id "inputCEP"
+      var cep = $('#inputCEP').val();
+
+      // Compor a URL da API com base no valor do CEP
+      var apiUrl = '../../cep/query/' + cep;
+
+        // Fazer a solicitação AJAX usando $.getJSON
+        $.getJSON(apiUrl, function(data) {
+            // Extrair o valor da chave "nome"
+            var nomeDaCidade = data.cidade;
+            // Extrair o valor da chave "estado"
+            var siglaDoEstado = data.estado;
+            // Extrair o valor da chave "bairro"
+            var nomeDoBairro = data.bairro;
+
+            // Substituir o valor do input com id "inputCidade"
+            console.log("Nome da cidade: " + nomeDaCidade);
+            $('#inputCidade').val(nomeDaCidade);
+
+            // Substituir o valor do input com id "inputCidade"
+            console.log("Sigla do estado: " + siglaDoEstado);
+            $('#inputUF').val(siglaDoEstado);
+
+             // Substituir o valor do input com id "inputCidade"
+             console.log("Nome do Bairro: " + nomeDoBairro);
+            $('#inputBairro').val(nomeDoBairro);
+        });
+    }
+
+    // Adicionar um evento de clique ao botão com id "buscarCEP"
+    $('#buscarCEP').on('click', buscarCidadePorCEP);
+ 
 
         $('form[name="register"]').on("submit", function (e) {
 
