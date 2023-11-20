@@ -446,9 +446,9 @@ END;]]></definition>
 	<definition><![CDATA[DECLARE id_retorno integer;
 BEGIN
 
-SELECT id INTO id_retorno FROM clientes WHERE clientes.cpf=cpf_;
+SELECT id INTO id_retorno FROM clientes WHERE cpf=cpf_;
 
-DELETE FROM address 	WHERE id_clientes=id_retorno AND categoria_endereco=categoria_endereco_;
+DELETE FROM address WHERE id = any (array(SELECT id FROM address WHERE id_clientes=id_retorno AND categoria_endereco=categoria_endereco_ ORDER BY id LIMIT 1));
 
 RETURN id_retorno;
 
