@@ -2,7 +2,7 @@
 
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
-Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC, banco de dados Postgresql com PDO, CAPTCHA, PDF e upload de imagem.
+Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC, banco de dados Postgresql com PDO, CAPTCHA, PDF, API de CEP/Endereço e upload de imagem.
 
 ![Logo API](./img/tela_login.png)
 
@@ -25,6 +25,7 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 - [hCaptcha](https://www.hcaptcha.com/);
 - [Dompdf](https://github.com/dompdf/dompdf) 2.0.0;
 - [GD](https://www.php.net/manual/pt_BR/book.image.php);
+- [CEP Aberto](https://www.cepaberto.com) API V3;
 
 ## Instalação:
 
@@ -66,7 +67,8 @@ return [
     "user" => "",
     "password" => "",
     "captcha_secret" => "0x0",
-    "captcha_data-sitekey" => ""
+    "captcha_data-sitekey" => "",
+    "cepaberto" => ""
 ];
 ?>
 
