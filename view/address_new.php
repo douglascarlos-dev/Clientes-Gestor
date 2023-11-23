@@ -116,6 +116,10 @@
             var siglaDoEstado = data.estado;
             // Extrair o valor da chave "bairro"
             var nomeDoBairro = data.bairro;
+            // Extrair o valor da chave "nomelogradouro"
+            var nomeLogradouro = data.nomelogradouro;
+            // Extrair o valor da chave "tipologradouro"
+            var tipologradouro = data.tipologradouro;
 
             // Substituir o valor do input com id "inputCidade"
             console.log("Nome da cidade: " + nomeDaCidade);
@@ -128,6 +132,14 @@
              // Substituir o valor do input com id "inputCidade"
              console.log("Nome do Bairro: " + nomeDoBairro);
             $('#inputBairro').val(nomeDoBairro);
+
+            // Substituir o valor do input com id "inputCidade"
+            console.log("Nome do Logradouro: " + nomeLogradouro);
+            $('#inputNome').val(nomeLogradouro);
+
+             // Substituir o valor do input com id "inputCidade"
+             console.log("Tipo do Logradouro: " + tipologradouro);
+            $('#inputTipo').val(tipologradouro);
         });
     }
 

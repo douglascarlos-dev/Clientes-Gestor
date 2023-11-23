@@ -63,7 +63,12 @@ class CEP extends Connection{
         $resp = curl_exec($curl);
         $obj = json_decode($resp);
 
-        return array('bairro'=>$obj->bairro, 'cidade'=>$obj->cidade->nome, 'estado'=>$obj->estado->sigla);
+        $string = $obj->logradouro;
+        $palavras = explode(" ", $string);
+        $primeiraPalavra = $palavras[0];
+        $restanteString = implode(" ", array_slice($palavras, 1));
+
+        return array('tipologradouro'=>$primeiraPalavra,'nomelogradouro'=>$restanteString, 'bairro'=>$obj->bairro, 'cidade'=>$obj->cidade->nome, 'estado'=>$obj->estado->sigla);
     }
 
 }
