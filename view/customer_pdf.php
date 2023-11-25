@@ -66,7 +66,7 @@ use Dompdf\Dompdf;
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 $dompdf->add_info('Title', 'Your meta title');
-$dompdf->loadHtml('<title>' . $nome . ' - Relatório Cliente</title><meta name="author" content="https://douglascarlos.dev/clientesgestordemo/"><hr style=\'width: 90%; height:5px; text-align:center; border:0px; color:#ff9999; background:#ff9999;\' />
+$dompdf->loadHtml('<title>' . $nome . ' - Relatório Cliente</title><meta name="author" content="https://clientesgestor.douglascarlos.dev/"><hr style=\'width: 90%; height:5px; text-align:center; border:0px; color:#ff9999; background:#ff9999;\' />
 <center>Consulta realizada em: ' . $today . '<br>
 <h3>Clientes Gestor</h3>
 <h3>Relatório Cliente</h3></center><br>
