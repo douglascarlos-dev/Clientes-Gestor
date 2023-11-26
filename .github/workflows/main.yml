@@ -1,0 +1,18 @@
+on: push
+name: Publish Website
+jobs:
+  web-deploy:
+    name: 🚀 Deploy Website Every Commit
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup PHP 🐘
+      uses: douglascarlos-dev/setup-php@v2
+    
+    - name: 📂 Sync Files
+      uses: douglascarlos-dev/Clientes-Gestor@v1
+      with:
+        target-server: 164.92.116.102
+        remote-user: root
+        private-ssh-key: ${{ secrets.droplet }}
+        destination-path: /var/www/subdomains/clientesgestor.douglascarlos.dev/
+        rsync-options:  --archive --verbose --compress --human-readable --progress --delete-after --exclude=vendor
