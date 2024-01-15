@@ -54,7 +54,7 @@ echo $params['captcha_data-sitekey'];
     <footer class="pt-3 my-md-2">
         <div class="row">
           <div class="col-12 col-md">
-            <small class="d-block mb-3 text-muted text-center">© 2023<br><a href="https://github.com/douglascarlos-dev" target="_blank"><img src="<?php echo URLROOT; ?>/img/logo.svg" alt="HTML tutorial" style="height:35px;"></a></small>
+            <small class="d-block mb-3 text-muted text-center">© 2024<br><a href="https://github.com/douglascarlos-dev" target="_blank"><img src="<?php echo URLROOT; ?>/img/logo.svg" alt="HTML tutorial" style="height:35px;"></a></small>
           </div>
         </div>
       </footer>

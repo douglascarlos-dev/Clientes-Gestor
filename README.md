@@ -1,5 +1,7 @@
 # Clientes Gestor
 
+![Static Badge](https://img.shields.io/badge/Apache%20HTTP-%3E%3D2.4.52-cb2138) ![Static Badge](https://img.shields.io/badge/PHP-%3E%3D8.1-blue) ![Static Badge](https://img.shields.io/badge/Ubuntu-22.04-orange) ![Static Badge](https://img.shields.io/badge/PostgreSQL-14.8-blue)
+
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
 Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL amigável usando PHP Orientado a Objetos, MVC, banco de dados Postgresql com PDO, CAPTCHA, PDF, API de CEP/Endereço e upload de imagem.
