@@ -129,38 +129,39 @@ foreach($address as &$address_value):
 ?>
 
 <div class="form-row">
-  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/address/delete/<?php echo $address_value->getCPF(); ?>/<?php echo $address_value->getAddressCategory(); ?>" role="button">Deletar</a>
-  <div class="form-group col-md-5">
-  <label for="inputCategoria">Categoria endereço</label>
-  <input type="text" class="form-control" id="inputCategoria" name="address_category" value="<?php echo $address_value->getAddressCategory(); ?>" readonly>
-</div>
-<div class="form-group col-md-6">
-  <label for="inputTipo">Tipo</label>
-  <input type="text" class="form-control" id="inputTipo" name="type" value="<?php echo $address_value->getType(); ?>" readonly>
-</div>
+  <a class="btn btn-danger mb-2 my-4" href="<?php echo URLROOT; ?>/address/delete/<?php echo $address_value->getCPF(); ?>/<?php echo $address_value->getAddressCategory(); ?>" role="button">Deletar</a>&ensp;
+  <a class="btn btn-info mb-2 my-4" href="<?php echo URLROOT; ?>/address/editar/<?php echo $address_value->getCPF(); ?>/<?php echo $address_value->getAddressCategory(); ?>" role="button">Editar</a>
+  <div class="form-group col-md">
+    <label for="inputCategoria">Categoria endereço</label>
+    <input type="text" class="form-control" id="inputCategoria" name="address_category" value="<?php echo $address_value->getAddressCategory(); ?>" readonly>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputTipo">Tipo</label>
+    <input type="text" class="form-control" id="inputTipo" name="type" value="<?php echo htmlspecialchars($address_value->getType(), ENT_QUOTES, 'UTF-8'); ?>" readonly>
+  </div>
 </div>
 <div class="form-row">
   <div class="form-group col-md-6">
     <label for="inputNome">Nome</label>
-    <input type="text" class="form-control" id="inputNome" name="name" value="<?php echo $address_value->getName(); ?>" readonly>
+    <input type="text" class="form-control" id="inputNome" name="name" value="<?php echo htmlspecialchars($address_value->getName(), ENT_QUOTES, 'UTF-8'); ?>" readonly>
   </div>
   <div class="form-group col-md-2">
     <label for="inputNumero">Número</label>
-    <input type="text" class="form-control" id="inputNumero" name="number" value="<?php echo $address_value->getNumber(); ?>" readonly>
+    <input type="text" class="form-control" id="inputNumero" name="number" value="<?php echo htmlspecialchars($address_value->getNumber(), ENT_QUOTES, 'UTF-8'); ?>" readonly>
   </div>
   <div class="form-group col-md-4">
     <label for="inputBairro">Bairro</label>
-    <input type="text" class="form-control" id="inputBairro" name="district" value="<?php echo $address_value->getDistrict(); ?>" readonly>
+    <input type="text" class="form-control" id="inputBairro" name="district" value="<?php echo htmlspecialchars($address_value->getDistrict(), ENT_QUOTES, 'UTF-8'); ?>" readonly>
   </div>
 </div>
 <div class="form-row">
   <div class="form-group col-md-6">
     <label for="inputCidade">Cidade</label>
-    <input type="text" class="form-control" id="inputCidade" name="city" value="<?php echo $address_value->getCity(); ?>" readonly>
+    <input type="text" class="form-control" id="inputCidade" name="city" value="<?php echo htmlspecialchars($address_value->getCity(), ENT_QUOTES, 'UTF-8'); ?>" readonly>
   </div>
   <div class="form-group col-md-2">
     <label for="inputUF">UF</label>
-    <input type="text" class="form-control" id="inputUF" name="state" value="<?php echo $address_value->getState(); ?>" readonly>
+    <input type="text" class="form-control" id="inputUF" name="state" value="<?php echo htmlspecialchars($address_value->getState(), ENT_QUOTES, 'UTF-8'); ?>" readonly>
   </div>
   <div class="form-group col-md-4">
     <label for="inputCEP">CEP</label>
@@ -170,7 +171,7 @@ foreach($address as &$address_value):
 <div class="form-row">
   <div class="form-group col-md-12">
     <label for="inputComplemento">Complemento</label>
-    <input type="text" class="form-control" id="inputComplemento" name="complement" value="<?php echo $address_value->getComplement(); ?>" readonly>
+    <input type="text" class="form-control" id="inputComplemento" name="complement" value="<?php echo htmlspecialchars($address_value->getComplement(), ENT_QUOTES, 'UTF-8'); ?>" readonly>
   </div>
 </div>
 

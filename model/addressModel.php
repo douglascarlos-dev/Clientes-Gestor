@@ -115,45 +115,47 @@ class Address extends Connection {
     }
 
     function address_insert(){
-        $sql_query = "SELECT * FROM address_insert_function
-                        (
-                            '" . $this->getCPF() . "',
-                            '" . $this->getAddressCategory() . "',
-                            '" . $this->getType() . "',
-                            '" . $this->getName() . "',
-                            '" . $this->getNumber() . "',
-                            '" . $this->getDistrict() . "',
-                            '" . $this->getCity() . "',
-                            '" . $this->getState() . "',
-                            '" . $this->getZipCode() . "',
-                            '" . $this->getComplement() . "'
-                        )";
+        $sql_query = "SELECT * FROM address_insert_function(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
-        $stmt->execute();
-        $row = $stmt->fetch();
-        return $row;
+        $stmt->execute([
+            $this->getCPF(),
+            $this->getAddressCategory(),
+            $this->getType(),
+            $this->getName(),
+            $this->getNumber(),
+            $this->getDistrict(),
+            $this->getCity(),
+            $this->getState(),
+            $this->getZipCode(),
+            $this->getComplement()
+        ]);
+        
+        return $stmt->fetch();
     }
 
     function address_delete(){
         $sql_query = "SELECT * FROM address_delete_function
-                        (
-                            '" . $this->getCPF() . "',
-                            '" . $this->getAddressCategory() . "'
-                        )";
+                        (?, ?)";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
-        $stmt->execute(); 
+        $stmt->execute([
+            $this->getCPF(),
+            $this->getAddressCategory()
+        ]); 
         $row = $stmt->fetchAll();
         return $row;
     }
 
     function address_list(){
-        $sql_query = "SELECT * FROM view_address WHERE cpf = '" . $this->getCPF() . "'";
+        $sql_query = "SELECT * FROM view_address WHERE cpf = ?";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
         $array_address = array();
-        $stmt->execute();
+        $stmt->execute([
+            $this->getCPF()
+        ]);
         while($row = $stmt->fetch())
         {
             $the_address = new Address();
@@ -172,6 +174,24 @@ class Address extends Connection {
         return $array_address;
     }
 
+    function address_list_editar(){
+        $pdo = $this->o_db;
+        $stmt = $pdo->prepare("SELECT tipo, nome, numero, bairro, cidade, uf, complemento, cep FROM view_address WHERE cpf = '" . $this->getCPF() . "' AND categoria_endereco = '" . $this->getAddressCategory() . "' LIMIT 1"); 
+        $stmt->execute(); 
+        $row = $stmt->fetch();
+        $address= new Address();
+        $address->setType($row[0]);
+        $address->setName($row[1]);
+        $address->setNumber($row[2]);
+        $address->setDistrict($row[3]);
+        $address->setCity($row[4]);
+        $address->setState($row[5]);
+        $address->setComplement($row[6]);
+        $address->setZipCode($row[7]);
+        $address->setAddressCategory($this->getAddressCategory());
+        return $address;
+    }
+
     function post_address_new(){
         $result = $this->address_insert();
         return $result;
@@ -184,6 +204,11 @@ class Address extends Connection {
 
     function post_address_list(){
         $result = $this->address_list();
+        return $result;
+    }
+
+    function post_address_list_editar(){
+        $result = $this->address_list_editar();
         return $result;
     }
     

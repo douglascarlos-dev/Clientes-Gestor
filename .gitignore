@@ -10,3 +10,5 @@
 /.vscode/
 ##### Em desenvolvimento
 cratedb.php
+.env
+docker-compose.yml

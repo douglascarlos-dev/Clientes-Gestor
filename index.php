@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-define('URLROOT', '/' . basename(__DIR__));
+define('URLROOT', '');
 
 include_once 'controller/UserController.php';
 $usuario = new UserController();

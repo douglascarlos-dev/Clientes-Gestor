@@ -9,6 +9,18 @@ class AddressController {
         require_once 'view/address_new.php';
     }
 
+    public function editar( $array ){
+        $address = new Address();
+        if(sizeof($array) == 2){
+            $cpf = $array[0];
+            $address_category = $array[1];
+            $address->setCPF($cpf);
+            $address->setAddressCategory($address_category);
+            $address = $address->post_address_list_editar();
+        }
+        require_once 'view/address_editar.php';
+    }
+
     public function save( $cpf ){
         $address = new Address();
         $address->setCPF($cpf);
