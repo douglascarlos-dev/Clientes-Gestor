@@ -12,8 +12,8 @@ Software Web para cadastro de clientes. No seu desenvolvimento foi utlizado URL 
 
 ## Recursos usados no desenvolvimento:
 
-- [PHP](https://www.php.net/) 8.1.2;
-- [PostgreSQL](https://www.postgresql.org/) 14.5;
+- [PHP](https://www.php.net/) 8.3.3;
+- [PostgreSQL](https://www.postgresql.org/) 14.24;
 - [pgModeler](https://github.com/pgmodeler/pgmodeler) 0.9.4;
 - HTML;
 - [Bootstrap](https://github.com/twbs/bootstrap) v4.6.0;
