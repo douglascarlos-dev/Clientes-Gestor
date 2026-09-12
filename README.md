@@ -1,6 +1,6 @@
 # Clientes Gestor
 
-![Static Badge](https://img.shields.io/badge/Apache%20HTTP-%3E%3D2.4.52-cb2138) ![Static Badge](https://img.shields.io/badge/PHP-%3E%3D8.1-blue) ![Static Badge](https://img.shields.io/badge/Ubuntu-22.04-orange) ![Static Badge](https://img.shields.io/badge/PostgreSQL-14.8-blue)
+![Static Badge](https://img.shields.io/badge/Apache%20HTTP-%3E%3D2.4.52-cb2138) ![Static Badge](https://img.shields.io/badge/PHP-%3E%3D8.3-blue) ![Static Badge](https://img.shields.io/badge/Ubuntu-22.04-orange) ![Static Badge](https://img.shields.io/badge/PostgreSQL-14.24-blue)
 
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
