@@ -13,6 +13,8 @@ class Address extends Connection {
     private $state;
     private $zip_code;
     private $complement;
+    private $created;
+    private $updated;
 
     public function setId($id){
         $this->id=$id;
@@ -56,6 +58,13 @@ class Address extends Connection {
     }
     public function setComplement($complement){
         $this->complement=$complement;
+        return $this;
+    }
+    public function setUpdated(){
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = new DateTimeImmutable();
+        $date = $date->format('Y-m-d H:i:s O');
+        $this->updated=$date;
         return $this;
     }
 
@@ -113,6 +122,10 @@ class Address extends Connection {
     {
         return $this->complement;
     }
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
 
     function address_insert(){
         $sql_query = "SELECT * FROM address_insert_function(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -131,13 +144,11 @@ class Address extends Connection {
             $this->getZipCode(),
             $this->getComplement()
         ]);
-        
         return $stmt->fetch();
     }
 
     function address_delete(){
-        $sql_query = "SELECT * FROM address_delete_function
-                        (?, ?)";
+        $sql_query = "SELECT * FROM address_delete_function(?, ?)";
         $pdo = $this->o_db;
         $stmt = $pdo->prepare($sql_query);
         $stmt->execute([
@@ -176,8 +187,11 @@ class Address extends Connection {
 
     function address_list_editar(){
         $pdo = $this->o_db;
-        $stmt = $pdo->prepare("SELECT tipo, nome, numero, bairro, cidade, uf, complemento, cep FROM view_address WHERE cpf = '" . $this->getCPF() . "' AND categoria_endereco = '" . $this->getAddressCategory() . "' LIMIT 1"); 
-        $stmt->execute(); 
+        $stmt = $pdo->prepare("SELECT tipo, nome, numero, bairro, cidade, uf, complemento, cep FROM view_address WHERE cpf = ? AND categoria_endereco = ? LIMIT 1"); 
+        $stmt->execute([
+            $this->getCPF(),
+            $this->getAddressCategory()
+        ]); 
         $row = $stmt->fetch();
         $address= new Address();
         $address->setType($row[0]);
@@ -190,6 +204,43 @@ class Address extends Connection {
         $address->setZipCode($row[7]);
         $address->setAddressCategory($this->getAddressCategory());
         return $address;
+    }
+
+    function address_update(){
+        $pdo = $this->o_db;
+
+        $sql_cliente = "SELECT id FROM clientes WHERE cpf = ?";
+        $stmt_cliente = $pdo->prepare($sql_cliente);
+        $stmt_cliente->execute([$this->getCPF()]);
+        $cliente = $stmt_cliente->fetch();
+
+        if (!$cliente) {
+            return false; 
+        }
+
+        $id_retorno = $cliente['id'];
+
+        $sql_query = "UPDATE public.address
+                    SET tipo = ?, nome = ?, numero = ?, bairro = ?, cidade = ?, uf = ?, complemento = ?, cep = ?, updated = ?
+                    WHERE id_clientes = ? AND categoria_endereco = ?";
+        
+        $stmt = $pdo->prepare($sql_query);
+        
+        // A ordem dos parâmetros no array deve ser EXATAMENTE a ordem das '?' na query
+        $success = $stmt->execute([
+            $this->getType(),
+            $this->getName(),
+            $this->getNumber(),
+            $this->getDistrict(),
+            $this->getCity(),
+            $this->getState(),
+            $this->getComplement(),
+            $this->getZipCode(),
+            $this->getUpdated(),
+            $id_retorno,
+            $this->getAddressCategory()
+        ]);
+        return $success;
     }
 
     function post_address_new(){
@@ -209,6 +260,11 @@ class Address extends Connection {
 
     function post_address_list_editar(){
         $result = $this->address_list_editar();
+        return $result;
+    }
+
+    function post_address_update(){
+        $result = $this->address_update();
         return $result;
     }
     

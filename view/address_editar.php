@@ -21,7 +21,7 @@
 
 <div class="card">
 <div class="card-body">
-<form name="register" action="<?php echo URLROOT; ?>/address/save/<?php echo $cpf; ?>" method="post">
+<form name="register" action="<?php echo URLROOT; ?>/address/atualizar/<?php echo $cpf; ?>" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCategoria">Categoria endereço</label>

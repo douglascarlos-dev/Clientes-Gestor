@@ -12,3 +12,5 @@
 cratedb.php
 .env
 docker-compose.yml
+/docker
+/db

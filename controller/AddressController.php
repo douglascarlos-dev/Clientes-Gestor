@@ -21,6 +21,25 @@ class AddressController {
         require_once 'view/address_editar.php';
     }
 
+    public function atualizar( $cpf ) {
+        $address = new Address();
+        $address->setCPF($cpf);
+        $address->setAddressCategory($_REQUEST['address_category']);
+        $address->setType($_REQUEST['type']);
+        $address->setName($_REQUEST['name']);
+        $address->setNumber($_REQUEST['number']);
+        $address->setDistrict($_REQUEST['neighborhood']);
+        $address->setCity($_REQUEST['city']);
+        $address->setState($_REQUEST['state']);
+        $address->setZipCode($_REQUEST['zip_code']);
+        $address->setComplement($_REQUEST['complement']);
+        $address->setUpdated();
+        $address->post_address_update();
+        //CustomerController::edit($customer->getCPF());
+        header("HTTP/1.1 303 See Other");
+        header("Location: ../../customer/edit/$cpf");
+    }
+
     public function save( $cpf ){
         $address = new Address();
         $address->setCPF($cpf);
