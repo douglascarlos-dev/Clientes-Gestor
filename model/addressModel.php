@@ -226,7 +226,6 @@ class Address extends Connection {
         
         $stmt = $pdo->prepare($sql_query);
         
-        // A ordem dos parâmetros no array deve ser EXATAMENTE a ordem das '?' na query
         $success = $stmt->execute([
             $this->getType(),
             $this->getName(),

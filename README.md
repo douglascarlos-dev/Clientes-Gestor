@@ -1,6 +1,6 @@
 # Clientes Gestor
 
-![Static Badge](https://img.shields.io/badge/Apache%20HTTP-%3E%3D2.4.52-cb2138) ![Static Badge](https://img.shields.io/badge/PHP-%3E%3D8.3-blue) ![Static Badge](https://img.shields.io/badge/Ubuntu-22.04-orange) ![Static Badge](https://img.shields.io/badge/PostgreSQL-14.24-blue)
+![Static Badge](https://img.shields.io/badge/Apache%20HTTP-%3E%3D2.4.68-cb2138) ![Static Badge](https://img.shields.io/badge/PHP-%3E%3D8.3-blue) ![Static Badge](https://img.shields.io/badge/Ubuntu-22.04-orange) ![Static Badge](https://img.shields.io/badge/PostgreSQL-14.24-blue)
 
 ### Esse projeto faz parte dos meus estudos sobre programação e teste de software.
 
@@ -39,6 +39,7 @@ Antes de instalar o projeto, você precisa já ter instalado na sua máquina:
 
 - Apache;
 - Ativar o módulo mod_rewrite do Apache;
+- O Apache também precisa permitir AllowOverride;
 - PHP;
 - Ativar o módulo pgsql do PHP;
 - Ativar a extensão GD do PHP;
