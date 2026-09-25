@@ -112,8 +112,9 @@ function Mask($mask,$str){
 foreach($phone as &$phone_value):
 ?>
 <div class="form-row">
-  <a class="btn btn-danger col-md-1 my-4" href="<?php echo URLROOT; ?>/phone/delete/<?php echo $phone_value->getCPF(); ?>/<?php echo $phone_value->getType(); ?>/<?php echo $phone_value->getPhone(); ?>" role="button">Deletar</a>
-  <div class="form-group col-md-5">
+  <a class="btn btn-danger mb-2 my-4" href="<?php echo URLROOT; ?>/phone/delete/<?php echo $phone_value->getCPF(); ?>/<?php echo $phone_value->getType(); ?>/<?php echo $phone_value->getPhone(); ?>" role="button">Deletar</a>&ensp;
+  <a class="btn btn-info mb-2 my-4" href="<?php echo URLROOT; ?>/phone/editar/<?php echo $phone_value->getCPF(); ?>/<?php echo $phone_value->getType(); ?>" role="button">Editar</a>
+  <div class="form-group col-md">
     <label for="inputTipoTelefone">Telefone</label>
     <input type="text" class="form-control" id="inputTipoTelefone" name="phone_type" value="<?php echo $phone_value->getType(); ?>" readonly>
   </div>

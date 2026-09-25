@@ -28,7 +28,8 @@ class CustomerController {
         $customer->setMaritalStatus($_REQUEST['estado_civil']);
         $customer->setUpdated($_REQUEST['estado_civil']);
         $customer->post_customer_update();
-        CustomerController::edit($customer->getCPF());
+        header("HTTP/1.1 303 See Other");
+        header("Location: ../../customer/edit/$cpf");
     }
 
     public function delete( $cpf ){
