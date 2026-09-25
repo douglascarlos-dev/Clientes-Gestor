@@ -1,18 +1,50 @@
-on: push
-name: Publish Website
+name: Deploy Automático via Cloudflare Tunnel
+
+on:
+  push:
+    branches:
+      - main # Ajuste se sua branch principal se chamar 'master'
+
 jobs:
-  web-deploy:
-    name: 🚀 Deploy Website Every Commit
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Setup PHP 🐘
-      uses: douglascarlos-dev/setup-php@v2
-    
-    - name: 📂 Sync Files
-      uses: douglascarlos-dev/Clientes-Gestor@v1
-      with:
-        target-server: 164.92.116.102
-        remote-user: root
-        private-ssh-key: ${{ secrets.droplet }}
-        destination-path: /var/www/subdomains/clientesgestor.douglascarlos.dev/
-        rsync-options:  --archive --verbose --compress --human-readable --progress --delete-after --exclude=vendor
+      - name: Instalar e configurar Cloudflare + SSH Client
+        run: |
+          # 1. Instalar o cloudflared na máquina do GitHub
+          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared.deb
+          rm cloudflared.deb
+
+          # 2. Configurar o diretório SSH
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          # 3. Salvar a chave privada das Secrets
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+
+          # 4. Criar o arquivo de configuração do SSH com o Proxy do Cloudflare
+          cat <<EOF > ~/.ssh/config
+          Host ${{ secrets.SSH_HOST }}
+            User ${{ secrets.SSH_USER }}
+            IdentityFile ~/.ssh/id_deploy
+            StrictHostKeyChecking no
+            ProxyCommand cloudflared access ssh --hostname %h
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Executar Deploy no Orange Pi
+        run: |
+          ssh ${{ secrets.SSH_HOST }} << 'EOF'
+            cd /var/www/html/clientesgestor
+            git pull origin main
+
+            # Apaga arquivos que não precisam ficar no servidor web
+            rm -f README.md LICENSE .gitignore
+            
+            if [ -f "composer.json" ]; then
+                composer install --no-dev --optimize-autoloader
+            fi
+          EOF
